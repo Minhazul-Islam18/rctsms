@@ -20,10 +20,10 @@
 </head>
 
 <body>
-    <div class="container my-4 main-container">
+    <div class="container my-4 px-4 py-3 main-container">
         <header class="site__header">
             <div class="Header__top_image">
-                <img src="https://i.ibb.co/TwGZhRb/Screenshot-2023-08-23-at-09-56-24-RCT-Seba-SMS.png" alt="">
+                <img src="https://i.ibb.co/g6tTvr1/Whats-App-Image-2023-08-23-at-13-18-44.jpg" alt="">
             </div>
             {{-- <div class="row my-md-4 my-sm-3 my-2">
                 <div class="col-md-3 col-sm-12 col-12">
@@ -64,28 +64,66 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav header__navbar">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">প্রথম পাতা</a>
+                            <a class="nav-link" href="#">হোম</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">প্রতিষ্ঠান সম্পর্কে</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li>প্রতিষ্ঠানের ইতিহাস</li>
+                                    <li>সভাপতির বাণী</li>
+                                    <li>প্রতিষ্ঠান প্রধানের বাণী</li>
+                                    <li>সহকারী প্রধানের বাণী</li>
+                                    <li>পাঠদানের অনুমতি</li>
+                                    <li>শ্রেণি সমূহ</li>
+                                    <li>সর্বশেষ কমিটি</li>
+                                    <li>প্রাক্তণ সভাপতিগণ ও কার্যকাল</li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">শিক্ষক-কর্মচারী</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li>বর্তমান শিক্ষক-শিক্ষিকা</li>
+                                    <li>বর্তমান কর্মচারী</li>
+                                    <li>শিক্ষক-কর্মচারীদের উপস্থিতি</li>
+                                    <li>প্রাক্তণ প্রধান শিক্ষকগণ ও কার্যকাল</li>
+                                    <li>প্রাক্তণ কর্মচারীগণ ও কার্যকাল</li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="#">শিক্ষার্থী</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li>অধ্যায়নরত শিক্ষার্থীর সংখ্যা</li>
+                                    <li>শিক্ষার্থীদের উপস্থিতি</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">পাঠদান সংক্রান্ত</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li>রুটিন
+                                    </li>
+                                    <li>পাঠ্যসূচী
+                                    </li>
+                                    <li>
+                                        বিবিধ নোটিশ</li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">ফলাফল</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">ফটো গ্যালারি</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="#">রুটিন</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">এডমিশন</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li>পাবলিক পরীক্ষার ফলাফল
+                                    </li>
+                                    <li>একাডেমিক ফলাফল</li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">যোগাযোগ</a>
