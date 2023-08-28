@@ -1,0 +1,132 @@
+/* Admin Panel Custom css */
+
+html[data-footer="true"] #root > footer {
+    z-index: 999;
+    background-color: var(--background);
+}
+.note-editor.note-frame {
+    background-color: var(--fbc-white);
+}
+.accordion__collapsible:not(:last-child) {
+    border-bottom: none;
+}
+
+.collapsible__header {
+    background-color: var(--background);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.collapsible__content ul {
+    padding-left: 10px;
+    background-color: var(--background-light);
+    border-radius: 0 0 3px 3px;
+}
+
+.collapsible__header::after {
+    content: "+";
+    position: relative;
+    right: 10px;
+}
+
+.collapsible__content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 1s, opacity 1s;
+}
+
+.collapsible--open .collapsible__header::after {
+    content: "-";
+}
+
+.collapsible--open .collapsible__content {
+    max-height: 200px;
+    opacity: 1;
+}
+
+/* Content styles - To make inner content look better */
+.collapsible__header p {
+    font-size: medium;
+}
+
+.collapsible__content p {
+    font-size: small;
+    margin: 10px;
+}
+.tgl {
+    display: none;
+}
+.tgl,
+.tgl:after,
+.tgl:before,
+.tgl *,
+.tgl *:after,
+.tgl *:before,
+.tgl + .tgl-btn {
+    box-sizing: border-box;
+}
+.tgl::-moz-selection,
+.tgl:after::-moz-selection,
+.tgl:before::-moz-selection,
+.tgl *::-moz-selection,
+.tgl *:after::-moz-selection,
+.tgl *:before::-moz-selection,
+.tgl + .tgl-btn::-moz-selection {
+    background: none;
+}
+.tgl::selection,
+.tgl:after::selection,
+.tgl:before::selection,
+.tgl *::selection,
+.tgl *:after::selection,
+.tgl *:before::selection,
+.tgl + .tgl-btn::selection {
+    background: none;
+}
+.tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.tgl + .tgl-btn:after,
+.tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+.tgl + .tgl-btn:after {
+    left: 0;
+}
+.tgl + .tgl-btn:before {
+    display: none;
+}
+.tgl:checked + .tgl-btn:after {
+    left: 50%;
+}
+.tgl-light + .tgl-btn {
+    background: #f0f0f0;
+    border-radius: 2em;
+    padding: 2px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.tgl-light + .tgl-btn:after {
+    border-radius: 50%;
+    background: #fff;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.tgl-light:checked + .tgl-btn {
+    background: var(--primary);
+}

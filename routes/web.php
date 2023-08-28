@@ -1,6 +1,10 @@
 <?php
 
+use App\Livewire\CreateRole;
+use App\Livewire\PermissionComponent;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BackendController;
+use App\Livewire\GeneralSettingsComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('/dashboard', [BackendController::class, 'index'])->name('dashboard');
+    Route::get('/settings', GeneralSettingsComponent::class)->name('admin-settings');
+    Route::get('/settings/roles', CreateRole::class)->name('role-settings');
+    Route::get('/settings/permissions', PermissionComponent::class)->name('permission-settings');
 });

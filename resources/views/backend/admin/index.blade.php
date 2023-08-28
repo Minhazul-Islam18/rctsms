@@ -1,626 +1,411 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+@extends('backend/admin/layouts/common')
+
+@section('content')
+    <div class="page-title-container mb-3">
+        <div class="row">
+            <div class="col mb-2">
+                <h1 class="mb-2 pb-0 display-4" id="title">
+                    Getting Started
+                </h1>
+                <div class="text-muted font-heading text-small">
+                    Let us manage the database engines for your applications
+                    so you can focus on building.
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>150</h3>
-
-                            <p>New Orders</p>
+    <div class="row">
+        <div class="col-12 col-lg-8 mb-5">
+            <div class="card sh-45 h-lg-100 position-relative bg-theme">
+                <img src="{{ asset('backend/img/illustration/database.webp') }}"
+                    class="card-img h-100 position-absolute theme-filter" alt="card image" />
+                <div class="card-img-overlay d-flex flex-column justify-content-end bg-transparent">
+                    <div class="mb-4">
+                        <div class="cta-1 mb-2 w-75 w-sm-50">
+                            Introduction to Cloud
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
+                        <div class="w-50 text-alternate">
+                            Lollipop chocolate marzipan marshmallow gummi bears.
+                            Tootsie roll liquorice cake jelly beans.
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                    <div>
+                        <a href="Services.Database.html"
+                            class="btn btn-icon btn-icon-start btn-primary mt-3 stretched-link">
+                            <i data-acorn-icon="chevron-right"></i>
+                            <span>Getting Started</span>
+                        </a>
                     </div>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                            <p>Bounce Rate</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>44</h3>
-
-                            <p>User Registrations</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>65</h3>
-
-                            <p>Unique Visitors</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
             </div>
-            <!-- /.row -->
-            <!-- Main row -->
-            <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
-                    <!-- Custom tabs (Charts with tabs)-->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-chart-pie mr-1"></i>
-                                Sales
-                            </h3>
-                            <div class="card-tools">
-                                <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                    style="position: relative; height: 300px;">
-                                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="scroll-out">
+                <div class="scroll-by-count" data-count="4">
+                    <div class="card mb-2 hover-border-primary">
+                        <a href="Services.DatabaseAdd.html" class="row g-0 sh-9">
+                            <div class="col-auto">
+                                <div class="sw-9 sh-9 d-inline-block d-flex justify-content-center align-items-center">
+                                    <div class="fw-bold text-primary">
+                                        <i data-acorn-icon="server"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div><!-- /.card-body -->
+                            <div class="col">
+                                <div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="text-alternate">Add New Volume</div>
+                                        <div class="text-small text-muted">
+                                            Snaps muffin macaroon.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <!-- /.card -->
-
-                    <!-- DIRECT CHAT -->
-                    <div class="card direct-chat direct-chat-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Direct Chat</h3>
-
-                            <div class="card-tools">
-                                <span title="3 New Messages" class="badge badge-primary">3</span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" title="Contacts"
-                                    data-widget="chat-pane-toggle">
-                                    <i class="fas fa-comments"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
+                    <div class="card mb-2 hover-border-primary">
+                        <a href="Services.Storage.html" class="row g-0 sh-9">
+                            <div class="col-auto">
+                                <div class="sw-9 sh-9 d-inline-block d-flex justify-content-center align-items-center">
+                                    <div class="fw-bold text-primary">
+                                        <i data-acorn-icon="cloud-download"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <!-- Conversations are loaded here -->
-                            <div class="direct-chat-messages">
-                                <!-- Message. Default to the left -->
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
-                                        <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="text-alternate">Cloud Storage</div>
+                                        <div class="text-small text-muted">
+                                            Brownie ice cream marshmallow topping.
+                                        </div>
                                     </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg"
-                                        alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        Is this template really for free? That's unbelievable!
-                                    </div>
-                                    <!-- /.direct-chat-text -->
                                 </div>
-                                <!-- /.direct-chat-msg -->
-
-                                <!-- Message to the right -->
-                                <div class="direct-chat-msg right">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                        <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg"
-                                        alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        You better believe it!
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
-
-                                <!-- Message. Default to the left -->
-                                <div class="direct-chat-msg">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">Alexander Pierce</span>
-                                        <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg"
-                                        alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        Working with AdminLTE on a great new app! Wanna join?
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
-
-                                <!-- Message to the right -->
-                                <div class="direct-chat-msg right">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-right">Sarah Bullock</span>
-                                        <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg"
-                                        alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        I would love to.
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                <!-- /.direct-chat-msg -->
-
                             </div>
-                            <!--/.direct-chat-messages-->
-
-                            <!-- Contacts are loaded here -->
-                            <div class="direct-chat-contacts">
-                                <ul class="contacts-list">
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img" src="dist/img/user1-128x128.jpg"
-                                                alt="User Avatar">
-
-                                            <div class="contacts-list-info">
-                                                <span class="contacts-list-name">
-                                                    Count Dracula
-                                                    <small class="contacts-list-date float-right">2/28/2015</small>
-                                                </span>
-                                                <span class="contacts-list-msg">How have you been? I was...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img" src="dist/img/user7-128x128.jpg"
-                                                alt="User Avatar">
-
-                                            <div class="contacts-list-info">
-                                                <span class="contacts-list-name">
-                                                    Sarah Doe
-                                                    <small class="contacts-list-date float-right">2/23/2015</small>
-                                                </span>
-                                                <span class="contacts-list-msg">I will be waiting for...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img" src="dist/img/user3-128x128.jpg"
-                                                alt="User Avatar">
-
-                                            <div class="contacts-list-info">
-                                                <span class="contacts-list-name">
-                                                    Nadia Jolie
-                                                    <small class="contacts-list-date float-right">2/20/2015</small>
-                                                </span>
-                                                <span class="contacts-list-msg">I'll call you back at...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img" src="dist/img/user5-128x128.jpg"
-                                                alt="User Avatar">
-
-                                            <div class="contacts-list-info">
-                                                <span class="contacts-list-name">
-                                                    Nora S. Vans
-                                                    <small class="contacts-list-date float-right">2/10/2015</small>
-                                                </span>
-                                                <span class="contacts-list-msg">Where is your new...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img" src="dist/img/user6-128x128.jpg"
-                                                alt="User Avatar">
-
-                                            <div class="contacts-list-info">
-                                                <span class="contacts-list-name">
-                                                    John K.
-                                                    <small class="contacts-list-date float-right">1/27/2015</small>
-                                                </span>
-                                                <span class="contacts-list-msg">Can I take a look at...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                    <li>
-                                        <a href="#">
-                                            <img class="contacts-list-img" src="dist/img/user8-128x128.jpg"
-                                                alt="User Avatar">
-
-                                            <div class="contacts-list-info">
-                                                <span class="contacts-list-name">
-                                                    Kenneth M.
-                                                    <small class="contacts-list-date float-right">1/4/2015</small>
-                                                </span>
-                                                <span class="contacts-list-msg">Never mind I found...</span>
-                                            </div>
-                                            <!-- /.contacts-list-info -->
-                                        </a>
-                                    </li>
-                                    <!-- End Contact Item -->
-                                </ul>
-                                <!-- /.contacts-list -->
-                            </div>
-                            <!-- /.direct-chat-pane -->
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <form action="#" method="post">
-                                <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type Message ..."
-                                        class="form-control">
-                                    <span class="input-group-append">
-                                        <button type="button" class="btn btn-primary">Send</button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.card-footer-->
+                        </a>
                     </div>
-                    <!--/.direct-chat -->
-
-                    <!-- TO DO List -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="ion ion-clipboard mr-1"></i>
-                                To Do List
-                            </h3>
-
-                            <div class="card-tools">
-                                <ul class="pagination pagination-sm">
-                                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-                                </ul>
+                    <div class="card mb-2 hover-border-primary">
+                        <a href="Account.Security.html" class="row g-0 sh-9">
+                            <div class="col-auto">
+                                <div class="sw-9 sh-9 d-inline-block d-flex justify-content-center align-items-center">
+                                    <div class="fw-bold text-primary">
+                                        <i data-acorn-icon="shield"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <ul class="todo-list" data-widget="todo-list">
-                                <li>
-                                    <!-- drag handle -->
-                                    <span class="handle">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </span>
-                                    <!-- checkbox -->
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                                        <label for="todoCheck1"></label>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="text-alternate">
+                                            Server Security
+                                        </div>
+                                        <div class="text-small text-muted">
+                                            Sugar plum gummi bears jujubes.
+                                        </div>
                                     </div>
-                                    <!-- todo text -->
-                                    <span class="text">Design a nice theme</span>
-                                    <!-- Emphasis label -->
-                                    <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
-                                    <!-- General tools such as edit or delete-->
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="handle">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo2" id="todoCheck2"
-                                            checked>
-                                        <label for="todoCheck2"></label>
-                                    </div>
-                                    <span class="text">Make the theme responsive</span>
-                                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="handle">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                                        <label for="todoCheck3"></label>
-                                    </div>
-                                    <span class="text">Let theme shine like a star</span>
-                                    <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="handle">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo4" id="todoCheck4">
-                                        <label for="todoCheck4"></label>
-                                    </div>
-                                    <span class="text">Let theme shine like a star</span>
-                                    <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="handle">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo5" id="todoCheck5">
-                                        <label for="todoCheck5"></label>
-                                    </div>
-                                    <span class="text">Check your messages and notifications</span>
-                                    <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="handle">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </span>
-                                    <div class="icheck-primary d-inline ml-2">
-                                        <input type="checkbox" value="" name="todo6" id="todoCheck6">
-                                        <label for="todoCheck6"></label>
-                                    </div>
-                                    <span class="text">Let theme shine like a star</span>
-                                    <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
-                                    <div class="tools">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-o"></i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i>
-                                Add item</button>
-                        </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <!-- /.card -->
-                </section>
-                <!-- /.Left col -->
-                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                <section class="col-lg-5 connectedSortable">
-
-                    <!-- Map card -->
-                    <div class="card bg-gradient-primary">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                Visitors
-                            </h3>
-                            <!-- card tools -->
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                                    <i class="far fa-calendar-alt"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse"
-                                    title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <div class="card-body">
-                            <div id="world-map" style="height: 250px; width: 100%;"></div>
-                        </div>
-                        <!-- /.card-body-->
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-1"></div>
-                                    <div class="text-white">Visitors</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-2"></div>
-                                    <div class="text-white">Online</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-3"></div>
-                                    <div class="text-white">Sales</div>
-                                </div>
-                                <!-- ./col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                    </div>
-                    <!-- /.card -->
-
-                    <!-- solid sales graph -->
-                    <div class="card bg-gradient-info">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-th mr-1"></i>
-                                Sales Graph
-                            </h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas class="chart" id="line-chart"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="20"
-                                        data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                    <div class="text-white">Mail-Orders</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="50"
-                                        data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                    <div class="text-white">Online</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="30"
-                                        data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                    <div class="text-white">In-Store</div>
-                                </div>
-                                <!-- ./col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.card-footer -->
-                    </div>
-                    <!-- /.card -->
-
-                    <!-- Calendar -->
-                    <div class="card bg-gradient-success">
-                        <div class="card-header border-0">
-
-                            <h3 class="card-title">
-                                <i class="far fa-calendar-alt"></i>
-                                Calendar
-                            </h3>
-                            <!-- tools card -->
-                            <div class="card-tools">
-                                <!-- button with a dropdown -->
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success btn-sm dropdown-toggle"
-                                        data-toggle="dropdown" data-offset="-52">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a href="#" class="dropdown-item">Add new event</a>
-                                        <a href="#" class="dropdown-item">Clear events</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item">View calendar</a>
+                    <div class="card mb-2 hover-border-primary">
+                        <a href="Services.DatabaseDetail.html" class="row g-0 sh-9">
+                            <div class="col-auto">
+                                <div class="sw-9 sh-9 d-inline-block d-flex justify-content-center align-items-center">
+                                    <div class="fw-bold text-primary">
+                                        <i data-acorn-icon="chart-4"></i>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
                             </div>
-                            <!-- /. tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body pt-0">
-                            <!--The calendar -->
-                            <div id="calendar" style="width: 100%"></div>
-                        </div>
-                        <!-- /.card-body -->
+                            <div class="col">
+                                <div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="text-alternate">Track Metrics</div>
+                                        <div class="text-small text-muted">
+                                            Jujubes candy jelly-o topping.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <!-- /.card -->
-                </section>
-                <!-- right col -->
+                    <div class="card mb-2 hover-border-primary">
+                        <a href="Support.Docs.html" class="row g-0 sh-9">
+                            <div class="col-auto">
+                                <div class="sw-9 sh-9 d-inline-block d-flex justify-content-center align-items-center">
+                                    <div class="fw-bold text-primary">
+                                        <i data-acorn-icon="category"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column ps-0 pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="text-alternate">
+                                            Integration Guides
+                                        </div>
+                                        <div class="text-small text-muted">
+                                            Jujubes candy jelly-o topping.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+        </div>
+    </div>
+    <div class="mb-5">
+        <h2 class="small-title">Guides</h2>
+        <div class="row g-2 row-cols-1 row-cols-xl-2 row-cols-xxl-4">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="img/illustration/icon-launch.webp" class="theme-filter" alt="launch" />
+                            <div class="d-flex flex-column sh-5">
+                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Application Launch</a>
+                            </div>
+                        </div>
+                        <div class="text-muted">
+                            Chocolate cake marshmallow bear claw sweet. Apple pie
+                            macaroon sesame snaps candy jelly pudding.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="img/illustration/icon-performance.webp" class="theme-filter" alt="performance" />
+                            <div class="d-flex flex-column sh-5">
+                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Performance Tweaks</a>
+                            </div>
+                        </div>
+                        <div class="text-muted">
+                            Cheesecake chocolate carrot cake pie lollipop lemon
+                            drops toffee lollipop.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="img/illustration/icon-configure.webp" class="theme-filter" alt="configure" />
+                            <div class="d-flex flex-column sh-5">
+                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Advanced
+                                    Configuration</a>
+                            </div>
+                        </div>
+                        <div class="text-muted">
+                            Sweet roll apple pie tiramisu bonbon sugar plum muffin
+                            sesame snaps chocolate. Lollipop halvah powder.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="img/illustration/icon-analytics.webp" class="theme-filter" alt="analytics" />
+                            <div class="d-flex flex-column sh-5">
+                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Server
+                                    Analytics</a>
+                            </div>
+                        </div>
+                        <div class="text-muted">
+                            Cake tart apple pie bear bonbon sugar plum muffin
+                            sesame snaps sweet roll gingerbread bonbon sugar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-n5">
+        <div class="col-12 col-xxl-4 mb-5">
+            <h2 class="small-title">Help</h2>
+            <div class="card h-100-card">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="cta-3">Do you need help?</div>
+                        <div class="mb-3 cta-3 text-primary">
+                            Search for documentation!
+                        </div>
+                        <div class="text-muted mb-4">
+                            Cheesecake chocolate carrot cake pie cream.
+                        </div>
+                    </div>
+                    <form>
+                        <div class="mb-3 filled">
+                            <i data-acorn-icon="help"></i>
+                            <input class="form-control" placeholder="Keyword" />
+                        </div>
+                        <a href="#" class="btn btn-icon btn-icon-start btn-outline-primary mt-1">
+                            <i data-acorn-icon="chevron-right"></i>
+                            <span>Search</span>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xxl-8 mb-5">
+            <h2 class="small-title">Videos</h2>
+            <div class="row g-2">
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <a href="Blog.html" class="row g-0 sh-11">
+                            <div class="col-auto h-100">
+                                <img src="img/video/video-thumbnail-1.webp" alt="alternate text"
+                                    class="card-img card-img-horizontal sw-11 sw-md-14 theme-filter" />
+                                <div
+                                    class="position-absolute bg-foreground opacity-75 text-primary px-1 py-1 text-extra-small b-2 s-2 rounded-lg">
+                                    12:00
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="font-heading">Database Basics</div>
+                                        <div class="text-small text-muted text-truncate">
+                                            Icing liquorice oat roll chocolate cake bar
+                                            marzipan marzipan carrot.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <a href="Blog.html" class="row g-0 sh-11">
+                            <div class="col-auto h-100">
+                                <img src="img/video/video-thumbnail-2.webp" alt="alternate text"
+                                    class="card-img card-img-horizontal sw-11 sw-md-14 theme-filter" />
+                                <div
+                                    class="position-absolute bg-foreground opacity-75 text-primary px-1 py-1 text-extra-small b-2 s-2 rounded-lg">
+                                    16:22
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="font-heading">Shared Storage</div>
+                                        <div class="text-small text-muted text-truncate">
+                                            Jujubes cream toffee candy jelly chups jujubes
+                                            muffin chupa chups carrot cake chupa.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <a href="Blog.html" class="row g-0 sh-11">
+                            <div class="col-auto h-100">
+                                <img src="img/video/video-thumbnail-3.webp" alt="alternate text"
+                                    class="card-img card-img-horizontal sw-11 sw-md-14 theme-filter" />
+                                <div
+                                    class="position-absolute bg-foreground opacity-75 text-primary px-1 py-1 text-extra-small b-2 s-2 rounded-lg">
+                                    10:05
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="font-heading">Javascript Api</div>
+                                        <div class="text-small text-muted text-truncate">
+                                            Candy jelly chups jujubes Cookie cream toffee
+                                            cream chocolate.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <a href="Blog.html" class="row g-0 sh-11">
+                            <div class="col-auto h-100">
+                                <img src="img/video/video-thumbnail-4.webp" alt="alternate text"
+                                    class="card-img card-img-horizontal sw-11 sw-md-14 theme-filter" />
+                                <div
+                                    class="position-absolute bg-foreground opacity-75 text-primary px-1 py-1 text-extra-small b-2 s-2 rounded-lg">
+                                    12:20
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="font-heading">Frontend Methods</div>
+                                        <div class="text-small text-muted text-truncate">
+                                            Jelly chups jujubes chocolate bar pastry oat
+                                            cake cream.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <a href="Blog.html" class="row g-0 sh-11">
+                            <div class="col-auto h-100">
+                                <img src="img/video/video-thumbnail-5.webp" alt="alternate text"
+                                    class="card-img card-img-horizontal sw-11 sw-md-14 theme-filter" />
+                                <div
+                                    class="position-absolute bg-foreground opacity-75 text-primary px-1 py-1 text-extra-small b-2 s-2 rounded-lg">
+                                    24:00
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="font-heading">Backend Methods</div>
+                                        <div class="text-small text-muted text-truncate">
+                                            Cookie cream toffee cream chocolate.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <a href="Blog.html" class="row g-0 sh-11">
+                            <div class="col-auto h-100">
+                                <img src="img/video/video-thumbnail-6.webp" alt="alternate text"
+                                    class="card-img card-img-horizontal sw-11 sw-md-14 theme-filter" />
+                                <div
+                                    class="position-absolute bg-foreground opacity-75 text-primary px-1 py-1 text-extra-small b-2 s-2 rounded-lg">
+                                    16:50
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
+                                    <div class="d-flex flex-column">
+                                        <div class="font-heading">Data Analysis</div>
+                                        <div class="text-small text-muted text-truncate">
+                                            Liquorice bar chocolate bar pastry oat cake
+                                            cream.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
