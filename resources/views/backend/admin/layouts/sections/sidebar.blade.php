@@ -64,8 +64,9 @@
                                 General
                             </a>
                         </li>
-                        <li><a href="{{ route('role-settings') }}">Roles</a></li>
-                        <li><a href="{{ route('permission-settings') }}">Permission</a></li>
+                        <li><a wire:navigate href="{{ route('header-footer-settings') }}">Header & Footer</a></li>
+                        <li><a wire:navigate href="{{ route('role-settings') }}">Roles</a></li>
+                        <li><a wire:navigate href="{{ route('permission-settings') }}">Permission</a></li>
                     </ul>
                 </div>
             </div>

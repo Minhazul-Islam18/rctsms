@@ -130,3 +130,41 @@ html[data-footer="true"] #root > footer {
 .tgl-light:checked + .tgl-btn {
     background: var(--primary);
 }
+.preview_nav ul {
+    list-style: none;
+    /* padding: 0; */
+    color: var(--alternate);
+}
+.menu_with_oparations {
+    list-style: none;
+    padding: 0;
+}
+.menu_with_oparations li {
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    align-items: center;
+    background-color: var(--background-light);
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.4rem;
+    border-radius: 0.3rem;
+}
+.menu_with_oparations li ul {
+    padding: 0;
+    border-left: 1px solid var(--alternate-darker);
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+}
+.prev-menu-list {
+    padding: 0;
+}
+.prev-menu-list li {
+    background-color: var(--background-navcolor-light);
+    color: var(--background);
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 0.3rem;
+    border-radius: 0.3rem;
+}
+.dropdown-menu-prev li {
+    background-color: var(--body);
+}

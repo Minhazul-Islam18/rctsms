@@ -18,6 +18,10 @@
     <script src="{{ asset('backend/js/scripts.js') }}"></script>
     @yield('page-scripts')
     @livewireScripts
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <x-livewire-alert::scripts />
     <script>
         let collapsibleHeaders = document.getElementsByClassName("collapsible__header");
 

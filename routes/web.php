@@ -5,6 +5,7 @@ use App\Livewire\PermissionComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackendController;
 use App\Livewire\GeneralSettingsComponent;
+use App\Livewire\HeaderFooterSettingsComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () 
     Route::get('/settings', GeneralSettingsComponent::class)->name('admin-settings');
     Route::get('/settings/roles', CreateRole::class)->name('role-settings');
     Route::get('/settings/permissions', PermissionComponent::class)->name('permission-settings');
+    Route::get('/settings/header-footer', HeaderFooterSettingsComponent::class)->name('header-footer-settings');
 });
