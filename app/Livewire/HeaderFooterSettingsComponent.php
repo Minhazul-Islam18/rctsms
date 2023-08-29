@@ -2,23 +2,40 @@
 
 namespace App\Livewire;
 
+use App\Models\FooterWidget1;
+use App\Models\FooterWidget2;
 use Livewire\Component;
 use App\Models\SiteMenu;
 use App\Models\HeaderSetting;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Rule;
 
 class HeaderFooterSettingsComponent extends Component
 {
     use WithFileUploads;
     use LivewireAlert;
+    protected $debug = true;
     public $imageName;
     public $image;
     public $menuId;
     public $name;
     public $url;
     public $parentId;
+    #[Rule('required')]
+    public $FW1status;
+    #[Rule('required|min:3', onUpdate: false)]
+    public $FW1title;
+    #[Rule('required|min:3', onUpdate: false)]
+    public $FW1smr_text;
+    #[Rule('required')]
+    public $FW2status;
+    #[Rule('required|min:3', onUpdate: false)]
+    public $FW2title;
+    #[Rule('required|min:3', onUpdate: false)]
+    public $FW2smr_text;
+
     public function createMenu()
     {
         if ($this->parentId) {
@@ -132,13 +149,75 @@ class HeaderFooterSettingsComponent extends Component
             HeaderSetting::create(['header_image' => $this->imageName]);
         }
         $this->reset(['image']);
+        $this->resetValidation(['image']);
         $this->imageName = null;
         $this->alert('success', 'Header Image Uploaded Successfully!');
+    }
+
+    //footer widget
+    public function footerWidget($widget = null)
+    {
+        // dd($this->FW2smr_text);
+        if ($widget == 1) {
+            $row = FooterWidget1::first();
+
+            if ($row) {
+                $row->update([
+                    'status' => $this->FW1status,
+                    'title' => $this->FW1title,
+                    'text' => $this->FW1smr_text,
+                ]);
+            } else {
+                FooterWidget1::create([
+                    'status' => $this->FW1status,
+                    'title' => $this->FW1title,
+                    'text' => $this->FW1smr_text,
+                ]);
+            }
+        } elseif ($widget == 2) {
+            dd($this->FW2smr_text);
+            $row = FooterWidget2::first();
+            if ($row) {
+                $row->update([
+                    'status' => $this->FW2status,
+                    'title' => $this->FW2title,
+                    'text' => $this->FW2smr_text,
+                ]);
+            } else {
+                FooterWidget2::create([
+                    'status' => $this->FW2status,
+                    'title' => $this->FW2title,
+                    'text' => $this->FW2smr_text,
+                ]);
+            }
+        }
+        // Reset the form fields
+        $this->FW1status = '';
+        $this->FW1title = '';
+        $this->FW1smr_text = '';
+        $this->FW1status = '';
+        $this->FW2title = '';
+        $this->FW2smr_text = '';
+        $this->alert('success', 'Widget ' . $widget . 'Updated Successfully!');
     }
     public function render()
     {
         $menus = SiteMenu::whereNull('parent_id')->with('submenus')->get();
         $header_image = HeaderSetting::first();
-        return view('livewire.header-footer-settings-component', compact('menus', 'header_image'));
+        $FW1 = FooterWidget1::first();
+        $FW2 = FooterWidget2::first();
+        if ($FW2) {
+            $this->FW2status = $FW2->status ?? '';
+            $this->FW2title = $FW2->title ?? '';
+            $this->FW2smr_text = $FW2->text ?? '';
+        }
+
+        if ($FW1) {
+            $this->FW1status = $FW1->status ?? '';
+            $this->FW1title = $FW1->title ?? '';
+            $this->FW1smr_text = $FW1->text ?? '';
+        }
+        // dd($this->FW1title);
+        return view('livewire.header-footer-settings-component', compact('menus', 'header_image', 'FW1', 'FW2'));
     }
 }

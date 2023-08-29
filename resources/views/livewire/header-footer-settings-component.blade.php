@@ -1,4 +1,39 @@
 <div>
+    @section('page-styles')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" />
+    @endsection
+    @section('page-scripts')
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+        <script>
+            $('#smr1').summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['misc', ['undo', 'redo']],
+                    ['insert', ['link']],
+                    ['para', ['ul']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('FW1smr_text', contents);
+                    }
+                }
+            });
+            $('#smr2').summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['misc', ['undo', 'redo']],
+                    ['insert', ['link']],
+                    ['para', ['ul']],
+                    ['code']
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('FW2smr_text', contents);
+                    }
+                }
+            });
+        </script>
+    @endsection
     <div class="card">
         <div class="card-header">
             <h5 class="m-0">Header Settings</h5>
@@ -9,12 +44,12 @@
                     <nav class="preview_nav">
                         <ul class="prev-menu-list">
                             @foreach ($menus as $menu)
-                                <li>
+                                <li wire:key="{{ $menu->id }}">
                                     {{ $menu->name }}
                                     @if (count($menu->submenus) > 0)
                                         <ul class="dropdown-menu-prev">
                                             @foreach ($menu->submenus as $submenu)
-                                                <li>{{ $submenu->name }}</li>
+                                                <li wire:key="{{ $submenu->id }}">{{ $submenu->name }}</li>
                                             @endforeach
                                         </ul>
                                     @endif
@@ -46,7 +81,8 @@
                                             id="">
                                             <option value="" selected>Select Parent Name</option>
                                             @foreach ($menus as $menu)
-                                                <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                                                <option wire:key="{{ $menu->id }}" value="{{ $menu->id }}">
+                                                    {{ $menu->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -61,7 +97,7 @@
 
                         <ul class="menu_with_oparations">
                             @foreach ($menus as $menu)
-                                <li>
+                                <li wire:key="{{ $menu->id }}">
                                     {{ $menu->name }}
                                     <button class="btn btn-warning"
                                         wire:click="editMenu({{ $menu->id }})">Edit</button>
@@ -70,7 +106,7 @@
                                     @if (count($menu->submenus) > 0)
                                         <ul>
                                             @foreach ($menu->submenus as $submenu)
-                                                <li>
+                                                <li wire:key="{{ $submenu->id }}">
                                                     {{ $submenu->name }}
                                                     <button class="btn btn-warning"
                                                         wire:click="editSubmenu({{ $submenu->id }})">Edit</button>
@@ -143,12 +179,61 @@
             </form>
         </div>
     </div>
-    <div class="card mt-3">
-        <div class="card-header">
-            <h5 class="m-0">Footer</h5>
+    <div class="row gy-2">
+        <div class="col-6 col-md-6 col-sm-12">
+            <div class="card mt-3">
+                <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
+                    <h5 class="m-0">Footer Widget 1</h5>
+                    <div class="tgl-group">
+                        <input class='tgl tgl-light' id='widget_1' wire:model='FW1status' type='checkbox'
+                            {{ isset($FW1->status) && $FW1->status == 1 ? 'checked' : '' }} />
+                        <label class='tgl-btn' for='widget_1'></label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="" wire:submit.prevent='footerWidget'>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Title</label>
+                            <input type="text" class="form-control" wire:model='FW1title' name=""
+                                id="">
+                        </div>
+                        <div class="mb-3" wire:ignore>
+                            <label for="" class="form-label">Text</label>
+                            <textarea class="form-control summernote" name="" id="smr1" wire:model='FW1smr_text' rows="3">{!! $FW1smr_text !!}</textarea>
+                        </div>
+                        <button type="submit" wire:click='footerWidget({{ $widget = 1 }})'
+                            class="btn btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-
+        <div class="col-6 col-md-6 col-sm-12">
+            <div class="card mt-3">
+                <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
+                    <h5 class="m-0">Footer Widget 2</h5>
+                    <div class="tgl-group">
+                        <input class='tgl tgl-light' id='widget_2' wire:model='FW2status' type='checkbox'
+                            {{ isset($FW2->status) && $FW2->status == 1 ? 'checked' : '' }} />
+                        <label class='tgl-btn' for='widget_2'></label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="" wire:submit.prevent='footerWidget'>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Title</label>
+                            <input type="text" class="form-control" wire:model='FW2title' name=""
+                                id="">
+                        </div>
+                        <div class="mb-3" wire:ignore>
+                            <label for="" class="form-label">Text</label>
+                            <textarea class="form-control summernote" name="" id="smr2" wire:model='FW2smr_text' rows="3">{!! $FW2smr_text !!}</textarea>
+                        </div>
+                        <button type="submit" wire:click='footerWidget({{ $widget = 2 }})'
+                            class="btn btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>

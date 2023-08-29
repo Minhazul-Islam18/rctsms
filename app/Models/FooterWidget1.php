@@ -11,5 +11,6 @@ class FooterWidget1 extends Model
     protected $fillable = [
         'title',
         'text',
+        'status'
     ];
 }

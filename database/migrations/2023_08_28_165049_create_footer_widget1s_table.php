@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('footer_widget1s', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status')->nullable()->default(0);
             $table->string('title')->nullable();
             $table->text('text')->nullable();
             $table->timestamps();
