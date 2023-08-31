@@ -1,36 +1,10 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
-    @include('backend/admin/layouts/sections/styles')
-</head>
-
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-
-        @include('backend/admin/layouts/sections/preloader')
-        @include('backend/admin/layouts/sections/navbar')
-        @include('backend/admin/layouts/sections/sidebar')
-        @yield('content')
-        @include('backend/admin/layouts/sections/footer')
-        @include('backend/admin/layouts/sections/controlbar')
-    </div>
-    <!-- ./wrapper -->
-
-    @include('backend/admin/layouts/sections/scripts')
-</body>
-
-</html> --}}
 <!DOCTYPE html>
 <html lang="en" data-footer="true">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-    <title>Acorn Admin Template | Getting Started</title>
+    <title>{{ config('app.name') }} | @yield('page-title') </title>
     <meta name="description" content="Service Provider Getting Started" />
     {{-- <link rel="apple-touch-icon-precomposed" sizes="57x57" --}}
     {{-- href="{{ asset('backend/img/favicon/apple-touch-icon-57x57.png') }}" /> --}}
@@ -392,7 +366,12 @@
             </span>
         </button>
     </div>
+    @pushOnce('js')
+        @include('backend/admin/layouts/sections/scripts')
+    @endPushOnce
+    @stack('js')
 </body>
-@include('backend/admin/layouts/sections/scripts')
+
+
 
 </html>

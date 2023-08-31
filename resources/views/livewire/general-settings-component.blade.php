@@ -29,41 +29,41 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" action="" enctype="multipart/form-data">
-                        @csrf
+                    <form class="row g-3" wire:submit='SaveGeneralSettings'>
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="py-3">
                                         <label for="" class="form-label">Logo</label>
-                                        <input type="file" class="form-control" name="" id=""
-                                            placeholder="" aria-describedby="fileHelpId">
+                                        <input type="file" wire:model='site_logo' class="form-control" name=""
+                                            id="">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="py-3">
                                         <label for="" class="form-label">Favicon</label>
                                         <input type="file" class="form-control" name="" id=""
-                                            placeholder="" aria-describedby="fileHelpId">
+                                            wire:model='favicon'>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label">Site Title</label>
-                            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+                            <label for="" class="form-label">Site Title</label>
+                            <input type="text" class="form-control" id="" wire:model='site_title' value=""
+                                required>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom02" class="form-label">Site Motto</label>
-                            <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+                            <label for="" class="form-label">Site Motto</label>
+                            <input type="text" class="form-control" id="" wire:model='site_motto' required>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label">Meta Title</label>
-                            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+                            <label for="" class="form-label">Meta Title</label>
+                            <input type="text" class="form-control" id="" wire:model='meta_title' required>
                         </div>
                         <div class="col-md-6">
-                            <label for="validationCustom02" class="form-label">Meta Description</label>
-                            <textarea class="form-control" name="" id="" rows="3"></textarea>
+                            <label for="" class="form-label">Meta Description</label>
+                            <textarea class="form-control" name="" wire:model='meta_description' id="" rows="3"></textarea>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Save</button>

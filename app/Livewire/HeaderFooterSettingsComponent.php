@@ -9,6 +9,7 @@ use App\Models\SiteMenu;
 use App\Models\HeaderSetting;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Rule;
 
@@ -16,9 +17,9 @@ class HeaderFooterSettingsComponent extends Component
 {
     use WithFileUploads;
     use LivewireAlert;
-    protected $debug = true;
     public $imageName;
     public $image;
+    public $iteration;
     public $menuId;
     public $name;
     public $url;
@@ -131,33 +132,40 @@ class HeaderFooterSettingsComponent extends Component
     //upload header image
     public function uploadImage()
     {
-        $this->validate([
+        // dump($this->image = '');
+        $image = $this->image;
+        $myvalidate = Validator::make(["image" => $image], [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ]);
+        ])->validate();
 
-        // Generate a new image name
         $newImageName = time() . '_' . $this->image->getClientOriginalName();
 
         $this->imageName = $this->image->storeAs('frontend/images', $newImageName, 'public');
-        // dd($this->imageName);
+
         $if_exist = HeaderSetting::first();
         if ($if_exist) {
             $if_exist->update(
                 ['header_image' => $this->imageName]
             );
         } else {
-            HeaderSetting::create(['header_image' => $this->imageName]);
+            $settingsUPdate =  HeaderSetting::create(['header_image' => $this->imageName]);
         }
-        $this->reset(['image']);
-        $this->resetValidation(['image']);
-        $this->imageName = null;
-        $this->alert('success', 'Header Image Uploaded Successfully!');
+
+        if (isset($settingsUPdate) || $if_exist) {
+            $this->image = null;
+            $this->iteration++;
+            $this->resetValidation(['image']);
+
+
+            $this->imageName = null;
+            $this->alert('success', 'Header Image Uploaded Successfully!');
+        }
     }
 
     //footer widget
     public function footerWidget($widget = null)
     {
-        // dd($this->FW2smr_text);
+        // dd($this->FW1smr_text);
         if ($widget == 1) {
             $row = FooterWidget1::first();
 
@@ -175,7 +183,7 @@ class HeaderFooterSettingsComponent extends Component
                 ]);
             }
         } elseif ($widget == 2) {
-            dd($this->FW2smr_text);
+            // dd($this->FW2smr_text);
             $row = FooterWidget2::first();
             if ($row) {
                 $row->update([
@@ -200,10 +208,8 @@ class HeaderFooterSettingsComponent extends Component
         $this->FW2smr_text = '';
         $this->alert('success', 'Widget ' . $widget . 'Updated Successfully!');
     }
-    public function render()
+    public function mount()
     {
-        $menus = SiteMenu::whereNull('parent_id')->with('submenus')->get();
-        $header_image = HeaderSetting::first();
         $FW1 = FooterWidget1::first();
         $FW2 = FooterWidget2::first();
         if ($FW2) {
@@ -217,7 +223,11 @@ class HeaderFooterSettingsComponent extends Component
             $this->FW1title = $FW1->title ?? '';
             $this->FW1smr_text = $FW1->text ?? '';
         }
-        // dd($this->FW1title);
-        return view('livewire.header-footer-settings-component', compact('menus', 'header_image', 'FW1', 'FW2'));
+    }
+    public function render()
+    {
+        $menus = SiteMenu::whereNull('parent_id')->with('submenus')->get();
+        $header_image = HeaderSetting::first();
+        return view('livewire.header-footer-settings-component', compact('menus', 'header_image'));
     }
 }

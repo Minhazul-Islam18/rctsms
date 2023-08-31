@@ -1,10 +1,13 @@
 <div>
+    @section('page-title')
+        {{ 'Settings-Header & Footer' }}
+    @endsection
     @section('page-styles')
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" />
     @endsection
     @section('page-scripts')
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
-        <script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js" data-navigate-once></script>
+        <script data-navigate-once>
             $('#smr1').summernote({
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -15,6 +18,7 @@
                 callbacks: {
                     onChange: function(contents, $editable) {
                         @this.set('FW1smr_text', contents);
+                        // console.log(contents);
                     }
                 }
             });
@@ -160,10 +164,9 @@
                         @endif
                     </div>
                     <div class="pb-3 {{ isset($image) ? 'col-9' : 'col-12' }}">
-                        <label for="" class="form-label">Header Image</label>
-                        <input wire:model='image' accept="image/jpeg, image/svg, image/png, image/jpg" type="file"
-                            class="form-control" name="image" id="" placeholder=""
-                            aria-describedby="fileHelpId">
+                        <label for="HeaderImage{{ $iteration }}" class="form-label">Header Image</label>
+                        <input wire:model='image' id="HeaderImage{{ $iteration }}"
+                            accept="image/jpeg, image/svg, image/png, image/jpg" type="file" class="form-control">
                     </div>
                     @error('image')
                         <div class="alert alert-danger" role="alert">
@@ -171,11 +174,9 @@
                         </div>
                     @enderror
                     <div class="col-12">
-                        <button class="btn btn-primary" wire:click='uploadImage' type="submit">Save</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </div>
-
-
             </form>
         </div>
     </div>
@@ -186,12 +187,12 @@
                     <h5 class="m-0">Footer Widget 1</h5>
                     <div class="tgl-group">
                         <input class='tgl tgl-light' id='widget_1' wire:model='FW1status' type='checkbox'
-                            {{ isset($FW1->status) && $FW1->status == 1 ? 'checked' : '' }} />
+                            {{ $this->FW1status == 1 ? 'checked' : '' }} />
                         <label class='tgl-btn' for='widget_1'></label>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="" wire:submit.prevent='footerWidget'>
+                    <form action="" wire:submit='footerWidget({{ $widget = 1 }})'>
                         <div class="mb-3">
                             <label for="" class="form-label">Title</label>
                             <input type="text" class="form-control" wire:model='FW1title' name=""
@@ -199,10 +200,10 @@
                         </div>
                         <div class="mb-3" wire:ignore>
                             <label for="" class="form-label">Text</label>
-                            <textarea class="form-control summernote" name="" id="smr1" wire:model='FW1smr_text' rows="3">{!! $FW1smr_text !!}</textarea>
+                            <textarea class="form-control summernote" name="" id="smr1" wire:model.defer='FW1smr_text'
+                                rows="3">{!! $FW1smr_text !!}</textarea>
                         </div>
-                        <button type="submit" wire:click='footerWidget({{ $widget = 1 }})'
-                            class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success">Save</button>
                     </form>
                 </div>
             </div>
@@ -213,7 +214,7 @@
                     <h5 class="m-0">Footer Widget 2</h5>
                     <div class="tgl-group">
                         <input class='tgl tgl-light' id='widget_2' wire:model='FW2status' type='checkbox'
-                            {{ isset($FW2->status) && $FW2->status == 1 ? 'checked' : '' }} />
+                            {{ $this->FW2status == 1 ? 'checked' : '' }} />
                         <label class='tgl-btn' for='widget_2'></label>
                     </div>
                 </div>
@@ -226,7 +227,8 @@
                         </div>
                         <div class="mb-3" wire:ignore>
                             <label for="" class="form-label">Text</label>
-                            <textarea class="form-control summernote" name="" id="smr2" wire:model='FW2smr_text' rows="3">{!! $FW2smr_text !!}</textarea>
+                            <textarea class="form-control summernote" name="" id="smr2" wire:model.defer='FW2smr_text'
+                                rows="3">{!! $FW2smr_text !!}</textarea>
                         </div>
                         <button type="submit" wire:click='footerWidget({{ $widget = 2 }})'
                             class="btn btn-success">Save</button>

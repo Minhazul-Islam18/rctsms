@@ -49,13 +49,34 @@
                     <span class="label">Users</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('notice') }}">
+                    <i data-acorn-icon="book" class="icon" data-acorn-size="18"></i>
+                    <span class="label">Notice</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('important-links') }}">
+                    <i data-acorn-icon="link" class="icon" data-acorn-size="18"></i>
+                    <span class="label">Important Links</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('homepage-widgets') }}">
+                    <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                    <span class="label">Homepage School Widgets</span>
+                </a>
+            </li>
         </ul>
     </li>
     <li>
         <div class="accordion">
             <div class="accordion__collapsible">
                 <div class="collapsible__header">
-                    <span>Settings</span>
+                    <div>
+                        <i data-acorn-icon="gear" class="icon" data-acorn-size="18"></i>
+                        <span>Settings</span>
+                    </div>
                 </div>
                 <div class="collapsible__content">
                     <ul>
@@ -64,9 +85,10 @@
                                 General
                             </a>
                         </li>
-                        <li><a wire:navigate href="{{ route('header-footer-settings') }}">Header & Footer</a></li>
-                        <li><a wire:navigate href="{{ route('role-settings') }}">Roles</a></li>
-                        <li><a wire:navigate href="{{ route('permission-settings') }}">Permission</a></li>
+                        <li><a href="{{ route('school-settings') }}">School Profile</a></li>
+                        <li><a href="{{ route('header-footer-settings') }}">Header & Footer</a></li>
+                        <li><a href="{{ route('role-settings') }}">Roles</a></li>
+                        <li><a href="{{ route('permission-settings') }}">Permission</a></li>
                     </ul>
                 </div>
             </div>
