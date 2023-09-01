@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackendController;
 use App\Livewire\GeneralSettingsComponent;
 use App\Livewire\HeaderFooterSettingsComponent;
+use App\Livewire\HomepageSliderComponent;
 use App\Livewire\HomepageWidgetsComponent;
 use App\Livewire\ImportantLinksComponent;
 use App\Livewire\NoticeBoardComponent;
+use App\Livewire\PhotoGalleryComponent;
 use App\Livewire\SchoolProfileComponent;
 
 /*
@@ -27,7 +29,8 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
-    Route::get('/notice', NoticeBoardComponent::class)->name('notice');
+    Route::get('/image-gallery', PhotoGalleryComponent::class)->name('image-gallery');
+    Route::get('/slider-settings', HomepageSliderComponent::class)->name('slider-settings');
     Route::get('/notice', NoticeBoardComponent::class)->name('notice');
     Route::get('/homepage-widgets', HomepageWidgetsComponent::class)->name('homepage-widgets');
     Route::get('/important-links', ImportantLinksComponent::class)->name('important-links');

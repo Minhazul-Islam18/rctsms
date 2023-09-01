@@ -56,6 +56,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('slider-settings') }}">
+                    <i class="bi bi-card-image"></i>
+                    <span class="label">Homepage Slider</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('important-links') }}">
                     <i data-acorn-icon="link" class="icon" data-acorn-size="18"></i>
                     <span class="label">Important Links</span>

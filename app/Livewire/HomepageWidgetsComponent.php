@@ -4,11 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Rule;
 use Livewire\WithFileUploads;
 use App\Models\AboutSchoolWidget;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\Attributes\Rule;
 
 class HomepageWidgetsComponent extends Component
 {
@@ -77,15 +78,16 @@ class HomepageWidgetsComponent extends Component
     {
         // dd($this->image ?? $this->imageName);
         $this->validate();
+
+
+        $widget = AboutSchoolWidget::find($this->widgetId);
         if ($this->image) {
             $newImageName = time() . '_' . $this->image->getClientOriginalName();
             $this->updatedImg = $this->image->storeAs('frontend/images/widget', $newImageName, 'public');
         } elseif ($this->imageName) {
+            Storage::disk('public')->delete($widget->image);
             $this->updatedImg = $this->imageName;
         }
-
-        $widget = AboutSchoolWidget::find($this->widgetId);
-
         if ($widget) {
             $widget->update([
                 'title' => $this->widget_name,
@@ -105,6 +107,7 @@ class HomepageWidgetsComponent extends Component
     public function deletewidget()
     {
         $widget = AboutSchoolWidget::find($this->willDeleteWidgetId);
+        Storage::disk('public')->delete($widget->image);
         $widget->delete();
         $this->willDeleteWidgetId = '';
 
