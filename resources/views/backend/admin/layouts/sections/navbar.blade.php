@@ -1,7 +1,7 @@
       <div id="nav" class="nav-container d-flex">
           <div class="nav-content d-flex">
               <div class="logo position-relative">
-                  <a href="Dashboard.GettingStarted.html">
+                  <a href="{{ route('dashboard') }}">
                       <div class="img"></div>
                   </a>
               </div>

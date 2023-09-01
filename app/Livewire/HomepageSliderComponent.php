@@ -36,10 +36,10 @@ class HomepageSliderComponent extends Component
     }
     public function update()
     {
-
+        // dd($this->formData['image']);
         $slide = HomepageSlider::findOrFail($this->slideId);
 
-        if ($this->image != null) {
+        if ($this->formData['image'] != null) {
             Storage::disk('public')->delete($slide->image);
             $imag = $this->formData['image'];
             // dd($imag->getClientOriginalName());

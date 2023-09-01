@@ -2,57 +2,154 @@
     @section('page-title')
         {{ 'Settings-School Profile' }}
     @endsection
+    <form action="" wire:submit='SaveGeneralSettings'>
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="h5 m-0">
+                    General Information
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="">
+                            <label for="" class="form-label">School Name</label>
+                            <input type="text" class="form-control" name="" id=""
+                                wire:model='settings.school_name' placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="">
+                            <label for="" class="form-label">Established At</label>
+                            <input type="text" class="form-control" name="" id=""
+                                wire:model='settings.established_at' placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="">
+                            <label for="" class="form-label">EIIN no.</label>
+                            <input type="text" class="form-control" name="" id=""
+                                wire:model='settings.eiin' placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="">
+                            <label for="" class="form-label">Domain <sub>(https://domain.com)</sub></label>
+                            <input type="text" class="form-control" name="" id=""
+                                wire:model='settings.domain' placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="">
+                            <label for="" class="form-label">Contact Number</label>
+                            <input type="text" class="form-control" name="" id=""
+                                wire:model='settings.contact_number' placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="">
+                            <label for="" class="form-label">Contact Mail</label>
+                            <input type="text" class="form-control" name="" id=""
+                                wire:model='settings.contact_mail' placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Address</label>
+                            <textarea class="form-control" wire:model='settings.address' name="" id="" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+
+            </div>
+        </div>
+    </form>
     <div class="row g-2 mt-2">
         <div class="col-6 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <form wire:submit="hello">
-                        <div class="row">
-                            <div class="col-3">
-                                <span wire:target='person_image' wire:loading class="text-primary">Uploading....</span>
-                                @if ($person_image)
-                                    <img src="{{ $person_image->temporaryUrl() }}" alt=""
-                                        class="rounded-1 w-100">
+                    <div class="table-responsive">
+                        <table class="table table-primary">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($individuals as $item)
+                                    <tr class="">
+                                        <td scope="row">{{ $item->person_name }}</td>
+                                        <td>
+                                            <img src="{{ asset('storage') }}/{{ $item->person_image }}" class="w-25"
+                                                alt="">
+                                        </td>
+                                        <td class="d-flex gap-3">
+                                            <button class="btn btn-sm btn-info" type="button"
+                                                wire:click='editIndividual({{ $item->id }})'>
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" type="button"
+                                                wire:click='deleteIndividual({{ $item->id }})'>
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @if (!isset($individuals))
+                                    <tr>
+                                        <td colspan="3" class="text-center">{{ 'Nothing Found' }}</td>
+                                    </tr>
                                 @endif
-                            </div>
-                            <div class=" {{ isset($person_image) ? 'col-9' : 'col-12' }}">
-                                <div class="mb-3">
-                                    <label for="" class="form-label"> Person Image</label>
-                                    <input accept="image/jpeg, image/svg, image/png, image/jpg, image/gif"
-                                        type="file" wire:model='person_image' class="form-control" name=""
-                                        id="">
-                                </div>
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-header py-3">
+                    <span class="h5 m-0 text-white">{{ $editing == true ? 'Update' : 'Create' }} Person Data</span>
+                </div>
+                <div class="card-body">
+                    <form wire:submit='{{ $editing == true ? 'updateIndividual' : 'SavePerson' }}'>
+                        @if ($person['image'])
+                            <img src="/storage/{{ $person['image'] }}" class="w-25" alt="">
+                        @endif
+                        {{-- @if ($person['image']->temporaryUrl())
+                            <img src="{{ $person['image']->temporaryUrl() }}" class="w-25 mb-2" alt="">
+                        @endif --}}
                         <div class="mb-3">
-                            <label for="" class="form-label">Person Name</label>
-                            <input type="text" wire:model='person_name' class="form-control" name=""
+                            <label for="" class="form-label">Image</label>
+                            <input type="file" wire:model='person.image' class="form-control" name=""
+                                id="yu{{ $iteration }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Name</label>
+                            <input type="text" wire:model='person.name' class="form-control" name=""
                                 id="">
                         </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <span wire:target='person_signiture' wire:loading
-                                    class="text-primary">Uploading....</span>
-                                @if ($person_signiture)
-                                    <img src="{{ $person_signiture->temporaryUrl() }}" alt=""
-                                        class="rounded-1 w-100">
-                                @endif
-                            </div>
-                            <div class=" {{ isset($person_signiture) ? 'col-9' : 'col-12' }}">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Signature</label>
-                                    <input accept="image/jpeg, image/svg, image/png, image/jpg, image/gif"
-                                        type="file" wire:model='person_signiture'
-                                        id="person_signiture{{ $iteration }}" class="form-control" name=""
-                                        id="">
-                                </div>
-                            </div>
-                        </div>
+                        @if ($person['signiture'])
+                            <img src="/storage/{{ $person['signiture'] }}" class="w-25" alt="">
+                        @endif
                         <div class="mb-3">
-                            <label for="" class="form-label">Person Words</label>
-                            <textarea class="form-control" wire:model='person_words' name="" id="" rows="3"></textarea>
+                            <label for="" class="form-label">Signature</label>
+                            <input type="file" wire:model='person.signiture' class="form-control" name=""
+                                id="syu{{ $iteration }}">
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Words</label>
+                            <textarea class="form-control" wire:model='person.words' name="" id="" rows="3"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="btn btn-primary">{{ $editing == true ? 'Update' : 'Create' }}</button>
                     </form>
                 </div>
             </div>

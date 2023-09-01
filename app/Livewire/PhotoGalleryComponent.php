@@ -89,6 +89,7 @@ class PhotoGalleryComponent extends Component
         $item = PhotoGallery::findOrFail($id);
         $item->image != null ? Storage::disk('public')->delete($item->image) : $this->image = null;
         $item->delete();
+        $this->alert('success', 'Photo Deleted Successfully!');
     }
 
     private function resetForm()
