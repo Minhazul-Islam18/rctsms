@@ -56,21 +56,36 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('slider-settings') }}">
+                <a class="{{ Route::currentRouteName() === 'image-gallery' ? 'menu-active' : '' }}"
+                    href="{{ route('image-gallery') }}">
+                    <i class="bi bi-images"></i>
+                    <span class="label ">Photo
+                        Gallery</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Route::currentRouteName() === 'slider-settings' ? 'menu-active' : '' }}"
+                    href="{{ route('slider-settings') }}">
                     <i class="bi bi-card-image"></i>
-                    <span class="label">Homepage Slider</span>
+                    <span class="label ">Homepage
+                        Slider</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('important-links') }}">
+                <a class="{{ Route::currentRouteName() === 'important-links' ? 'menu-active' : '' }}"
+                    href="{{ route('important-links') }}">
                     <i data-acorn-icon="link" class="icon" data-acorn-size="18"></i>
-                    <span class="label">Important Links</span>
+                    <span class="label ">Important
+                        Links</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('homepage-widgets') }}">
+                <a class="{{ Route::currentRouteName() === 'homepage-widgets' ? 'menu-active' : '' }}"
+                    href="{{ route('homepage-widgets') }}">
                     <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
-                    <span class="label">Homepage School Widgets</span>
+                    <span class="label ">Homepage
+                        School
+                        Widgets</span>
                 </a>
             </li>
         </ul>
@@ -86,15 +101,24 @@
                 </div>
                 <div class="collapsible__content">
                     <ul>
-                        <li>
-                            <a href="{{ route('admin-settings') }}">
+                        <li class="checker">
+                            <a class=" {{ Route::currentRouteName() === 'admin-settings' ? 'menu-active' : '' }}"
+                                href="{{ route('admin-settings') }}">
                                 General
                             </a>
                         </li>
-                        <li><a href="{{ route('school-settings') }}">School Profile</a></li>
-                        <li><a href="{{ route('header-footer-settings') }}">Header & Footer</a></li>
-                        <li><a href="{{ route('role-settings') }}">Roles</a></li>
-                        <li><a href="{{ route('permission-settings') }}">Permission</a></li>
+                        <li class="checker"><a
+                                class=" {{ Route::currentRouteName() === 'school-settings' ? 'menu-active' : '' }}"
+                                href="{{ route('school-settings') }}">School Profile</a></li>
+                        <li class="checker"><a
+                                class=" {{ Route::currentRouteName() === 'header-footer-settings' ? 'menu-active' : '' }}"
+                                href="{{ route('header-footer-settings') }}">Header & Footer</a></li>
+                        <li class="checker"><a
+                                class=" {{ Route::currentRouteName() === 'role-settings' ? 'menu-active' : '' }}"
+                                href="{{ route('role-settings') }}">Roles</a></li>
+                        <li class="checker"><a
+                                class=" {{ Route::currentRouteName() === 'permission-settings' ? 'menu-active' : '' }}"
+                                href="{{ route('permission-settings') }}">Permission</a></li>
                     </ul>
                 </div>
             </div>

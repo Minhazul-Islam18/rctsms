@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\PhotoGallery;
+use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -9,10 +11,11 @@ use Livewire\WithFileUploads;
 class PhotoGalleryComponent extends Component
 {
     use WithFileUploads, LivewireAlert;
-    public $items, $title, $description, $image, $selectedItem, $modal;
+    public $items, $title, $description, $image, $selectedItem, $modal = false, $imageName;
     public function render()
     {
-        return view('livewire.photo-gallery-component');
+        $galleryImages = PhotoGallery::all();
+        return view('livewire.photo-gallery-component', ['galleryImages' => $galleryImages]);
     }
     public function openModal()
     {
@@ -29,15 +32,17 @@ class PhotoGalleryComponent extends Component
         $this->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'image|max:1024', // Adjust image validation rules as needed
+            'image' => 'image', // Adjust image validation rules as needed
         ]);
 
-        $imagePath = $this->image->store('images'); // Store image in the 'images' directory
+        $newImageName = time() . '_' . $this->image->getClientOriginalName();
 
-        GalleryItem::create([
+        $this->imageName = $this->image->storeAs('frontend/images/gallery', $newImageName, 'public');
+        // dd($this->imageName);
+        PhotoGallery::create([
             'title' => $this->title,
             'description' => $this->description,
-            'image' => $imagePath,
+            'image' => $this->imageName,
         ]);
 
         $this->resetForm();
@@ -46,9 +51,10 @@ class PhotoGalleryComponent extends Component
 
     public function edit($id)
     {
-        $item = GalleryItem::findOrFail($id);
+        $item = PhotoGallery::findOrFail($id);
         $this->selectedItem = $item;
         $this->title = $item->title;
+        $this->imageName = $item->image;
         $this->description = $item->description;
         $this->openModal();
     }
@@ -59,12 +65,19 @@ class PhotoGalleryComponent extends Component
             'title' => 'required',
             'description' => 'required',
         ]);
+        if ($this->image != null) {
+            $newImageName = time() . '_' . $this->image->getClientOriginalName();
 
+            $this->imageName = $this->image->storeAs('frontend/images/gallery', $newImageName, 'public');
+        }
+
+        // dd($this->imageName);
         if ($this->selectedItem) {
-            $item = GalleryItem::find($this->selectedItem->id);
+            $item = PhotoGallery::find($this->selectedItem->id);
             $item->update([
                 'title' => $this->title,
                 'description' => $this->description,
+                'image' => $this->imageName,
             ]);
             $this->resetForm();
             $this->closeModal();
@@ -73,7 +86,8 @@ class PhotoGalleryComponent extends Component
 
     public function delete($id)
     {
-        $item = PhotoGalleryComponent::findOrFail($id);
+        $item = PhotoGallery::findOrFail($id);
+        $item->image != null ? Storage::disk('public')->delete($item->image) : $this->image = null;
         $item->delete();
     }
 
@@ -83,5 +97,6 @@ class PhotoGalleryComponent extends Component
         $this->description = '';
         $this->image = null;
         $this->selectedItem = null;
+        $this->imageName = null;
     }
 }
