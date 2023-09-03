@@ -50,7 +50,22 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('notice') }}">
+                <a class="{{ Route::currentRouteName() === 'committee' ? 'menu-active' : '' }}"
+                    href="{{ route('committee') }}">
+                    <i class="bi bi-person-workspace"></i>
+                    <span class="label">Committee</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Route::currentRouteName() === 'classes' ? 'menu-active' : '' }}"
+                    href="{{ route('classes') }}">
+                    <i data-acorn-icon="book-open" class="icon" data-acorn-size="18"></i>
+                    <span class="label">Classes</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Route::currentRouteName() === 'image-gallery' ? 'menu-active' : '' }}"
+                    href="{{ route('notice') }}">
                     <i data-acorn-icon="book" class="icon" data-acorn-size="18"></i>
                     <span class="label">Notice</span>
                 </a>
@@ -84,7 +99,7 @@
                     href="{{ route('homepage-widgets') }}">
                     <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
                     <span class="label ">Homepage
-                        School
+                        About
                         Widgets</span>
                 </a>
             </li>
@@ -109,7 +124,7 @@
                         </li>
                         <li class="checker"><a
                                 class=" {{ Route::currentRouteName() === 'school-settings' ? 'menu-active' : '' }}"
-                                href="{{ route('school-settings') }}">School Profile</a></li>
+                                href="{{ route('school-settings') }}">Institute Profile</a></li>
                         <li class="checker"><a
                                 class=" {{ Route::currentRouteName() === 'header-footer-settings' ? 'menu-active' : '' }}"
                                 href="{{ route('header-footer-settings') }}">Header & Footer</a></li>

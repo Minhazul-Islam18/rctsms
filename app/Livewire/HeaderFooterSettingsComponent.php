@@ -7,6 +7,7 @@ use App\Models\FooterWidget2;
 use Livewire\Component;
 use App\Models\SiteMenu;
 use App\Models\HeaderSetting;
+use App\Models\HomepageSlider;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;

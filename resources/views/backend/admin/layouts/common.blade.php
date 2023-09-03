@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-    <title>{{ config('app.name') }} | @yield('page-title') </title>
-    <meta name="description" content="Service Provider Getting Started" />
+    <title>@yield('page-title') | {{ get_settings('site_title') ?? config('app.name') }}</title>
     {{-- <link rel="apple-touch-icon-precomposed" sizes="57x57" --}}
     {{-- href="{{ asset('backend/img/favicon/apple-touch-icon-57x57.png') }}" /> --}}
     {{-- <link rel="apple-touch-icon-precomposed" sizes="114x114" --}}
@@ -24,7 +23,7 @@
     {{-- href="{{ asset('backend/img/favicon/apple-touch-icon-152x152.png') }}" /> --}}
     {{-- <link rel="icon" type="image/png" href="{{ asset('backend/img/favicon/favicon-196x196.png') }}" --}}
     {{-- sizes="196x196" /> --}}
-    <link rel="icon" type="image/png" href="{{ asset('backend/img/favicon/favicon-96x96.png') }}" sizes="96x96" />
+    <link rel="icon" type="image/png" href="{{ asset('storage') }}/{{ get_settings('favicon') }}" sizes="96x96" />
     {{-- <link rel="icon" type="image/png" href="{{ asset('backend/img/favicon/favicon-32x32.png') }}" sizes="32x32" /> --}}
     {{-- <link rel="icon" type="image/png" href="{{ asset('backend/img/favicon/favicon-16x16.png') }}" sizes="16x16" /> --}}
     {{-- <link rel="icon" type="image/png" href="{{ asset('backend/img/favicon/favicon-128.png') }}" sizes="128x128" /> --}}

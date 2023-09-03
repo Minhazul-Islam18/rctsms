@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('important_individuals', function (Blueprint $table) {
+        Schema::create('institution_committees', function (Blueprint $table) {
             $table->id();
-            $table->string('person_image')->nullable();
             $table->string('person_name')->nullable();
+            $table->string('person_image')->nullable();
+            $table->string('educational_qualification')->nullable();
+            $table->string('identity')->nullable();
             $table->string('person_post')->nullable();
-            $table->string('person_signiture')->nullable();
-            $table->text('person_words')->nullable();
+            $table->string('person_address')->nullable();
+            $table->string('expired_at')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('important_individuals');
+        Schema::dropIfExists('institution_committees');
     }
 };

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('important_individuals', function (Blueprint $table) {
+        Schema::create('class_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('person_image')->nullable();
-            $table->string('person_name')->nullable();
-            $table->string('person_post')->nullable();
-            $table->string('person_signiture')->nullable();
-            $table->text('person_words')->nullable();
+            $table->string('class_name')->nullable();
+            $table->text('observation')->nullable();
+            $table->string('student_number')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('important_individuals');
+        Schema::dropIfExists('class_lists');
     }
 };

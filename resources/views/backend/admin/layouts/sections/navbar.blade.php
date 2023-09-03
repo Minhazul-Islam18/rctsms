@@ -2,7 +2,8 @@
           <div class="nav-content d-flex">
               <div class="logo position-relative">
                   <a href="{{ route('dashboard') }}">
-                      <div class="img"></div>
+                      <img src="/storage/{{ get_settings('logo') }}" class="w-25" alt="Logo">
+                      {{-- <div class="img"></div> --}}
                   </a>
               </div>
               <div class="user-container d-flex">
@@ -86,7 +87,7 @@
                   </li>
               </ul>
               <div class="menu-container flex-grow-1">
-                  <ul id="menu" class="menu">
+                  <ul id="menu" class="menu d-flex justify-content-end">
                       <li>
                           <a href="/">
                               <i data-acorn-icon="eye" data-acorn-size="18"></i>

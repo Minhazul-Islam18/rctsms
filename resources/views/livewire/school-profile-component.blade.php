@@ -99,7 +99,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                @if (!isset($individuals))
+                                @if ($individuals == null)
                                     <tr>
                                         <td colspan="3" class="text-center">{{ 'Nothing Found' }}</td>
                                     </tr>
@@ -133,6 +133,11 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Name</label>
                             <input type="text" wire:model='person.name' class="form-control" name=""
+                                id="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Post</label>
+                            <input type="text" wire:model='person.post' class="form-control" name=""
                                 id="">
                         </div>
                         @if ($person['signiture'])

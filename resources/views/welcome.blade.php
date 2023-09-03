@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="https://i.ibb.co/3Tw0RBz/89images.png" type="image/x-icon">
+    <link rel="icon" type="image/png" href="{{ asset('storage') }}/{{ get_settings('favicon') }}" sizes="96x96" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RCT Seba SMS</title>
+    <title>@yield('page-title') | {{ get_settings('site_title') ?? config('app.name') }}</title>
+    <meta name="description" content="{{ get_settings('meta_description') }}" />
+    <meta name="title" content="{{ get_settings('meta_title') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
@@ -23,7 +25,7 @@
     <div class="container my-4 px-4 py-3 main-container">
         <header class="site__header">
             <div class="Header__top_image">
-                <img src="https://i.ibb.co/g6tTvr1/Whats-App-Image-2023-08-23-at-13-18-44.jpg" alt="">
+                <img src="{{ asset('storage') }}/{{ get_settings('logo') }}" alt="">
             </div>
             {{-- <div class="row my-md-4 my-sm-3 my-2">
                 <div class="col-md-3 col-sm-12 col-12">

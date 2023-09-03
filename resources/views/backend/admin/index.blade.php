@@ -1,6 +1,7 @@
-@extends('backend/admin/layouts/common')
-
-@section('content')
+@section('page-title')
+    {{ 'Dashboard' }}
+@endsection
+<div>
     <div class="page-title-container mb-3">
         <div class="row">
             <div class="col mb-2">
@@ -164,7 +165,8 @@
                         <div class="text-center">
                             <img src="img/illustration/icon-launch.webp" class="theme-filter" alt="launch" />
                             <div class="d-flex flex-column sh-5">
-                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Application Launch</a>
+                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Application
+                                    Launch</a>
                             </div>
                         </div>
                         <div class="text-muted">
@@ -178,9 +180,11 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="text-center">
-                            <img src="img/illustration/icon-performance.webp" class="theme-filter" alt="performance" />
+                            <img src="img/illustration/icon-performance.webp" class="theme-filter"
+                                alt="performance" />
                             <div class="d-flex flex-column sh-5">
-                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Performance Tweaks</a>
+                                <a href="Support.KnowledgeBase.html" class="heading stretched-link">Performance
+                                    Tweaks</a>
                             </div>
                         </div>
                         <div class="text-muted">
@@ -408,4 +412,4 @@
             </div>
         </div>
     </div>
-@endsection
+</div>

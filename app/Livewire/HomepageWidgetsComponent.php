@@ -86,6 +86,7 @@ class HomepageWidgetsComponent extends Component
             $this->updatedImg = $this->image->storeAs('frontend/images/widget', $newImageName, 'public');
         } elseif ($this->imageName) {
             Storage::disk('public')->delete($widget->image);
+            $widget->delete();
             $this->updatedImg = $this->imageName;
         }
         if ($widget) {
