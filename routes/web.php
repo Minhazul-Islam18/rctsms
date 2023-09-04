@@ -19,6 +19,9 @@ use App\Livewire\Frontend\NoticepageComponent;
 use App\Livewire\Frontend\PersonpageComponent;
 use App\Livewire\HeaderFooterSettingsComponent;
 use App\Livewire\InstitutionCommitteeComponent;
+use App\Livewire\QualityAcceptanceComponent;
+use App\Livewire\TeachersStaffsComponent;
+use App\Livewire\TeachingPermissionComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,9 @@ Route::get('/notice/{title}', NoticepageComponent::class)->name('notice-page');
 Route::get('/person/{id}', PersonpageComponent::class)->name('person-page');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('/teaching-permission', TeachingPermissionComponent::class)->name('teaching-permission');
+    Route::get('/qualification-acceptance', QualityAcceptanceComponent::class)->name('qualification-acceptance');
+    Route::get('/teachers-staffs', TeachersStaffsComponent::class)->name('teachers-staffs');
     Route::get('/committee', InstitutionCommitteeComponent::class)->name('committee');
     Route::get('/classes', ClasslistComponent::class)->name('classes');
     Route::get('/image-gallery', PhotoGalleryComponent::class)->name('image-gallery');

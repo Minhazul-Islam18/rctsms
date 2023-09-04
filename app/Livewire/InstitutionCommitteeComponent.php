@@ -28,7 +28,6 @@ class InstitutionCommitteeComponent extends Component
     public $editable_id;
     function SaveClass()
     {
-        // dd($this->fields);
         $this->validate([
             'fields.person_name' => 'required|min:3',
             'fields.educational_qualification' => 'required|min:3',
@@ -49,9 +48,8 @@ class InstitutionCommitteeComponent extends Component
             'person_address' => $this->fields['person_address'],
             'expired_at' => $this->fields['expired_at'],
         ]);
-
+        $this->iteration++;
         $this->resetFields();
-        // dd($this->fields);
         $this->alert('success', 'কমিটি সদস্য সফলভাবে তৈরি করা হয়েছে!');
     }
     function EditClass($id)
@@ -70,7 +68,6 @@ class InstitutionCommitteeComponent extends Component
     }
     function UpdateClass()
     {
-        // dd($this->fields['person_image']);
         $this->validate([
             'fields.person_name' => 'required|min:3',
             'fields.educational_qualification' => 'required|min:3',
@@ -87,7 +84,6 @@ class InstitutionCommitteeComponent extends Component
         } else {
             $this->fields['person_image'] = $this->fields['image_in_edit'];
         }
-        // dd($this->fields['person_image']);
         $updatable = InstitutionCommittee::find($this->fields['editable_id']);
         $updatable->update([
             'person_name' => $this->fields['person_name'],
@@ -99,6 +95,7 @@ class InstitutionCommitteeComponent extends Component
             'expired_at' => $this->fields['expired_at'],
         ]);
         $this->resetFields();
+        $this->iteration++;
         $this->alert('success', 'কমিটি সদস্য সফলভাবে আপডেট করা হয়েছে!');
     }
     function DeleteClass($id)
@@ -123,6 +120,10 @@ class InstitutionCommitteeComponent extends Component
             'person_address' => null,
             'expired_at' => null,
         ];
+    }
+    function CancelEdit()
+    {
+        $this->resetFields();
     }
     public function render()
     {

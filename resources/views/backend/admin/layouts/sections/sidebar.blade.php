@@ -50,6 +50,27 @@
                 </a>
             </li>
             <li>
+                <a class="{{ Route::currentRouteName() === 'teaching-permission' ? 'menu-active' : '' }}"
+                    href="{{ route('teaching-permission') }}">
+                    <i class="bi bi-journal-check"></i>
+                    <span class="label">Teaching Permission</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Route::currentRouteName() === 'qualification-acceptance' ? 'menu-active' : '' }}"
+                    href="{{ route('qualification-acceptance') }}">
+                    <i class="bi bi-patch-check-fill"></i>
+                    <span class="label">Qualification Acceptance</span>
+                </a>
+            </li>
+            <li>
+                <a class="{{ Route::currentRouteName() === 'teachers-staffs' ? 'menu-active' : '' }}"
+                    href="{{ route('teachers-staffs') }}">
+                    <i class="bi bi-person-vcard-fill"></i>
+                    <span class="label">Teachers and staffs</span>
+                </a>
+            </li>
+            <li>
                 <a class="{{ Route::currentRouteName() === 'committee' ? 'menu-active' : '' }}"
                     href="{{ route('committee') }}">
                     <i class="bi bi-person-workspace"></i>

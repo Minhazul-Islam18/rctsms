@@ -1,21 +1,7 @@
 @section('page-title')
-    {{ 'Instutional Committee' }}
+    {{ 'Teacher & Staffs' }}
 @endsection
-@section('page-styles')
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css">
-@endsection
-@section('page-scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js">
-    </script>
-    <script>
-        $('.input-group.date').each(function(index, element) {
-            $('.input-group.date').datepicker({
-                format: "dd-mm-yyyy"
-            });
-        });
-    </script>
-@endsection
+
 <div>
     <div class="row g-2 mt-2">
         <div class="col-6 col-md-6 col-sm-12">
@@ -31,15 +17,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($CommitteePersons as $item)
+                                @foreach ($Persons as $item)
                                     <tr class="" wire:key='{{ $item->index }}'>
                                         <td scope="row">
-                                            <img class="w-25" src="/storage/{{ $item->person_image }}" alt="">
-                                            <span
-                                                class="fw-bold d-block text-center mt-2">{{ $item->person_name }}</span>
+                                            <img class="w-25" src="/storage/{{ $item->image }}" alt="">
+                                            <span class="fw-bold d-block text-center mt-2">{{ $item->name }}</span>
                                         </td>
                                         <td>
-                                            {{ $item->person_post }}
+                                            {{ $item->post }}
                                         </td>
                                         <td>
                                             <div class="d-flex gap-3">
@@ -56,8 +41,8 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                <div class="d-flex">{{ $CommitteePersons->links() }}</div>
-                                @if ($CommitteePersons->count() <= 0)
+                                <div class="d-flex">{{ $Persons->links() }}</div>
+                                @if ($Persons->count() <= 0)
                                     <tr>
                                         <td colspan="3" class="text-center">{{ 'Nothing Found' }}</td>
                                     </tr>
@@ -72,17 +57,17 @@
         <div class="col-6 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header py-3">
-                    <span class="h5 m-0 text-white">{{ $fields['status'] == true ? 'Update' : 'Create' }} Member</span>
+                    <span class="h5 m-0 text-white">{{ $fields['status'] == true ? 'Update' : 'Create' }} Teacher Or
+                        Staff</span>
                 </div>
                 <div class="card-body">
                     <form wire:submit='{{ $fields['status'] == true ? 'UpdateClass' : 'SaveClass' }}'>
                         <div class="row">
-                            <span wire:target="fields.person_image" wire:loading
-                                class="text-primary">Uploading....</span>
-                            @if ($fields['image_in_edit'] || $fields['person_image'])
+                            <span wire:target="fields.image" wire:loading class="text-primary">Uploading....</span>
+                            @if ($fields['image_in_edit'] || $fields['image'])
                                 <div class="col-4">
-                                    @if (is_object($fields['person_image']) && method_exists($fields['person_image'], 'temporaryUrl'))
-                                        <img class="w-100" src="{{ $fields['person_image']->temporaryUrl() }}"
+                                    @if (is_object($fields['image']) && method_exists($fields['image'], 'temporaryUrl'))
+                                        <img class="w-100" src="{{ $fields['image']->temporaryUrl() }}"
                                             alt="">
                                     @elseif ($fields['image_in_edit'])
                                         <img src="/storage/{{ $fields['image_in_edit'] }}" alt=""
@@ -90,12 +75,11 @@
                                     @endif
                                 </div>
                             @endif
-                            <div
-                                class="{{ $fields['image_in_edit'] || $fields['person_image'] ? 'col-8' : 'col-12' }}">
+                            <div class="{{ $fields['image_in_edit'] || $fields['image'] ? 'col-8' : 'col-12' }}">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Image</label>
-                                    <input accept="image/jpeg, image/svg, image/png, image/jpg" type="file"
-                                        wire:model='fields.person_image' class="form-control" name=""
+                                    <input accept="image/jpeg, image/svg, image/png, image/jpg, image/webp"
+                                        type="file" wire:model='fields.image' class="form-control" name=""
                                         id="iso{{ $iteration }}">
                                 </div>
                             </div>
@@ -103,20 +87,20 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Name</label>
-                            <input type="text" wire:model.blur='fields.person_name' class="form-control"
-                                name="" id="">
+                            <input type="text" wire:model.blur='fields.name' class="form-control" name=""
+                                id="">
                             <div class="text-danger py-1 px-2 mt-1">
-                                @error('fields.person_name')
+                                @error('fields.name')
                                     {{ $message }}
                                 @enderror
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Post</label>
-                            <input type="text" wire:model.blur='fields.person_post' class="form-control"
-                                name="" id="">
+                            <input type="text" wire:model.blur='fields.post' class="form-control" name=""
+                                id="">
                             <div class="text-danger py-1 px-2 mt-1">
-                                @error('fields.person_post')
+                                @error('fields.post')
                                     {{ $message }}
                                 @enderror
                             </div>
@@ -132,37 +116,69 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Identity</label>
-                            <textarea class="form-control" wire:model='fields.identity' name="" id="" rows="3"></textarea>
+                            <label for="" class="form-label">Mobile</label>
+                            <input type="text" wire:model.blur='fields.mobile' class="form-control" name=""
+                                id="">
                             <div class="text-danger py-1 px-2 mt-1">
-                                @error('fields.identity')
+                                @error('fields.mobile')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Email</label>
+                            <input type="text" wire:model.blur='fields.email' class="form-control" name=""
+                                id="">
+                            <div class="text-danger py-1 px-2 mt-1">
+                                @error('fields.email')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Facebook</label>
+                            <input type="text" wire:model.blur='fields.facebook' class="form-control"
+                                name="" id="">
+                            <div class="text-danger py-1 px-2 mt-1">
+                                @error('fields.facebook')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Website</label>
+                            <input type="text" wire:model.blur='fields.website' class="form-control"
+                                name="" id="">
+                            <div class="text-danger py-1 px-2 mt-1">
+                                @error('fields.website')
                                     {{ $message }}
                                 @enderror
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Address</label>
-                            <textarea class="form-control" wire:model='fields.person_address' name="" id="" rows="3"></textarea>
+                            <textarea class="form-control" wire:model='fields.address' name="" id="" rows="3"></textarea>
                             <div class="text-danger py-1 px-2 mt-1">
-                                @error('fields.person_address')
+                                @error('fields.address')
                                     {{ $message }}
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group" wire:ignore>
-                            <div class="mb-3" id="filterDate2">
-                                <div class="input-group date" data-date-format="dd.mm.yyyy">
-                                    <input type="text" wire:model='fields.expired_at' class="form-control"
-                                        placeholder="dd-mm-yyyy">
-                                    <span class="input-group-addon"><i class="bi bi-stopwatch"></i></span>
-                                </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">City</label>
+                            <select class="form-select form-select-lg" wire:model='fields.is_resigned' name=""
+                                id="">
+                                <option value="0" selected>Present</option>
+                                <option value="1">Resigned</option>
+                            </select>
+                            <div class="text-danger py-1 px-2 mt-1">
+                                @error('fields.is_resigned')
+                                    {{ $message }}
+                                @enderror
                             </div>
-                            @error('fields.expired_at')
-                                {{ $message }}
-                            @enderror
                         </div>
                         <button type="submit"
-                            class="btn btn-primary">{{ $fields['status'] == true ? 'Update' : 'Create' }}</button>
+                            class="btn btn-primary me-2">{{ $fields['status'] == true ? 'Update' : 'Create' }}</button>
                         @if ($fields['status'] == true)
                             <button type="button" wire:click='CancelEdit'
                                 class="btn btn-danger">{{ 'Cancel' }}</button>
