@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('teaching_permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('files')->nullable();
-            $table->string('description')->nullable();
+            $table->text('files')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

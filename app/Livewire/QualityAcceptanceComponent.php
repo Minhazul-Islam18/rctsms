@@ -41,7 +41,7 @@ class QualityAcceptanceComponent extends Component
         ]);
         $this->iteration++;
         $this->resetFields();
-        $this->alert('success', 'শিক্ষক বা স্টাফ সফলভাবে তৈরি করা হয়েছে!');
+        $this->alert('success', 'স্বীকৃতির তথ্য সফলভাবে তৈরি করা হয়েছে!');
     }
     function EditClass($id)
     {
@@ -75,7 +75,7 @@ class QualityAcceptanceComponent extends Component
         ]);
         $this->iteration++;
         $this->resetFields();
-        $this->alert('success', 'শিক্ষক বা স্টাফ সফলভাবে আপডেট করা হয়েছে!');
+        $this->alert('success', 'স্বীকৃতির তথ্য সফলভাবে আপডেট করা হয়েছে!');
     }
     function DeleteClass($id)
     {
@@ -85,7 +85,7 @@ class QualityAcceptanceComponent extends Component
         }
         $updatable->delete();
         $this->resetFields();
-        $this->alert('success', 'শিক্ষক বা স্টাফ সফলভাবে ডিলিট করা হয়েছে!');
+        $this->alert('success', 'স্বীকৃতির তথ্য সফলভাবে ডিলিট করা হয়েছে!');
     }
     function CancelEdit()
     {
