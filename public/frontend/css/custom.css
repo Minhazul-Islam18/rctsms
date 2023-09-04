@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 body {
-    font-family: "SolaimanLipi", Arial, sans-serif !important;
-    /* font-family: "Kalpurush", Arial, sans-serif !important; */
+    /* font-family: "SolaimanLipi", Arial, sans-serif !important; */
+    font-family: "Kalpurush", Arial, sans-serif !important;
     background-color: #0000ff0d;
 }
 .container.main-container {

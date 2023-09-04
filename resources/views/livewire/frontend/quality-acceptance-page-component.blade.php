@@ -1,8 +1,10 @@
 @section('page-title')
-    {{ 'শ্ৰেণীসমূহ' }}
+    {{ 'স্বীকৃতি বিবরণ' }}
 @endsection
 <div>
-    <div class="h2 my-4 d-block text-center">{{ __('শ্ৰেণীসমূহ') }}</div>
+    <div class="h2 my-4 d-block text-center">
+        স্বীকৃতি বিবরণ
+    </div>
     <div class="table-responsive mb-4">
         <table class="table table-light border-1 border-dark">
             <thead class="border-top border-dark">
@@ -13,18 +15,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($classes as $item)
+                @foreach ($acceptances as $item)
                     <tr>
-                        <td class="border-end border-dark border-start" scope="row">{{ $item->count() }}</td>
+                        <td class="border-end border-dark border-start" scope="row">{{ $iteration++ }}</td>
                         <td class="border-end border-dark">
-                            <div class="text-dark">{{ $item->class_name }}</div>
+                            <div class="text-truncate">{{ $item->description }}</div>
                         </td>
                         <td class="border-end border-dark">
-                            <div class="text-dark">{{ $item->observation }}</div>
+                            @foreach (json_decode($item->files) as $itm)
+                                <button class="btn btn-warning btn-sm" wire:click="downloadFile('{{ $itm }}')"
+                                    type="button">Download</button>
+                            @endforeach
                         </td>
                     </tr>
                 @endforeach
-                @if ($classes->isEmpty())
+                @if ($acceptances->isEmpty())
                     <tr>
                         <td colspan="5" class="border-start border-end border-dark">
                             <span
@@ -34,7 +39,7 @@
                 @endif
             </tbody>
         </table>
-        {{ $classes->links() }}
+        {{ $acceptances->links() }}
     </div>
 
 </div>

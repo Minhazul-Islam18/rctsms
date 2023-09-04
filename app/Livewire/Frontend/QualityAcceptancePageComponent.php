@@ -2,14 +2,16 @@
 
 namespace App\Livewire\Frontend;
 
+use App\Models\QualificationAcceptance;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
-use App\Models\TeachingPermission;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use Livewire\WithPagination;
 
-class TeachingPermissionPageComponent extends Component
+class QualityAcceptancePageComponent extends Component
 {
+    use WithPagination;
     public $iteration = 1;
     #[Layout('livewire.frontend.layouts.common')]
     public function downloadFile($filename)
@@ -33,7 +35,7 @@ class TeachingPermissionPageComponent extends Component
     }
     public function render()
     {
-        $permissions = TeachingPermission::all();
-        return view('livewire.frontend.teaching-permission-page-component', ['permissions' => $permissions]);
+        $acceptances = QualificationAcceptance::paginate(8);
+        return view('livewire.frontend.quality-acceptance-page-component', ['acceptances' => $acceptances]);
     }
 }

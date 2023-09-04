@@ -17,7 +17,7 @@
             <tbody>
                 @foreach ($permissions as $item)
                     <tr>
-                        <td class="border-end border-dark border-start" scope="row">{{ $item->count() }}</td>
+                        <td class="border-end border-dark border-start" scope="row">{{ $iteration++ }}</td>
                         <td class="border-end border-dark">
                             <div class="text-truncate">{{ $item->description }}</div>
                         </td>
@@ -29,8 +29,17 @@
                         </td>
                     </tr>
                 @endforeach
+                @if ($permissions->isEmpty())
+                    <tr>
+                        <td colspan="5" class="border-start border-end border-dark">
+                            <span
+                                class="text-warning fw-bold w-100 text-center d-block">{{ __('কোনো তথ্য পাওয়া যায়নি') }}</span>
+                        </td>
+                    </tr>
+                @endif
             </tbody>
         </table>
+        {{-- {{ $classes->links() }} --}}
     </div>
 
 </div>
