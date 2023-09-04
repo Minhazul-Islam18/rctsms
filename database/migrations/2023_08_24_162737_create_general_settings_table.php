@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('general_settings', function (Blueprint $table) {
             $table->id();
             $table->string('logo')->nullable();
+            $table->string('body_background_image')->nullable();
+            $table->string('primary_color')->nullable();
+            $table->string('text_color_color')->nullable();
+            $table->string('secondary_color')->nullable();
             $table->string('favicon')->nullable();
             $table->string('site_title')->nullable();
             $table->text('site_motto')->nullable();

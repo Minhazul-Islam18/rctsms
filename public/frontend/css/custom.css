@@ -34,7 +34,12 @@ body {
     border-radius: 0.3rem;
 }
 .site__footer {
-    background-color: aliceblue;
+    border-top: 4px solid var(--primary-color);
+    background-color: #6c97da33;
+}
+.footer__bottom {
+    background-color: var(--site-primary);
+    border-top: 4px solid var(--site-secondary);
 }
 
 /* Carousel */
@@ -108,6 +113,12 @@ body {
     padding: 0.7rem 1rem;
     border: 1px solid #a8a7a7;
     border-radius: 0.32rem;
+    background-color: var(--site-primary);
+    color: var(--site-text);
+    transition: all 0.3s ease;
+}
+.image-box:hover {
+    box-shadow: 0px -10px 19px -10px #04315ea6;
 }
 .about-list {
     padding-left: 1.3rem;
@@ -115,7 +126,7 @@ body {
 }
 .about-list a {
     text-decoration: none;
-    color: #000;
+    color: var(--site-text);
 }
 .about-list .list-icon::before {
     top: 8px;
@@ -160,7 +171,7 @@ body {
 }
 .navbar-nav.header__navbar li .dropdown-menu-prev li:hover {
     padding: 0.2rem 0.2rem;
-    border-left: 4px solid #00de76;
+    border-left: 4px solid var(--site-secondary);
 }
 /* header .nav-item {
     position: relative;
@@ -170,17 +181,18 @@ body {
     transform: scaleY(1);
     height: auto;
 }
-.navbar-nav.header__navbar li {
+.navbar-nav.header__navbar li a {
     position: relative;
     padding: 0.3rem.5rem;
 }
-.navbar-nav.header__navbar li:active {
-    background: #0dcaf0;
+.navbar-nav.header__navbar li a.active {
+    background-color: var(--site-secondary);
     border-radius: 0.2rem;
+    color: #fff;
 }
 .navbar a {
     text-decoration: none;
-    color: var(--bs-black);
+    color: var(--site-text);
 }
 .navbar-nav.header__navbar li .dropdown-menu-prev {
     padding: 1.2rem 0.75rem;
@@ -190,7 +202,7 @@ body {
     list-style: none;
     border-radius: 0.3rem;
     border: 1px solid #e9328d;
-    background-color: rgba(43, 156, 242, 0.84);
+    background-color: var(--site-primary);
 }
 .list-group.notice-list {
     max-height: 200px;
@@ -206,5 +218,6 @@ body {
     text-decoration: none;
 }
 .notice .list-group-item:hover {
-    background-color: #0dcaf0;
+    background-color: var(--site-secondary);
+    color: var(--site-text);
 }

@@ -20,7 +20,12 @@ class GeneralSettingsComponent extends Component
     ];
     public $settings = [
         'site_logo' => null,
-        'favicon' => null,
+        'body_background_image' => null,
+        'prev_body_background_image' => null,
+        'prev_favicon' => null,
+        'primary_color' => null,
+        'secondary_color' => null,
+        'text_color' => null,
         'site_title' => null,
         'site_motto' => null,
         'meta_title' => null,
@@ -30,9 +35,16 @@ class GeneralSettingsComponent extends Component
     {
         $onMount = GeneralSetting::first();
         $this->settings = [
-            'site_logo' => $onMount->logo,
-            'favicon' => $onMount->favicon,
+            'site_logo' => null,
+            'favicon' => null,
+            'body_background_image' => null,
+            'prev_logo' => $onMount->logo,
+            'prev_favicon' => $onMount->favicon,
+            'prev_body_background_image' => $onMount->body_background_image,
             'site_title' => $onMount->site_title,
+            'primary_color' => $onMount->primary_color,
+            'secondary_color' => $onMount->secondary_color,
+            'text_color' => $onMount->text_color,
             'site_motto' => $onMount->site_motto,
             'meta_title' => $onMount->meta_title,
             'meta_description' => $onMount->meta_description,
@@ -66,11 +78,18 @@ class GeneralSettingsComponent extends Component
     }
     function SaveGeneralSettings()
     {
+        // dd($this->settings['body_background_image']);
         if ($this->settings['site_logo'] != null) {
             $imag = $this->settings['site_logo'];
             $newImageName = time() . '_' . $imag->getClientOriginalName();
 
             $this->prev_logo = $imag->storeAs('frontend/images/settings', $newImageName, 'public');
+        }
+        if ($this->settings['body_background_image'] != null) {
+            $imag = $this->settings['body_background_image'];
+            $newImageName = time() . '_' . $imag->getClientOriginalName();
+
+            $this->settings['prev_body_background_image'] = $imag->storeAs('frontend/images/settings', $newImageName, 'public');
         }
         if ($this->settings['favicon'] != null) {
             $fav = $this->settings['favicon'];
@@ -82,9 +101,13 @@ class GeneralSettingsComponent extends Component
         $if_present = GeneralSetting::first();
         if ($if_present) {
             $if_present->update([
-                'logo' => $this->prev_logo,
-                'favicon' => $this->prev_favicon,
+                'logo' => $this->settings['prev_logo'],
+                'favicon' => $this->settings['prev_favicon'],
+                'body_background_image' => $this->settings['prev_body_background_image'],
                 'site_title' => $this->settings['site_title'],
+                'primary_color' => $this->settings['primary_color'],
+                'secondary_color' => $this->settings['secondary_color'],
+                'text_color' => $this->settings['text_color'],
                 'site_motto' => $this->settings['site_motto'],
                 'meta_title' => $this->settings['meta_title'],
                 'meta_description' => $this->settings['meta_description'],
@@ -93,6 +116,10 @@ class GeneralSettingsComponent extends Component
             $rt = GeneralSetting::create([
                 'logo' => $this->settings['prev_logo'],
                 'favicon' => $this->settings['prev_favicon'],
+                'body_background_image' => $this->settings['body_background_image'],
+                'primary_color' => $this->settings['primary_color'],
+                'secondary_color' => $this->settings['secondary_color'],
+                'text_color' => $this->settings['text_color'],
                 'site_title' => $this->settings['site_title'],
                 'site_motto' => $this->settings['site_motto'],
                 'meta_title' => $this->settings['meta_title'],
@@ -108,6 +135,11 @@ class GeneralSettingsComponent extends Component
     {
         $this->settings = [
             'site_logo' => null,
+            'body_background_image' => null,
+            'prev_body_background_image' => null,
+            'primary_color' => null,
+            'secondary_color' => null,
+            'text_color' => null,
             'prev_logo' => null,
             'prev_favicon' => null,
             'favicon' => null,

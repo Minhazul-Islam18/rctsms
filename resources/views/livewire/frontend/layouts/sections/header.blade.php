@@ -1,14 +1,17 @@
         <header class="site__header">
-            <div class="Header__top_image bg-info">
+            <div class="Header__top_image" style="background-color: var(--site-primary); color: var(--site-text)">
                 <img src="{{ asset('storage') }}/{{ get_settings('logo') }}" alt="">
             </div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-warning mb-2 mt-4 border-top border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light mb-2 mt-4 border-top border-bottom"
+                style="background-color: var(--site-primary);">
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav header__navbar">
                         @foreach (sitemenu() as $menu)
                             <li wire:key="{{ $menu->id }}">
-                                <a href="{{ $menu->url }}">{{ $menu->name }}</a>
+                                <a href="{{ $menu->url }}"
+                                    class="{{ request()->is($menu->url) ? 'active' : '' }}">{{ $menu->name }}</a>
                                 @if (count($menu->submenus) > 0)
+                                    <i class="ms-1 fa-solid fa-caret-down" style="color: var(--site-text)"></i>
                                     <ul class="dropdown-menu-prev">
                                         @foreach ($menu->submenus as $submenu)
                                             <li wire:key="{{ $submenu->id }}"><a

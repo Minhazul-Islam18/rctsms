@@ -20,6 +20,17 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     </script>
     <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+    <style>
+        :root {
+            --site-primary: {{ get_settings('primary_color') }};
+            --site-secondary: {{ get_settings('secondary_color') }};
+            --site-text: {{ get_settings('text_color') }};
+        }
+
+        body {
+            background-image: url({{ '/storage/' . get_settings('body_background_image') }})
+        }
+    </style>
 </head>
 
 <body>

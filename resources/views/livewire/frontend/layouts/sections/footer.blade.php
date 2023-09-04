@@ -2,7 +2,7 @@
        $FooterWidget1 = DB::table('footer_widget1s')->first();
        $FooterWidget2 = DB::table('footer_widget2s')->first();
    @endphp
-   <footer class="site__footer bg-info" style="border: 1px solid #e9328d;">
+   <footer class="site__footer">
        <div class="row px-2 py-3">
            <div class="col-md-3 col-sm-12 col-12">
                <div class="d-flex flex-column align-items-start">
@@ -23,8 +23,9 @@
                </div>
            </div>
        </div>
-       <div class="footer__bottom">
-           <div class="d-block text-center bg-warning pt-3 pb-2">
+       <div class="footer__bottom py-2">
+           <h5 class="d-block text-center fw-bold m-0 text-white">{{ get_settings('school_name') }}</h5>
+           <div class="d-block text-center pt-3 pb-2 text-white">
                @php
                    use Illuminate\Support\Carbon;
                    $lastCommitDate = shell_exec('git log -1 --format=%cd');
