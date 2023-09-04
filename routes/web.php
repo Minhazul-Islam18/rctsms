@@ -17,6 +17,7 @@ use App\Livewire\DashboardComponent;
 use App\Livewire\Frontend\HomepageComponent;
 use App\Livewire\Frontend\NoticepageComponent;
 use App\Livewire\Frontend\PersonpageComponent;
+use App\Livewire\Frontend\TeachingPermissionPageComponent;
 use App\Livewire\HeaderFooterSettingsComponent;
 use App\Livewire\InstitutionCommitteeComponent;
 use App\Livewire\QualityAcceptanceComponent;
@@ -38,6 +39,7 @@ use App\Livewire\TeachingPermissionComponent;
 //     return  Artisan::call('storage:link');
 // });
 Route::get('/', HomepageComponent::class)->name('home');
+Route::get('/teaching-permission', TeachingPermissionPageComponent::class)->name('teaching-permission');
 Route::get('/notice/{title}', NoticepageComponent::class)->name('notice-page');
 Route::get('/person/{id}', PersonpageComponent::class)->name('person-page');
 

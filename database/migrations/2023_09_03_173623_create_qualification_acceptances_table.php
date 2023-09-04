@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('qualification_acceptances', function (Blueprint $table) {
             $table->id();
-            $table->string('files')->nullable();
-            $table->string('description')->nullable();
+            $table->text('files')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
