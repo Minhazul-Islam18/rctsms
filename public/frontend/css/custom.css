@@ -172,4 +172,39 @@ body {
 }
 .navbar-nav.header__navbar li {
     position: relative;
+    padding: 0.3rem.5rem;
+}
+.navbar-nav.header__navbar li:active {
+    background: #0dcaf0;
+    border-radius: 0.2rem;
+}
+.navbar a {
+    text-decoration: none;
+    color: var(--bs-black);
+}
+.navbar-nav.header__navbar li .dropdown-menu-prev {
+    padding: 1.2rem 0.75rem;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    border-radius: 0.3rem;
+    border: 1px solid #e9328d;
+    background-color: rgba(43, 156, 242, 0.84);
+}
+.list-group.notice-list {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+.notice .list-group-item {
+    margin-top: 0.4rem;
+    transition: all 0.3s ease;
+    background-color: #f7f7f7;
+}
+.notice a {
+    color: #000;
+    text-decoration: none;
+}
+.notice .list-group-item:hover {
+    background-color: #0dcaf0;
 }

@@ -16,14 +16,20 @@
                 </div>
 
                 <div class="mt-3 notice">
-                    <h5 class="mb-2">নোটিশবোর্ড</h5>
-                    <ul class="list-group notice-list">
+                    <h5 class="mb-2 d-flex justify-content-center py-2 w-100 rounded-1 bg-warning">নোটিশবোর্ড</h5>
+                    <ul class="list-group notice-list rounded-0">
                         @foreach ($notices as $item)
-                            <li wire:key='{{ $item->index }}' class="list-group-item list-icon">
-                                <a href="{{ route('notice-page', ['title' => $item->title]) }}">
-                                    {{ $item->title }}
-                                </a>
-                            </li>
+                            <a href="{{ route('notice-page', ['title' => $item->title]) }}">
+                                <li wire:key='{{ $item->index }}' class="list-group-item ">
+                                    <div class="d-flex flex-column gap-1">
+                                        <span> <i class="fa fa-check-circle me-2" style="color: rgb(21, 151, 49)"
+                                                aria-hidden="true"></i>{{ $item->title }}</span>
+                                        <span class="text-truncate">{{ $item->description }}</span>
+                                    </div>
+
+
+                                </li>
+                            </a>
                         @endforeach
                     </ul>
                 </div>
@@ -43,7 +49,9 @@
                                     <div class="col-md-8 col-sm-12 col-12">
                                         <ul class="about-list">
                                             @foreach (json_decode($item->links) as $link)
-                                                <li class="list-icon">
+                                                <li class="listicon">
+                                                    <i class="fa fa-check-circle" style="color: rgb(21, 151, 49)"
+                                                        aria-hidden="true"></i>
                                                     <a href="{{ $link->url }}">{{ $link->text }}</a>
                                                 </li>
                                             @endforeach
@@ -315,14 +323,15 @@
                     </div>
                 @endforeach
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-info">
                         <span class="fw-bold h5">{{ __('গুরুত্বপূর্ণ লিংক') }}</span>
                     </div>
                     <!-- Hover added -->
-                    <div class="list-group">
+                    <div class="list-group rounded-0">
                         @foreach ($additionalLinks as $item)
                             <a href="{{ $item->link_url }}" wire:key='{{ $item->index }}'
-                                class="list-group-item list-group-item-action list-icon">
+                                class="list-group-item list-group-item-action border-0 border-top">
+                                <i class="fa fa-check-circle" style="color: rgb(21, 151, 49)" aria-hidden="true"></i>
                                 {{ __($item->link_name) }}
                             </a>
                         @endforeach
@@ -331,13 +340,13 @@
             </div>
             <div class="col-12 my-3">
                 <div class="row g-0">
-                    <div class="col-6">
+                    <div class="col-12">
                         <h5>পোস্ট/ফটো গ্যালারি</h5>
 
                     </div>
-                    <div class="col-6 text-end">
+                    {{-- <div class="col-6 text-end">
                         <a href="/" class="text-dark">সকল পোস্ট</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="gallery">
                     @foreach ($galleryImages as $item)

@@ -42,7 +42,7 @@
                                 <div class="col-6">
                                     <span wire:target='settings.site_logo' wire:loading
                                         class="text-primary">Uploading....</span>
-                                    @if (method_exists($settings['site_logo'], 'temporaryUrl'))
+                                    @if (is_object($settings['site_logo']) && method_exists($settings['site_logo'], 'temporaryUrl'))
                                         <img src="{{ $settings['site_logo']->temporaryUrl() }}" class="w-25"
                                             alt="">
                                     @elseif ($settings['site_logo'] != null)
@@ -59,7 +59,7 @@
                                 <div class="col-6">
                                     <span wire:target='settings.favicon' wire:loading
                                         class="text-primary">Uploading....</span>
-                                    @if (method_exists($settings['favicon'], 'temporaryUrl'))
+                                    @if (is_object($settings['favicon']) && method_exists($settings['favicon'], 'temporaryUrl'))
                                         <img src="{{ $settings['favicon']->temporaryUrl() }}" class="w-25"
                                             alt="">
                                     @elseif ($settings['favicon'] != null)

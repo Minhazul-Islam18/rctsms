@@ -29,10 +29,10 @@
                             <span class="text-dark">{{ $item->post }}</span>
                         </td>
                         <td class="border-end border-dark">
-                            <div class="text-dark">{{ $item->phone }}</div>
-                            <div class="text-dark">{{ $item->email }}</div>
-                            <div class="text-dark">{{ $item->facebook }}</div>
-                            <div class="text-dark">{{ $item->website }}</div>
+                            <div class="text-dark">মোবাইল: {{ $item->phone }}</div>
+                            <div class="text-dark">ই-মেইল: {{ $item->email }}</div>
+                            <div class="text-dark">ফেইসবুক: {{ $item->facebook }}</div>
+                            <div class="text-dark">ওয়েবসাইট: {{ $item->website }}</div>
                         </td>
                     </tr>
                 @endforeach
