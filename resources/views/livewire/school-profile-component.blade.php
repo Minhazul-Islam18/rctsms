@@ -16,48 +16,54 @@
                         <div class="">
                             <label for="" class="form-label">School Name</label>
                             <input type="text" class="form-control" name="" id=""
-                                wire:model='settings.school_name' placeholder="">
+                                wire:model.blur='settings.school_name' placeholder="">
                         </div>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Established At</label>
                             <input type="text" class="form-control" name="" id=""
-                                wire:model='settings.established_at' placeholder="">
+                                wire:model.blur='settings.established_at' placeholder="">
                         </div>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">EIIN no.</label>
                             <input type="text" class="form-control" name="" id=""
-                                wire:model='settings.eiin' placeholder="">
+                                wire:model.blur='settings.eiin' placeholder="">
                         </div>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Domain <sub>(https://domain.com)</sub></label>
                             <input type="text" class="form-control" name="" id=""
-                                wire:model='settings.domain' placeholder="">
+                                wire:model.blur='settings.domain' placeholder="">
                         </div>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Contact Number</label>
                             <input type="text" class="form-control" name="" id=""
-                                wire:model='settings.contact_number' placeholder="">
+                                wire:model.blur='settings.contact_number' placeholder="">
                         </div>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Contact Mail</label>
                             <input type="text" class="form-control" name="" id=""
-                                wire:model='settings.contact_mail' placeholder="">
+                                wire:model.blur='settings.contact_mail' placeholder="">
                         </div>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="" class="form-label">Address</label>
-                            <textarea class="form-control" wire:model='settings.address' name="" id="" rows="3"></textarea>
+                            <textarea class="form-control" wire:model.blur='settings.address' name="" id="" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6 col-sm-12">
+                        <div class="mb-3">
+                            <label for="" class="form-label">History</label>
+                            <textarea class="form-control" wire:model.blur='settings.history' name="" id="" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -126,18 +132,18 @@
                         @endif --}}
                         <div class="mb-3">
                             <label for="" class="form-label">Image</label>
-                            <input type="file" wire:model='person.image' class="form-control" name=""
+                            <input type="file" wire:model.blur='person.image' class="form-control" name=""
                                 id="yu{{ $iteration }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Name</label>
-                            <input type="text" wire:model='person.name' class="form-control" name=""
+                            <input type="text" wire:model.blur='person.name' class="form-control" name=""
                                 id="">
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Post</label>
-                            <input type="text" wire:model='person.post' class="form-control" name=""
+                            <input type="text" wire:model.blur='person.post' class="form-control" name=""
                                 id="">
                         </div>
                         @if ($person['signiture'])
@@ -145,13 +151,13 @@
                         @endif
                         <div class="mb-3">
                             <label for="" class="form-label">Signature</label>
-                            <input type="file" wire:model='person.signiture' class="form-control" name=""
-                                id="syu{{ $iteration }}">
+                            <input type="file" wire:model.blur='person.signiture' class="form-control"
+                                name="" id="syu{{ $iteration }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Words</label>
-                            <textarea class="form-control" wire:model='person.words' name="" id="" rows="3"></textarea>
+                            <textarea class="form-control" wire:model.blur='person.words' name="" id="" rows="3"></textarea>
                         </div>
                         <button type="submit"
                             class="btn btn-primary">{{ $editing == true ? 'Update' : 'Create' }}</button>

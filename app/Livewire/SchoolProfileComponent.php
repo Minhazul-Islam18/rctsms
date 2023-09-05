@@ -36,6 +36,7 @@ class SchoolProfileComponent extends Component
     ];
     public $settings =
     [
+        'history' => null,
         'school_name' => null,
         'established_at' => null,
         'eiin' => null,
@@ -49,6 +50,7 @@ class SchoolProfileComponent extends Component
     {
         $if_present = SchoolProfile::first();
         $this->settings = [
+            'history' => $if_present->history,
             'school_name' => $if_present->school_name,
             'established_at' => $if_present->established_at,
             'eiin' => $if_present->eiin,
@@ -63,6 +65,7 @@ class SchoolProfileComponent extends Component
         $if_present = SchoolProfile::first();
         if ($if_present) {
             $if_present->update([
+                'history' => $this->settings['history'],
                 'school_name' => $this->settings['school_name'],
                 'established_at' => $this->settings['established_at'],
                 'eiin' => $this->settings['eiin'],
@@ -73,6 +76,7 @@ class SchoolProfileComponent extends Component
             ]);
         } else {
             $rt = SchoolProfile::create([
+                'history' => $this->settings['history'],
                 'school_name' => $this->settings['school_name'],
                 'established_at' => $this->settings['established_at'],
                 'eiin' => $this->settings['eiin'],
@@ -89,6 +93,7 @@ class SchoolProfileComponent extends Component
     function resetAll()
     {
         $this->settings = [
+            'history' => null,
             'school_name' => null,
             'established_at' => null,
             'eiin' => null,

@@ -21,6 +21,7 @@ if (!function_exists('get_settings')) {
         $gs = SchoolProfile::first();
         $school = [
             'school_name' => $gs->school_name,
+            'history' => $gs->history,
             'established_at' => $gs->established_at,
             'eiin' => $gs->eiin,
             'domain' => $gs->domain,

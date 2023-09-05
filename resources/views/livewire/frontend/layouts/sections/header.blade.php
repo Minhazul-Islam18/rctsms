@@ -14,8 +14,9 @@
                                     <i class="ms-1 fa-solid fa-caret-down" style="color: var(--site-text)"></i>
                                     <ul class="dropdown-menu-prev">
                                         @foreach ($menu->submenus as $submenu)
-                                            <li wire:key="{{ $submenu->id }}"><a
-                                                    href="{{ $submenu->url }}">{{ $submenu->name }}</a></li>
+                                            <li wire:key="{{ $submenu->id }}"><a href="{{ $submenu->url }}"
+                                                    class="{{ request()->is($submenu->url) ? 'active' : '' }}">{{ $submenu->name }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 @endif
