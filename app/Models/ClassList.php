@@ -9,4 +9,8 @@ class ClassList extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    function sections()
+    {
+        return $this->hasMany(ClassSection::class);
+    }
 }
