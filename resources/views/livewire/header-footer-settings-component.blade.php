@@ -13,7 +13,7 @@
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['misc', ['undo', 'redo']],
                     ['insert', ['link']],
-                    ['para', ['ul']]
+                    ['para', ['ul', 'ol', 'paragraph']],
                 ],
                 callbacks: {
                     onChange: function(contents, $editable) {
@@ -27,12 +27,26 @@
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['misc', ['undo', 'redo']],
                     ['insert', ['link']],
-                    ['para', ['ul']],
+                    ['para', ['ul', 'ol', 'paragraph']],
                     ['code']
                 ],
                 callbacks: {
                     onChange: function(contents, $editable) {
                         @this.set('FW2smr_text', contents);
+                    }
+                }
+            });
+            $('#smr3').summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['misc', ['undo', 'redo']],
+                    ['insert', ['link']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['code']
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('FW3smr_text', contents);
                     }
                 }
             });
@@ -181,7 +195,7 @@
         </div>
     </div>
     <div class="row gy-2">
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card mt-3">
                 <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                     <h5 class="m-0">Footer Widget 1</h5>
@@ -208,7 +222,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card mt-3">
                 <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                     <h5 class="m-0">Footer Widget 2</h5>
@@ -232,6 +246,35 @@
                         </div>
                         <button type="submit" wire:click='footerWidget({{ $widget = 2 }})'
                             class="btn btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-sm-12">
+            <div class="card mt-3">
+                <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
+                    <h5 class="m-0">Footer Widget 3</h5>
+                    <div class="tgl-group">
+                        <input class='tgl tgl-light' id='widget_3' wire:model='FW3status' type='checkbox'
+                            {{ $this->FW3status == 1 ? 'checked' : '' }} />
+                        <label class='tgl-btn' for='widget_3'></label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="row" action="" wire:submit='footerWidget({{ $widget = 3 }})'>
+                        <div class="col-12 col-md-5 col-lg-5 col-sm-12">
+                            <label for="" class="form-label">Title</label>
+                            <input type="text" class="form-control" wire:model='FW3title' name=""
+                                id="">
+                        </div>
+                        <div class="col-12 col-md-7 col-lg-7 col-sm-12" wire:ignore>
+                            <label for="" class="form-label">Text</label>
+                            <textarea class="form-control summernote" name="" id="smr3" wire:model.defer='FW3smr_text'
+                                rows="3">{!! $FW3smr_text !!}</textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
                     </form>
                 </div>
             </div>

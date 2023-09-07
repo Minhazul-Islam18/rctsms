@@ -42,6 +42,30 @@ class StudentsPageComponent extends Component
         $stu_count = $data->first();
         $boys_count = (int) $stu_count->boys_count;
         $girls_count = (int) $stu_count->girls_count;
-        return view('livewire.frontend.students-page-component', ['sectionData' => $sectionData, 'classes' => $classes, 'sections' => $sections, 'total' => $total, 'boys_count' => $boys_count, 'girls_count' => $girls_count]);
+        // Retrieve unique section names
+        $uniqueSections = DB::table('class_sections')
+            ->select('section_name')
+            ->distinct()
+            ->pluck('section_name');
+
+        // Retrieve class data with section student counts
+        $classData = DB::table('class_lists')
+            ->select('class_name', 'id as class_id')
+            ->get();
+
+        // Add section student counts to the class data
+        foreach ($classData as $class) {
+            $class->section_students = DB::table('class_sections')
+                ->where('class_list_id', $class->class_id)
+                ->whereIn('section_name', $uniqueSections)
+                ->pluck('section_student', 'section_name')
+                ->toArray();
+        }
+
+        // dd($classData);
+        return view(
+            'livewire.frontend.students-page-component',
+            ['classData' => $classData, 'uniqueSections' => $uniqueSections, 'sectionData' => $sectionData, 'classes' => $classes, 'sections' => $sections, 'total' => $total, 'boys_count' => $boys_count, 'girls_count' => $girls_count]
+        );
     }
 }

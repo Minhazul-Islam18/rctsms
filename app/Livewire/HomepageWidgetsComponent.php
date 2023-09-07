@@ -76,17 +76,13 @@ class HomepageWidgetsComponent extends Component
     }
     public function updateWidget()
     {
-        // dd($this->image ?? $this->imageName);
         $this->validate();
-
-
         $widget = AboutSchoolWidget::find($this->widgetId);
         if ($this->image) {
+            Storage::disk('public')->delete($widget->image);
             $newImageName = time() . '_' . $this->image->getClientOriginalName();
             $this->updatedImg = $this->image->storeAs('frontend/images/widget', $newImageName, 'public');
         } elseif ($this->imageName) {
-            Storage::disk('public')->delete($widget->image);
-            $widget->delete();
             $this->updatedImg = $this->imageName;
         }
         if ($widget) {
@@ -96,14 +92,13 @@ class HomepageWidgetsComponent extends Component
                 'links' => json_encode($this->rows)
             ]);
         }
-        // dd($rt);
         // Reset input fields
         $this->widget_name = '';
         $this->image = '';
         $this->updatedImg = '';
         $this->imageName = '';
         $this->rows = [];
-        $this->alert('success', 'widget Updated Successfully!');
+        $this->alert('success', 'Widget Updated Successfully!');
     }
     public function deletewidget()
     {

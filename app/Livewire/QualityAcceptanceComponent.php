@@ -104,7 +104,7 @@ class QualityAcceptanceComponent extends Component
     public function downloadFile($filename)
     {
         $filePath = storage_path('app/public/' . $filename);
-        // dd($filePath);
+        dd($filePath);
 
         if (file_exists($filePath)) {
             $fileContents = Storage::disk('public')->get($filename);

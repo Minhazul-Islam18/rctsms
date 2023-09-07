@@ -1,95 +1,9 @@
 @section('page-title')
     {{ 'Class List' }}
 @endsection
-@php
-    $secs = [];
-    // dd($secs);
-    $array_count = 1;
-@endphp
-@foreach ($classes as $item)
-    @foreach ($item->sections as $item)
-        @php
-            $array_count++;
-            $secs[] = $item->section_name;
-        @endphp
-    @endforeach
-@endforeach
 
 <div>
     <div class="row g-2 mt-2">
-        <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-info">
-                    <thead>
-                        <tr class="border-top">
-                            <th scope="col" class="border-end border-start">class</th>
-                            <th scope="col" colspan="3" class="border-end">
-                                <span class="d-block text-center">Students</span>
-                            </th>
-                            <th scope="col" colspan="{{ $array_count }}" class="border-end"><span
-                                    class="d-block text-center">Sections</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="">
-                            <td scope="row" class="border-end border-start"></td>
-                            <td class="border-end">Boys</td>
-                            <td class="border-end">Girls</td>
-                            <td class="border-end">total</td>
-                            @foreach ($secs as $item)
-                                <td class="border-end">{{ $item }}</td>
-                            @endforeach
-                        </tr>
-                        @foreach ($classes as $item)
-                            <tr class="">
-                                <td scope="row" class="border-end border-start">{{ $item->class_name }}</td>
-                                <td class="border-end">{{ $item->boys }}</td>
-                                <td class="border-end">{{ $item->girls }}</td>
-                                <td class="border-end">{{ $item->girls + $item->boys }}</td>
-                                @php
-                                    $erEnt = $array_count - $item->sections->count();
-                                @endphp
-                                @foreach ($item->sections as $item)
-                                    <td class="border-end"> {{ $item->section_student }}</td>
-                                @endforeach
-                                @for ($i = 1; $i < $erEnt; $i++)
-                                    <td class="border-end"></td>
-                                @endfor
-                            </tr>
-                        @endforeach
-                        {{-- @dd($secs) --}}
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-        <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-info">
-                    <thead>
-                        <tr>
-                            <th scope="col" colspan="2">Student Infos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="">
-                            <td scope="row">Total Students:</td>
-                            <td></td>
-                        </tr>
-                        <tr class="">
-                            <td scope="row">Boys</td>
-                            <td>Item</td>
-                        </tr>
-                        <tr class="">
-                            <td scope="row">Girls</td>
-                            <td>Item</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
         <div class="col-6 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-body">

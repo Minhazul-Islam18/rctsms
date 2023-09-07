@@ -7,7 +7,30 @@ html[data-footer="true"] #root > footer {
 .note-editor.note-frame {
     background-color: var(--fbc-white);
 }
-.accordion__collapsible:not(:last-child) {
+.accordion .submenu {
+    padding-left: 1rem;
+    background: #80808029;
+    border-radius: 0.4rem;
+}
+.accordion > a {
+    padding: 0.6rem.3rem;
+    background: var(--background-light);
+    color: var(--primary) !important;
+    margin-bottom: 0.3rem;
+    border-radius: 0.3rem;
+}
+.accordion.active > a {
+    background: var(--background-navcolor-light);
+    color: var(--primary);
+}
+.listicon > * {
+    font-size: 16px;
+    color: var(--warning);
+}
+/* .accordion.active .icon {
+    color: #ffffff;
+} */
+/* .accordion__collapsible:not(:last-child) {
     border-bottom: none;
 }
 
@@ -34,7 +57,7 @@ html[data-footer="true"] #root > footer {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 1s, opacity 1s;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
 .collapsible--open .collapsible__header::after {
@@ -42,7 +65,7 @@ html[data-footer="true"] #root > footer {
 }
 
 .collapsible--open .collapsible__content {
-    max-height: 200px;
+    max-height: 100%;
     opacity: 1;
 }
 
@@ -55,7 +78,7 @@ html[data-footer="true"] #root > footer {
     font-size: small;
     margin: 10px;
 }
-.tgl {
+*/ .tgl {
     display: none;
 }
 .tgl,
@@ -170,15 +193,19 @@ html[data-footer="true"] #root > footer {
 }
 .popup {
     position: fixed;
-    width: 600px;
+    min-width: 50vw;
     background: var(--background-light);
-    padding: 3rem 2rem;
+    padding: 2rem 1.7rem;
     z-index: 1;
-    max-width: 100vw;
-    transform: translateY(-50%);
+    max-width: 90vw;
+    transform: translate(-50%);
     max-height: 100vh;
     overflow-y: scroll;
-    top: 50%;
+    top: 40%;
+    /* height: 90vh; */
+    left: 50%;
+    /* transform: translateX(-50%); */
+    border-radius: 0.4rem;
 }
 a {
     color: var(--background-light);

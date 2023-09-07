@@ -1,27 +1,42 @@
    @php
        $FooterWidget1 = DB::table('footer_widget1s')->first();
        $FooterWidget2 = DB::table('footer_widget2s')->first();
+       $FooterWidget3 = DB::table('footer_widget3s')->first();
    @endphp
    <footer class="site__footer">
        <div class="row px-2 py-3">
-           <div class="col-md-3 col-sm-12 col-12">
-               <div class="d-flex flex-column align-items-start">
-                   <span class="fw-bold">{{ $FooterWidget1->title }}</span>
-                   <span class="text-start">
-                       {!! $FooterWidget1->text !!}
-                   </span>
-               </div>
-           </div>
-           <div class="col-md-6 col-12"></div>
-           <div class="col-md-3 col-sm-12 col-12">
-               <div class="d-flex flex-column align-items-end">
-                   <span class="fw-bold">{{ $FooterWidget2->title }}</span>
-
-                   <div class="text-end">
-                       {!! $FooterWidget2->text !!}
+           @if ($FooterWidget1->status)
+               <div class="col-md-4 col-sm-12 col-12">
+                   <div class="d-flex flex-column align-sm-center align-md-start">
+                       <span class="fw-bold">{{ $FooterWidget1->title }}</span>
+                       <span class="text-start">
+                           {!! $FooterWidget1->text !!}
+                       </span>
                    </div>
                </div>
-           </div>
+           @endif
+           @if ($FooterWidget2->status)
+               <div class="col-md-4 col-sm-12 col-12">
+                   <div class="d-flex flex-column  align-sm-center align-md-center">
+                       <span class="fw-bold d-block text-center">{{ $FooterWidget2->title }}</span>
+
+                       <div class="">
+                           {!! $FooterWidget2->text !!}
+                       </div>
+                   </div>
+               </div>
+           @endif
+           @if ($FooterWidget3->status)
+               <div class="col-md-4 col-sm-12 col-12">
+                   <div class="d-flex flex-column  align-sm-center align-md-end">
+                       <span class="fw-bold">{{ $FooterWidget3->title }}</span>
+
+                       <div class="text-end">
+                           {!! $FooterWidget3->text !!}
+                       </div>
+                   </div>
+               </div>
+           @endif
        </div>
        <div class="footer__bottom py-2">
            <h5 class="d-block text-center fw-bold m-0 text-white">{{ get_settings('school_name') }}</h5>

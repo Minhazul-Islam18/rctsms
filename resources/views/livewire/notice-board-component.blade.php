@@ -21,32 +21,7 @@
                         </div>
                     @endforeach
                     {{ $notices->links() }}
-                    @if ($notice)
-                        {{-- @if ($editing)
-                            <div>
-                                <form wire:submit.prevent="updateNotice">
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Title:</label>
-                                        <input type="text" class="form-control" name="" id=""
-                                            placeholder="" wire:model="title">
-                                        @error('title')
-                                            <span class="error">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Content:</label>
-                                        <textarea class="form-control" name="" id="" rows="3" wire:model="description"></textarea>
-                                        @error('content')
-                                            <span class="error">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <button class="btn btn-outline-success" type="submit">Save</button>
-                                    <button type="button" class="btn btn-outline-danger"
-                                        wire:click="cancelEdit">Cancel</button>
-                                </form>
-                            </div>
-                        @endif --}}
-                    @else
+                    @if ($notices->count() <= 0)
                         <p class="text-body h4 m-0">Nothing Found</p>
                     @endif
                     @if ($willDeletenoticeId)
@@ -77,10 +52,16 @@
                     @if ($isOpen && $notice)
                         <div class="popup">
                             <div class="popup-content">
-                                <h2 class="mb-2">{{ $notice->title }}</h2>
+                                <h2 class="mb-2 d-block text-center py-2 border-bottom">{{ $notice->title }}</h2>
                                 <p class="text-body mb-2">{{ $notice->description }}</p>
-                                <img class="mw-100 mb-2 img-fluid" src="/storage/{{ $notice->image }}" alt="">
-                                <button class="btn btn-success" wire:click="closeModal">Close</button>
+                                @foreach (json_decode($notice->files) as $itm)
+                                    <button class="btn btn-warning btn-sm"
+                                        wire:click="downloadFile('{{ $itm }}')"
+                                        type="button">Download</button>
+                                @endforeach
+                                <div class="d-block text-start mt-3">
+                                    <button class="btn btn-success" wire:click="closeModal">Close</button>
+                                </div>
                             </div>
                         </div>
                     @endif
@@ -109,23 +90,11 @@
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="row">
-                            @if ($editing)
-                                <img class="mw-100 mb-2 img-fluid" src="/storage/{{ $imageUrl }}" alt="">
-                            @endif
-                            <div class="col-3">
-                                <span wire:target='image' wire:loading class="text-primary">Uploading....</span>
-                                @if ($image)
-                                    <img src="{{ $image->temporaryUrl() }}" alt="" class="rounded-1 w-100">
-                                @endif
-                            </div>
-                            <div class="pb-3 {{ isset($image) ? 'col-9' : 'col-12' }}">
-                                <label for="HeaderImage{{ $iteration }}" class="form-label">Header Image</label>
-                                <input wire:model='image' id="HeaderImage{{ $iteration }}"
-                                    accept="image/jpeg, image/svg, image/png, image/jpg" type="file"
-                                    class="form-control">
-                            </div>
-                            @error('image')
+                        <div class="mb-2">
+                            <label for="HeaderImage{{ $iteration }}" class="form-label">Attachment</label>
+                            <input multiple type="file" wire:model='files' id="HeaderImage{{ $iteration }}"
+                                accept="" class="form-control">
+                            @error('files')
                                 <div class="alert alert-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </div>
@@ -133,6 +102,10 @@
                         </div>
                         <button type="submit"
                             class="btn btn-success">{{ $editing == true ? 'Update' : 'Create' }}</button>
+                        @if ($editing)
+                            <button type="button" class="btn btn-danger"
+                                wire:click='cancelEdit'>{{ 'Cancel' }}</button>
+                        @endif
                     </form>
                 </div>
 

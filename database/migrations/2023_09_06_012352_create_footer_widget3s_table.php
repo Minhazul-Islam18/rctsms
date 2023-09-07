@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('site_notices', function (Blueprint $table) {
+        Schema::create('footer_widget3s', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status')->nullable()->default(0);
             $table->string('title')->nullable();
-            $table->text('description')->nullable();
-            $table->text('files')->nullable();
+            $table->text('text')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('site_notices');
+        Schema::dropIfExists('footer_widget3s');
     }
 };

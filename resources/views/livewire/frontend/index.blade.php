@@ -44,10 +44,10 @@
                                             {{ __($item->title) }}
                                         </span>
                                     </div>
-                                    <div class="col-md-4 col-sm-12 col-12">
+                                    <div class="col-md-4 col-sm-4 col-4">
                                         <img src="/storage/{{ $item->image }}" class="w-100 rounded" alt="">
                                     </div>
-                                    <div class="col-md-8 col-sm-12 col-12">
+                                    <div class="col-md-8 col-sm-8 col-8">
                                         <ul class="about-list">
                                             @foreach (json_decode($item->links) as $link)
                                                 <li class="listicon">
@@ -113,11 +113,14 @@
                         <a href="/" class="text-dark">সকল পোস্ট</a>
                     </div> --}}
                 </div>
-                <div class="gallery">
+                <div class="gallery row gy-sm-2">
                     @foreach ($galleryImages as $item)
-                        <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
-                            <img src="/storage/{{ $item->image }}" alt="{{ $item->title }}"></a>
+                        <div class="col-12 col-sm-12 col-md-3 my-2">
+                            <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
+                                <img class="mw-100" src="/storage/{{ $item->image }}" alt="{{ $item->title }}"></a>
+                        </div>
                     @endforeach
+
                 </div>
             </div>
         </div>

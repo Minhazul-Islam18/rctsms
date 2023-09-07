@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <div class="container my-1 px-4 py-3 main-container">
+    <div class="container px-4 py-0 main-container">
         @include('livewire/frontend/layouts/sections/header')
         {{ $slot }}
         @include('livewire/frontend/layouts/sections/footer')

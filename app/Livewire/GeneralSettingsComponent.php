@@ -2,11 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\CookieAlertSettings;
-use App\Models\GeneralSetting;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Models\GeneralSetting;
+use App\Models\CookieAlertSettings;
+use Illuminate\Support\Facades\Storage;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class GeneralSettingsComponent extends Component
 {
@@ -78,25 +79,26 @@ class GeneralSettingsComponent extends Component
     }
     function SaveGeneralSettings()
     {
-        // dd($this->settings['body_background_image']);
+
         if ($this->settings['site_logo'] != null) {
             $imag = $this->settings['site_logo'];
             $newImageName = time() . '_' . $imag->getClientOriginalName();
-
-            $this->prev_logo = $imag->storeAs('frontend/images/settings', $newImageName, 'public');
+            Storage::disk('public')->delete($this->settings['prev_logo']);
+            $this->settings['prev_logo'] = $imag->storeAs('frontend/images/settings', $newImageName, 'public');
         }
         if ($this->settings['body_background_image'] != null) {
             $imag = $this->settings['body_background_image'];
             $newImageName = time() . '_' . $imag->getClientOriginalName();
-
+            Storage::disk('public')->delete($this->settings['prev_body_background_image']);
             $this->settings['prev_body_background_image'] = $imag->storeAs('frontend/images/settings', $newImageName, 'public');
         }
         if ($this->settings['favicon'] != null) {
             $fav = $this->settings['favicon'];
             $ifav = time() . '_' . $fav->getClientOriginalName();
-            // dd($ifav);
-            $this->prev_favicon = $fav->storeAs('frontend/images/settings', $ifav, 'public');
+            Storage::disk('public')->delete($this->settings['prev_favicon']);
+            $this->settings['prev_favicon'] = $fav->storeAs('frontend/images/settings', $ifav, 'public');
         }
+        // dd($this->settings['prev_logo']);
 
         $if_present = GeneralSetting::first();
         if ($if_present) {
@@ -127,7 +129,7 @@ class GeneralSettingsComponent extends Component
             ]);
         }
 
-        $this->resetAll();
+        // $this->resetAll();
         $this->iteration++;
         $this->alert('success', 'Settings Saved Successfully!');
     }

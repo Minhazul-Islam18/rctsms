@@ -10,8 +10,8 @@
                     <th class="border-end border-dark border-start" scope="col">ক্রমিক নং</th>
                     <th class="border-end border-dark" scope="col">ছবি</th>
                     <th class="border-end border-dark" scope="col">নাম ও শিক্ষাগত যোগ্যতা</th>
-                    <th class="border-end border-dark" scope="col">পরিচয়</th>
                     <th class="border-end border-dark" scope="col">পদবি</th>
+                    <th class="border-end border-dark" scope="col">পরিচয়</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,18 +19,19 @@
                     <tr>
                         <td class="border-end border-dark border-start" scope="row">{{ $iteration++ }}</td>
                         <td class="border-end border-dark">
+                            <img src="/storage/{{ $item->person_image }}" class="mw-100" width="100px" alt="">
+                        </td>
+                        <td class="border-end border-dark">
                             <div class="text-dark">{{ $item->person_name }}</div>
                             <div class="text-dark">{{ $item->educational_qualification }}</div>
                         </td>
                         <td class="border-end border-dark">
-                            <img src="/storage/{{ $item->person_image }}" class="mw-100" width="100px" alt="">
+                            <div class="text-dark">{{ $item->person_post }}</div>
                         </td>
                         <td class="border-end border-dark">
                             <span class="text-dark">{{ $item->identity }}</span>
                         </td>
-                        <td class="border-end border-dark">
-                            <div class="text-dark">{{ $item->person_post }}</div>
-                        </td>
+
                     </tr>
                 @endforeach
                 @if ($committees->isEmpty())

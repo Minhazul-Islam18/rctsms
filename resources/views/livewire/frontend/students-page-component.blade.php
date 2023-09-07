@@ -19,6 +19,8 @@
     <h3 class="d-block my-4 text-center fw-bold">অধ্যয়নরত শিক্ষার্থীর সংখ্যা</h3>
     <div class="row g-2 mt-2">
         <div class="col-12">
+            <!-- resources/views/your-view.blade.php -->
+
             <div class="table-responsive">
                 <table class="table table-info">
                     <thead>
@@ -27,8 +29,6 @@
                             <th scope="col" colspan="3" class="border-end">
                                 <span class="d-block text-center">শিক্ষার্থী</span>
                             </th>
-                            <th scope="col" colspan="{{ $array_count }}" class="border-end"><span
-                                    class="d-block text-center">বিভাগঃ</span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,9 +37,6 @@
                             <td class="border-end">ছাত্র</td>
                             <td class="border-end">ছাত্রী</td>
                             <td class="border-end">মোট</td>
-                            @foreach ($secs as $item)
-                                <td class="border-end">{{ $item }}</td>
-                            @endforeach
                         </tr>
                         @foreach ($classes as $item)
                             <tr class="">
@@ -47,15 +44,35 @@
                                 <td class="border-end">{{ $item->boys }}</td>
                                 <td class="border-end">{{ $item->girls }}</td>
                                 <td class="border-end">{{ $item->girls + $item->boys }}</td>
-                                @php
-                                    $erEnt = $array_count - $item->sections->count();
-                                @endphp
-                                @foreach ($item->sections as $item)
-                                    <td class="border-end"> {{ $item->section_student }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-info border border-dark">
+                    <thead>
+                        <tr>
+                            <th class="border-end border-dark"> <span class="d-block text-center">শ্রেণী</span> </th>
+                            <th colspan="{{ $uniqueSections->count() }}"><span class="d-block text-center">বিভাগ</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border-end border-dark"></td>
+                            @foreach ($uniqueSections as $section)
+                                <td class="border-end border-dark"><span
+                                        class="d-block text-center">{{ $section }}</span></td>
+                            @endforeach
+                        </tr>
+                        @foreach ($classData as $class)
+                            <tr>
+                                <td class="border-end border-dark">{{ $class->class_name }}</td>
+                                @foreach ($uniqueSections as $section)
+                                    <td class="border-end border-dark">{{ $class->section_students[$section] ?? '' }}
+                                    </td>
                                 @endforeach
-                                @for ($i = 1; $i < $erEnt; $i++)
-                                    <td class="border-end"></td>
-                                @endfor
                             </tr>
                         @endforeach
                     </tbody>

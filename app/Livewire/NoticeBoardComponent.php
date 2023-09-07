@@ -4,11 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\SiteNotice;
+use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\WithPagination;
 
 class NoticeBoardComponent extends Component
 {
@@ -19,6 +20,8 @@ class NoticeBoardComponent extends Component
     public $imageName;
     public $iteration;
     public $image;
+    public $files;
+    public $files_in_edit;
     public $notice;
     public $title;
     public $description;
@@ -28,7 +31,7 @@ class NoticeBoardComponent extends Component
     public $isOpen = false;
     protected $rules = [
         'title' => 'required',
-        'description' => 'required',
+        'files' => 'required',
     ];
     public function viewNotice($noticeId)
     {
@@ -46,11 +49,18 @@ class NoticeBoardComponent extends Component
         $ntc = SiteNotice::find($this->noticeId);
         $this->title = $ntc->title;
         $this->description = $ntc->description;
-        $this->imageUrl = $ntc->image;
+        // $this->files = json_decode($ntc['files']);
+        $this->files_in_edit = json_decode($ntc['files']);
     }
     public function cancelEdit()
     {
+        $this->title = '';
+        $this->description = '';
+        $this->willDeletenoticeId = '';
         $this->editing = false;
+        $this->noticeId = '';
+
+        $this->files_in_edit = '';
     }
     protected $listeners = ['confirmDelete'];
 
@@ -62,59 +72,50 @@ class NoticeBoardComponent extends Component
     {
         // dd($this->image);
         $this->validate();
-        $image = $this->image;
-        $myvalidate = Validator::make(["image" => $image], [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ])->validate();
-
-        $newImageName = time() . '_' . $this->image->getClientOriginalName();
-
-        $this->imageName = $this->image->storeAs('frontend/images/notice', $newImageName, 'public');
-
+        foreach ($this->files as $file) {
+            $NewFileName = time() . '_' . $file->getClientOriginalName();
+            $filos[] = $file->storeAs('frontend/files/notices', $NewFileName, 'public');
+        }
         $rt = SiteNotice::create([
             'title' => $this->title,
             'description' => $this->description,
-            'image' => $this->imageName,
+            'files' => json_encode($filos),
         ]);
-        // dd($rt);
         session()->flash('message', 'Notice created successfully.');
 
         // Reset input fields
         $this->title = '';
         $this->description = '';
-        $this->image = '';
+        $this->files = '';
         $this->iteration++;
         $this->alert('success', 'Notice Created Successfully!');
     }
     public function updateNotice()
     {
-        $image = $this->image;
-        $myvalidate = Validator::make(["image" => $image], [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ])->validate();
-
-        $newImageName = time() . '_' . $this->image->getClientOriginalName();
-
-        $this->imageName = $this->image->storeAs('frontend/images/notice', $newImageName, 'public');
-
-        $notice = SiteNotice::find($this->noticeId);
-        if ($this->image && $notice->image) {
-            // Delete the old image
-            $rt =  Storage::disk('public')->delete($notice->image);
-            // dd($rt);
+        if ($this->files) {
+            foreach ($this->files_in_edit as $file) {
+                Storage::disk('public')->delete($file);
+            }
+            foreach ($this->files as $file) {
+                $newImageName = time() . '_' . $file->getClientOriginalName();
+                $filos[] = $file->storeAs('frontend/files/notices', $newImageName, 'public');
+            }
+        } else {
+            $filos = $this->files_in_edit;
         }
+        $notice = SiteNotice::find($this->noticeId);
         if ($notice) {
             $notice->update([
                 'title' => $this->title,
                 'description' => $this->description,
-                'image' => $this->imageName,
+                'files' => json_encode($filos),
             ]);
         }
 
         $this->editing = false;
         $this->title = '';
         $this->description = '';
-        $this->image = '';
+        $this->files = '';
         $this->iteration++;
         $this->alert('success', 'Notice Updated Successfully!');
     }
@@ -123,7 +124,12 @@ class NoticeBoardComponent extends Component
         $notice = SiteNotice::find($this->willDeletenoticeId);
 
         if ($notice) {
-            Storage::disk('public')->delete($notice->image);
+            if ($notice->files != null) {
+                foreach (json_decode($notice->files) as $file) {
+                    Storage::disk('public')->delete($file);
+                }
+            }
+
             $notice->delete();
         }
         $this->willDeletenoticeId = '';
@@ -137,7 +143,26 @@ class NoticeBoardComponent extends Component
     {
         $this->willDeletenoticeId = '';
     }
+    public function downloadFile($filename)
+    {
+        $filePath = storage_path('app/public/' . $filename);
+        if (file_exists($filePath)) {
+            $fileContents = Storage::disk('public')->get($filename);
 
+            return Response::stream(
+                function () use ($fileContents) {
+                    echo $fileContents;
+                },
+                200,
+                [
+                    'Content-Type' => 'application/octet-stream',
+                    'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
+                ]
+            );
+        } else {
+            abort(404);
+        }
+    }
     public function mount(SiteNotice $SiteNotice)
     {
         $this->notice = $notice ?? '';

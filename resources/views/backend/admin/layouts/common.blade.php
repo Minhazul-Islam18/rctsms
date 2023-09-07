@@ -41,10 +41,10 @@
 <body>
     <div id="root">
         @include('backend/admin/layouts/sections/navbar')
-        <main>
-            <div class="container">
+        <main class="ps-md-2 ps-lg-2">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-auto col-md-2 d-none d-lg-flex"
+                    <div class="col-auto d-none d-lg-flex"
                         style="height: 100vh;overflow-y: scroll;scrollbar-color: var(--primary) transparent;scrollbar-width: thin !important;">
                         @include('backend/admin/layouts/sections/sidebar')
                     </div>

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\FooterWidget1;
 use App\Models\FooterWidget2;
+use App\Models\FooterWidget3;
 use Livewire\Component;
 use App\Models\SiteMenu;
 use App\Models\HeaderSetting;
@@ -37,6 +38,12 @@ class HeaderFooterSettingsComponent extends Component
     public $FW2title;
     #[Rule('required|min:3', onUpdate: false)]
     public $FW2smr_text;
+    #[Rule('required')]
+    public $FW3status;
+    #[Rule('required|min:3', onUpdate: false)]
+    public $FW3title;
+    #[Rule('required|min:3', onUpdate: false)]
+    public $FW3smr_text;
 
     public function createMenu()
     {
@@ -199,20 +206,32 @@ class HeaderFooterSettingsComponent extends Component
                     'text' => $this->FW2smr_text,
                 ]);
             }
+        } elseif ($widget == 3) {
+            // dd($this->FW2smr_text);
+            $row = FooterWidget3::first();
+            if ($row) {
+                $row->update([
+                    'status' => $this->FW3status ?? false,
+                    'title' => $this->FW3title,
+                    'text' => $this->FW3smr_text,
+                ]);
+            } else {
+                FooterWidget3::create([
+                    'status' => $this->FW3status,
+                    'title' => $this->FW3title,
+                    'text' => $this->FW3smr_text,
+                ]);
+            }
         }
         // Reset the form fields
-        $this->FW1status = '';
-        $this->FW1title = '';
-        $this->FW1smr_text = '';
-        $this->FW1status = '';
-        $this->FW2title = '';
-        $this->FW2smr_text = '';
+        $this->mount();
         $this->alert('success', 'Widget ' . $widget . 'Updated Successfully!');
     }
     public function mount()
     {
         $FW1 = FooterWidget1::first();
         $FW2 = FooterWidget2::first();
+        $FW3 = FooterWidget3::first();
         if ($FW2) {
             $this->FW2status = $FW2->status ?? '';
             $this->FW2title = $FW2->title ?? '';
@@ -223,6 +242,11 @@ class HeaderFooterSettingsComponent extends Component
             $this->FW1status = $FW1->status ?? '';
             $this->FW1title = $FW1->title ?? '';
             $this->FW1smr_text = $FW1->text ?? '';
+        }
+        if ($FW3) {
+            $this->FW3status = $FW3->status ?? '';
+            $this->FW3title = $FW3->title ?? '';
+            $this->FW3smr_text = $FW3->text ?? '';
         }
     }
     public function render()
