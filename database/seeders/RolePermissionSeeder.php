@@ -25,9 +25,8 @@ class RolePermissionSeeder extends Seeder
         }
         //Create Dummy Permissions
         $permissions = [
-            ['name' => 'create role'],
-            ['name' => 'edit role'],
-            ['name' => 'delete role'],
+            ['name' => 'role manage'],
+            ['name' => 'permission manage'],
             ['name' => 'change settings']
         ];
 

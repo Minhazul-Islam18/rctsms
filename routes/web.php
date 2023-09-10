@@ -69,7 +69,7 @@ Route::get('/teaching-permission', TeachingPermissionPageComponent::class)->name
 Route::get('/notice/{title}', NoticepageComponent::class)->name('notice-page');
 Route::get('/person/{id}', PersonpageComponent::class)->name('person-page');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'admin']], function () {
     Route::get('/co-curriculum', CoCurriculumComponent::class)->name('co-curriculum');
     Route::get('/syllabus', ClassSyllabusComponent::class)->name('syllabus');
     Route::get('/students', TeachingPermissionComponent::class)->name('teaching-permission');
