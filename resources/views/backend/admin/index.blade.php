@@ -1,16 +1,60 @@
 @section('page-title')
     {{ 'Dashboard' }}
 @endsection
+@section('page-styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
+@section('page-scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            autoplay: true,
+            navText: [
+                "<i class='bi bi-caret-left'></i>",
+                "<i class='bi bi-caret-right'></i>"
+            ],
+            autoplay: true,
+            autoplayHoverPause: true,
+            autoHeight: false,
+            autoHeightClass: 'owl-height',
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        });
+    </script>
+@endsection
 <div>
     <div class="page-title-container mb-3">
         <div class="row">
             <div class="col mb-2">
                 <h1 class="mb-2 pb-0 display-4" id="title">
-                    Getting Started
+                    WelCome
+                    @if (auth()->user()->hasRole('Admin'))
+                        {{ 'Admin' }}
+                    @elseif (auth()->user()->hasRole('Super Admin'))
+                        {{ 'Super Admin' }}
+                    @else
+                        {{ 'User' }}
+                    @endif
                 </h1>
                 <div class="text-muted font-heading text-small">
-                    Let us manage the database engines for your applications
-                    so you can focus on building.
+                    Let us manage your applications
+                    so you can focus on.
                 </div>
             </div>
         </div>
@@ -18,11 +62,22 @@
     <div class="row">
         <div class="col-12 col-lg-8 mb-5">
             <div class="card sh-45 h-lg-100 position-relative bg-theme">
-                <div class="card-body">
-                    <div class="w-100 w-md-100 w-sm-100 d-flex flex-column">
+                <div class="card-body px-3 py-2">
+                    {{-- <div class="w-100 w-md-100 w-sm-100 d-flex flex-column">
                         <span class="m-0 h4">{{ get_settings('site_title') }}</span>
                         <span class="border-top h6 mt-3 py-2 d-inline-block">{{ get_settings('site_motto') }}</span>
                         <img class="img-fluid" src="/storage/{{ get_settings('logo') }}" alt="">
+                    </div> --}}
+                    <div class="carousel-wrap">
+                        <div class="owl-carousel">
+                            @foreach ($home_slider as $item)
+                                <div class="item"
+                                    style="height: 300px; background-image: url('/storage/{{ $item->image }}'); background-size: cover;">
+                                    {{-- <img src="/storage/{{ $item->image }}"> --}}
+                                    <h4 class="py-2 m-0 ps-sm-2 ps-md-3">{{ $item->title }}</h4>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

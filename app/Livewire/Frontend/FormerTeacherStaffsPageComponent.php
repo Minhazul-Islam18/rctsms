@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 use Livewire\Attributes\Layout;
 use App\Models\TeacherAndStaffs;
 
-class TeachersPageComponent extends Component
+class FormerTeacherStaffsPageComponent extends Component
 {
     use WithPagination;
     public $iteration = 1;
@@ -16,7 +16,7 @@ class TeachersPageComponent extends Component
     public function render()
     {
         // $currentDate = Carbon::now()->format('Y-m-d');
-        $teachers = TeacherAndStaffs::where('active', 1)->paginate(8);
-        return view('livewire.frontend.teachers-page-component', ['teachers' => $teachers]);
+        $teachers = TeacherAndStaffs::where('active', 0)->paginate(8);
+        return view('livewire.frontend.former-teacher-staffs-page-component', ['teachers' => $teachers]);
     }
 }

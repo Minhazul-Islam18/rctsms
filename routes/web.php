@@ -13,10 +13,14 @@ use App\Livewire\GeneralSettingsComponent;
 use App\Livewire\HomepageWidgetsComponent;
 use App\Http\Controllers\BackendController;
 use App\Livewire\ClasslistComponent;
+use App\Livewire\ClassSyllabusComponent;
+use App\Livewire\CoCurriculumComponent;
 use App\Livewire\DashboardComponent;
 use App\Livewire\Frontend\AcademicClassesPageComponent;
+use App\Livewire\Frontend\CoCurriculumPageComponent;
 use App\Livewire\Frontend\ContactPageComponent;
 use App\Livewire\Frontend\FormerCommitteePageComponent;
+use App\Livewire\Frontend\FormerTeacherStaffsPageComponent;
 use App\Livewire\Frontend\HomepageComponent;
 use App\Livewire\Frontend\InstituteHistoryPageComponent;
 use App\Livewire\Frontend\InstitutionalCommitteePageComponent;
@@ -24,6 +28,7 @@ use App\Livewire\Frontend\NoticepageComponent;
 use App\Livewire\Frontend\PersonpageComponent;
 use App\Livewire\Frontend\QualityAcceptancePageComponent;
 use App\Livewire\Frontend\StudentsPageComponent;
+use App\Livewire\Frontend\SyllabusPageComponent;
 use App\Livewire\Frontend\TeachersPageComponent;
 use App\Livewire\Frontend\TeachingPermissionPageComponent;
 use App\Livewire\HeaderFooterSettingsComponent;
@@ -31,6 +36,7 @@ use App\Livewire\InstitutionCommitteeComponent;
 use App\Livewire\QualityAcceptanceComponent;
 use App\Livewire\TeachersStaffsComponent;
 use App\Livewire\TeachingPermissionComponent;
+use App\Models\CoCurriculum;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,9 +53,12 @@ use App\Livewire\TeachingPermissionComponent;
 //     return  Artisan::call('storage:link');
 // });
 Route::get('/', HomepageComponent::class)->name('home');
+Route::get('/syllabuses', SyllabusPageComponent::class)->name('syllabuses');
+Route::get('/co-curriculums', CoCurriculumPageComponent::class)->name('co-curriculums');
 Route::get('/contact', ContactPageComponent::class)->name('contact');
 Route::get('/students', StudentsPageComponent::class)->name('students');
 Route::get('/institute-history', InstituteHistoryPageComponent::class)->name('institute-history');
+Route::get('/former-teachers-staffs', FormerTeacherStaffsPageComponent::class)->name('former-teachers-staffs');
 Route::get('/teachers-staffs', TeachersPageComponent::class)->name('teachers-staffs');
 Route::get('/acceptances', QualityAcceptancePageComponent::class)->name('acceptances');
 Route::get('/former-committees', FormerCommitteePageComponent::class)->name('former-committees');
@@ -61,6 +70,8 @@ Route::get('/notice/{title}', NoticepageComponent::class)->name('notice-page');
 Route::get('/person/{id}', PersonpageComponent::class)->name('person-page');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('/co-curriculum', CoCurriculumComponent::class)->name('co-curriculum');
+    Route::get('/syllabus', ClassSyllabusComponent::class)->name('syllabus');
     Route::get('/students', TeachingPermissionComponent::class)->name('teaching-permission');
     Route::get('/teaching-permission', TeachingPermissionComponent::class)->name('teaching-permission');
     Route::get('/qualification-acceptance', QualityAcceptanceComponent::class)->name('qualification-acceptance');

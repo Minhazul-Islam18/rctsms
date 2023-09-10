@@ -243,3 +243,78 @@ a {
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: var(--bs-border-radius);
 }
+/* Carousel */
+.carousel-wrap {
+    position: relative;
+}
+
+.carousel-wrap:hover .owl-prev {
+    opacity: 1;
+}
+.carousel-wrap:hover .owl-next {
+    opacity: 1;
+}
+/* fix blank or flashing items on carousel */
+.owl-carousel .item {
+    position: relative;
+    z-index: 100;
+    -webkit-backface-visibility: hidden;
+}
+
+/* end fix */
+.owl-nav > div {
+    margin-top: -26px;
+    position: absolute;
+    top: 50%;
+    color: #cdcbcd;
+}
+.owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+.owl-nav i {
+    font-size: 40px;
+}
+.owl-prev,
+.owl-next {
+    position: absolute;
+    background: var(--primary) !important;
+    padding: 0.5rem !important;
+    border-radius: 0.3rem;
+    top: -45px;
+    opacity: 0.1;
+    transition: all 0.4s ease;
+}
+/* .owl-prev i,
+.owl-next i {
+    font-size: 16px;
+} */
+.owl-nav .owl-prev {
+    left: 10px;
+}
+
+.owl-nav .owl-next {
+    right: 10px;
+}
+.owl-carousel .owl-item img {
+    min-width: 100%;
+    max-height: 100%;
+}
+.owl-dots {
+    display: none;
+}
+.owl-carousel .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.owl-item h4 {
+    background: rgb(172, 176, 176);
+    background: linear-gradient(
+        90deg,
+        rgba(172, 176, 176, 0.9660597515373337) 30%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    color: #000;
+}

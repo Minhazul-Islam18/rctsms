@@ -3,14 +3,14 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\CoCurriculum;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Response;
 use Livewire\WithFileUploads;
-use App\Models\QualificationAcceptance;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-class QualityAcceptanceComponent extends Component
+class CoCurriculumComponent extends Component
 {
     use LivewireAlert, WithPagination, WithFileUploads;
     public $iteration;
@@ -25,35 +25,31 @@ class QualityAcceptanceComponent extends Component
     public $editable_id;
     function SaveClass()
     {
-        $this->validate([
-            'fields.description' => 'required|min:3',
-            'fields.files' => 'required'
-        ]);
+
         foreach ($this->fields['files'] as $file) {
             $newImageName = time() . '_' . $file->getClientOriginalName();
-            $filos[] = $file->storeAs('frontend/files/acceptance', $newImageName, 'public');
+            $filos[] = $file->storeAs('frontend/files/co-curriculum', $newImageName, 'public');
         }
-        QualificationAcceptance::create([
-            'description' => $this->fields['description'],
+        CoCurriculum::create([
             'files' => json_encode($filos),
+            'description' => $this->fields['description'],
         ]);
         $this->iteration++;
         $this->resetFields();
-        $this->alert('success', 'স্বীকৃতির তথ্য সফলভাবে তৈরি করা হয়েছে!');
+        $this->alert('success', 'কে-কারিকুলামের তথ্য সফলভাবে তৈরি করা হয়েছে!');
     }
     function EditClass($id)
     {
-        $ec = QualificationAcceptance::find($id);
+        $ec = CoCurriculum::find($id);
         $this->fields['status'] = true;
+        $this->fields['description'] = $ec->description;
         $this->fields['editable_id'] = $id;
-        $this->fields['description'] = $ec['description'];
         $this->fields['files_in_edit'] = json_decode($ec['files']);
     }
     function UpdateClass()
     {
-
         $this->validate([
-            'fields.description' => 'required|min:3'
+            'fields.description' => 'required',
         ]);
         if ($this->fields['files']) {
             foreach ($this->fields['files_in_edit'] as $file) {
@@ -61,29 +57,29 @@ class QualityAcceptanceComponent extends Component
             }
             foreach ($this->fields['files'] as $file) {
                 $newImageName = time() . '_' . $file->getClientOriginalName();
-                $filos[] = $file->storeAs('frontend/files/acceptance', $newImageName, 'public');
+                $filos[] = $file->storeAs('frontend/files/co-curriculum', $newImageName, 'public');
             }
         } else {
             $filos = $this->fields['files_in_edit'];
         }
-        $updatable = QualificationAcceptance::find($this->fields['editable_id']);
+        $updatable = CoCurriculum::find($this->fields['editable_id']);
         $updatable->update([
-            'description' => $this->fields['description'],
             'files' => json_encode($filos),
+            'description' => $this->fields['description'],
         ]);
         $this->iteration++;
         $this->resetFields();
-        $this->alert('success', 'স্বীকৃতির তথ্য সফলভাবে আপডেট করা হয়েছে!');
+        $this->alert('success', 'কে-কারিকুলামের তথ্য সফলভাবে আপডেট করা হয়েছে!');
     }
     function DeleteClass($id)
     {
-        $updatable = QualificationAcceptance::find($id);
+        $updatable = CoCurriculum::find($id);
         foreach (json_decode($updatable->files) as $file) {
             Storage::disk('public')->delete($file);
         }
         $updatable->delete();
         $this->resetFields();
-        $this->alert('success', 'স্বীকৃতির তথ্য সফলভাবে ডিলিট করা হয়েছে!');
+        $this->alert('success', 'কে-কারিকুলামের তথ্য সফলভাবে ডিলিট করা হয়েছে!');
     }
     function CancelEdit()
     {
@@ -102,7 +98,6 @@ class QualityAcceptanceComponent extends Component
     public function downloadFile($filename)
     {
         $filePath = storage_path('app/public/' . $filename);
-
         if (file_exists($filePath)) {
             $fileContents = Storage::disk('public')->get($filename);
 
@@ -122,7 +117,7 @@ class QualityAcceptanceComponent extends Component
     }
     public function render()
     {
-        $acceptances = QualificationAcceptance::paginate(8);
-        return view('livewire.quality-acceptance-component', ['acceptances' => $acceptances]);
+        $coCurriculums = CoCurriculum::paginate(8);
+        return view('livewire.co-curriculum-component', ['coCurriculums' => $coCurriculums]);
     }
 }

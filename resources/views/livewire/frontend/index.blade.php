@@ -17,7 +17,7 @@
 
                 <div class="mt-3 notice">
                     <h5 class="mb-2 d-flex justify-content-center py-2 w-100 rounded-1"
-                        style="background-color: var(--site-primary); color: var(--site-text)">নোটিশবোর্ড</h5>
+                        style="background-color: var(--site-primary); color: var(--site-text)">নোটিশ বোর্ড</h5>
                     <ul class="list-group notice-list rounded-0">
                         @foreach ($notices as $item)
                             <a href="{{ route('notice-page', ['title' => $item->title]) }}">

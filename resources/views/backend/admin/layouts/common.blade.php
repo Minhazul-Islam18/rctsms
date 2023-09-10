@@ -36,6 +36,11 @@
     {{-- <meta name="msapplication-square310x310logo" content="{{ asset('backend/img/favicon/mstile-310x310.png') }}" /> --}}
     <link rel="preconnect" href="https://fonts.gstatic.com/" />
     @include('backend/admin/layouts/sections/styles')
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,8 +60,6 @@
                 </div>
             </div>
         </main>
-
-        @include('backend/admin/layouts/sections/footer')
     </div>
     <div class="modal fade modal-right scroll-out-negative" id="settings" data-bs-backdrop="true" tabindex="-1"
         role="dialog" aria-labelledby="settings" aria-hidden="true">
@@ -369,6 +372,7 @@
         @include('backend/admin/layouts/sections/scripts')
     @endPushOnce
     @stack('js')
+
 </body>
 
 

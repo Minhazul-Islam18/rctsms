@@ -26,12 +26,15 @@ class TeachersStaffsComponent extends Component
         'facebook' => null,
         'website' => null,
         'address' => null,
-        'is_resigned' => null,
+        'active' => null,
+        'start_date' => null,
+        'end_date' => null,
     ];
     public $editable_id;
     function SaveClass()
     {
         $this->validate([
+            'fields.image' => 'required|min:3',
             'fields.name' => 'required|min:3',
             'fields.post' => 'required',
             'fields.educational_qualification' => 'required',
@@ -54,7 +57,9 @@ class TeachersStaffsComponent extends Component
             'facebook' => $this->fields['facebook'],
             'website' => $this->fields['website'],
             'address' => $this->fields['address'],
-            'is_resigned' => $this->fields['is_resigned'],
+            'active' => $this->fields['active'],
+            'start_date' => $this->fields['start_date'],
+            'end_date' => $this->fields['end_date'],
         ]);
         $this->iteration++;
         $this->resetFields();
@@ -75,10 +80,13 @@ class TeachersStaffsComponent extends Component
         $this->fields['facebook'] = $ec['facebook'];
         $this->fields['website'] = $ec['website'];
         $this->fields['address'] = $ec['address'];
-        $this->fields['is_resigned'] = $ec['is_resigned'];
+        $this->fields['active'] = $ec['active'];
+        $this->fields['start_date'] = $ec['start_date'];
+        $this->fields['end_date'] = $ec['end_date'];
     }
     function UpdateClass()
     {
+        // dd($this->fields['start_date']);
         $this->validate([
             'fields.name' => 'required|min:3',
             'fields.post' => 'required',
@@ -108,7 +116,9 @@ class TeachersStaffsComponent extends Component
             'facebook' => $this->fields['facebook'],
             'website' => $this->fields['website'],
             'address' => $this->fields['address'],
-            'is_resigned' => $this->fields['is_resigned'],
+            'active' => $this->fields['active'],
+            'start_date' => $this->fields['start_date'],
+            'end_date' => $this->fields['end_date'],
         ]);
         $this->iteration++;
         $this->resetFields();
@@ -141,7 +151,9 @@ class TeachersStaffsComponent extends Component
             'facebook' => null,
             'website' => null,
             'address' => null,
-            'is_resigned' => null,
+            'active' => null,
+            'start_date' => null,
+            'end_date' => null,
         ];
     }
     public function render()

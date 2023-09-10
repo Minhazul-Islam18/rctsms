@@ -2,6 +2,23 @@
     {{ 'Teacher & Staffs' }}
 @endsection
 
+@section('page-scripts')
+    <script>
+        $('#status').change(function() {
+            if ($(this).val() === '0') {
+                $('#start-date-div').show();
+                $('#end-date-div').show();
+            } else {
+                $('#start-date-div').hide();
+                $('#end-date-div').hide();
+            }
+
+        });
+        $('.input-group.date input').change(function() {
+            console.log($(this).val());
+        });
+    </script>
+@endsection
 <div>
     <div class="row g-2 mt-2">
         <div class="col-6 col-md-6 col-sm-12">
@@ -79,16 +96,20 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">Image</label>
                                     <input accept="image/jpeg, image/svg, image/png, image/jpg, image/webp"
-                                        type="file" wire:model='fields.image' class="form-control" name=""
-                                        id="iso{{ $iteration }}">
+                                        type="file" wire:model.defer='fields.image' class="form-control"
+                                        name="" id="iso{{ $iteration }}">
                                 </div>
                             </div>
                         </div>
-
+                        <div class="text-danger py-1 px-2 mt-1">
+                            @error('fields.image')
+                                {{ $message }}
+                            @enderror
+                        </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Name</label>
-                            <input type="text" wire:model.blur='fields.name' class="form-control" name=""
-                                id="">
+                            <input type="text" wire:model.defer.blur='fields.name' class="form-control"
+                                name="" id="">
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.name')
                                     {{ $message }}
@@ -97,8 +118,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Post</label>
-                            <input type="text" wire:model.blur='fields.post' class="form-control" name=""
-                                id="">
+                            <input type="text" wire:model.defer.blur='fields.post' class="form-control"
+                                name="" id="">
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.post')
                                     {{ $message }}
@@ -107,7 +128,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Educational Qualification</label>
-                            <textarea class="form-control" wire:model='fields.educational_qualification' name="" id=""
+                            <textarea class="form-control" wire:model.defer='fields.educational_qualification' name="" id=""
                                 rows="3"></textarea>
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.educational_qualification')
@@ -117,8 +138,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Mobile</label>
-                            <input type="text" wire:model.blur='fields.mobile' class="form-control" name=""
-                                id="">
+                            <input type="text" wire:model.defer.blur='fields.mobile' class="form-control"
+                                name="" id="">
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.mobile')
                                     {{ $message }}
@@ -127,8 +148,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Email</label>
-                            <input type="text" wire:model.blur='fields.email' class="form-control" name=""
-                                id="">
+                            <input type="text" wire:model.defer.blur='fields.email' class="form-control"
+                                name="" id="">
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.email')
                                     {{ $message }}
@@ -137,7 +158,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Facebook</label>
-                            <input type="text" wire:model.blur='fields.facebook' class="form-control"
+                            <input type="text" wire:model.defer.blur='fields.facebook' class="form-control"
                                 name="" id="">
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.facebook')
@@ -147,7 +168,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Website</label>
-                            <input type="text" wire:model.blur='fields.website' class="form-control"
+                            <input type="text" wire:model.defer.blur='fields.website' class="form-control"
                                 name="" id="">
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.website')
@@ -157,7 +178,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Address</label>
-                            <textarea class="form-control" wire:model='fields.address' name="" id="" rows="3"></textarea>
+                            <textarea class="form-control" wire:model.defer='fields.address' name="" id="" rows="3"></textarea>
                             <div class="text-danger py-1 px-2 mt-1">
                                 @error('fields.address')
                                     {{ $message }}
@@ -165,16 +186,32 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">City</label>
-                            <select class="form-select form-select-lg" wire:model='fields.is_resigned' name=""
-                                id="">
-                                <option value="0" selected>Present</option>
-                                <option value="1">Resigned</option>
+                            <label for="" class="form-label">Status</label>
+                            <select id="status" class="form-select form-select-lg"
+                                wire:model.defer='fields.active' name="" id="">
+                                <option value="1" selected>Active</option>
+                                <option value="0">Inactive</option>
                             </select>
                             <div class="text-danger py-1 px-2 mt-1">
-                                @error('fields.is_resigned')
+                                @error('fields.active')
                                     {{ $message }}
                                 @enderror
+                            </div>
+                        </div>
+                        <div id="start-date-div" class="form-group" wire:ignore
+                            style="{{ $fields['status'] == true && $fields['start_date'] != null ? 'display: block' : 'display: none' }}">
+                            <div class="mb-3" id="">
+                                <label for="" class="form-label">Start Date</label>
+                                <input class="form-control" type="date" wire:model='fields.start_date'
+                                    class="form-control" placeholder="dd-mm-yyyy">
+                            </div>
+                        </div>
+                        <div id="end-date-div" class="form-group" wire:ignore
+                            style="{{ $fields['status'] && $fields['end_date'] != null ? 'display: block' : 'display: none' }}">
+                            <div class="mb-3" id="">
+                                <label for="" class="form-label">End Date</label>
+                                <input class="form-control" type="date" wire:model='fields.end_date'
+                                    class="form-control" placeholder="dd-mm-yyyy">
                             </div>
                         </div>
                         <button type="submit"

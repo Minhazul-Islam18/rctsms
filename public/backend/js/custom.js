@@ -1,33 +1,33 @@
-let collapsibleHeaders = document.getElementsByClassName("collapsible__header");
-let checkers = document.querySelectorAll(".checker a.menu-active");
+// let collapsibleHeaders = document.getElementsByClassName("collapsible__header");
+// let checkers = document.querySelectorAll(".checker a.menu-active");
 
-checkers.forEach(checker => {
-  let accordion = checker.closest(".accordion");
-  if (accordion) {
-    let collapsible = accordion.querySelector(".accordion__collapsible");
-    if (collapsible) {
-      collapsible.classList.add("collapsible--open");
-    }
-  }
-});
+// checkers.forEach(checker => {
+//   let accordion = checker.closest(".accordion");
+//   if (accordion) {
+//     let collapsible = accordion.querySelector(".accordion__collapsible");
+//     if (collapsible) {
+//       collapsible.classList.add("collapsible--open");
+//     }
+//   }
+// });
 
 
-Array.from(collapsibleHeaders).forEach((header) => {
-    header.addEventListener("click", () => {
-        header.parentElement.classList.toggle("collapsible--open");
-    });
-});
-document.querySelectorAll(".checker a.menu-active").forEach(link => {
-  link.addEventListener("click", function() {
-    let accordion = this.closest(".accordion");
-    let collapsible = accordion.querySelector(".accordion__collapsible");
+// Array.from(collapsibleHeaders).forEach((header) => {
+//     header.addEventListener("click", () => {
+//         header.parentElement.classList.toggle("collapsible--open");
+//     });
+// });
+// document.querySelectorAll(".checker a.menu-active").forEach(link => {
+//   link.addEventListener("click", function() {
+//     let accordion = this.closest(".accordion");
+//     let collapsible = accordion.querySelector(".accordion__collapsible");
 
-    // Toggle the 'collapsible--open' class to open/close the accordion
-    if (collapsible) {
-      collapsible.classList.toggle("collapsible--open");
-    }
-  });
-});
+//     // Toggle the 'collapsible--open' class to open/close the accordion
+//     if (collapsible) {
+//       collapsible.classList.toggle("collapsible--open");
+//     }
+//   });
+// });
     // Initially, close all accordion items
     $(".accordion ul.submenu").slideUp();
 
