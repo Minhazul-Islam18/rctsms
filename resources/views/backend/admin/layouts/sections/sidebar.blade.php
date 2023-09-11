@@ -1,4 +1,4 @@
-<ul class="sw-25 side-menu mb-0 primary scrolable-menu" id="menuSide">
+<ul class="sw-25 side-menu mb-0 primary" id="">
     <li>
         <a href="{{ route('admin.dashboard') }}">
             <i data-acorn-icon="home" class="icon" data-acorn-size="18"></i>

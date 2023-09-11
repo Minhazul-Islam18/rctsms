@@ -87,7 +87,7 @@
                   </li>
               </ul>
               <div class="menu-container flex-grow-1">
-                  <ul id="menu" class="menu d-flex justify-content-end">
+                  <ul id="menu" class="menu">
                       <li>
                           <a href="/">
                               <i data-acorn-icon="eye" data-acorn-size="18"></i>

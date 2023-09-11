@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-7">
+                <div class="col-12 col-md-7 col-sm-12 col-lg-7">
                     @if (session('success') || session('update_role'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -61,7 +61,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-5">
+                <div class="col-12 col-md-5 col-sm-12 col-lg-5">
                     <form wire:submit.prevent="{{ $editing ? 'update' : 'createNew' }}">
                         <label for="RoleName" class="form-label">Role name</label>
                         <input type="text" class="form-control" wire:model="RoleName" placeholder="">
@@ -88,7 +88,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-7">
+                <div class="col-12 col-md-7 col-sm-12 col-lg-7">
                     @if (session('successfully_assigned_role'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
@@ -136,7 +136,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-5">
+                <div class="col-12 col-md-5 col-sm-12 col-lg-5">
                     @if ($editing)
                         <form wire:submit.prevent="{{ $editing ? 'updateUser' : 'createNew' }}">
                             <label for="RoleName" class="form-label">Role name</label>

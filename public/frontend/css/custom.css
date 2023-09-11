@@ -347,4 +347,7 @@ nav .accordion-content {
         /* display: flex; */
         align-items: center;
     }
+    .owl-carousel .item {
+        height: 230px !important;
+    }
 }

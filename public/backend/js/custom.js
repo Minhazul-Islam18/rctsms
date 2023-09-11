@@ -1,33 +1,4 @@
-// let collapsibleHeaders = document.getElementsByClassName("collapsible__header");
-// let checkers = document.querySelectorAll(".checker a.menu-active");
 
-// checkers.forEach(checker => {
-//   let accordion = checker.closest(".accordion");
-//   if (accordion) {
-//     let collapsible = accordion.querySelector(".accordion__collapsible");
-//     if (collapsible) {
-//       collapsible.classList.add("collapsible--open");
-//     }
-//   }
-// });
-
-
-// Array.from(collapsibleHeaders).forEach((header) => {
-//     header.addEventListener("click", () => {
-//         header.parentElement.classList.toggle("collapsible--open");
-//     });
-// });
-// document.querySelectorAll(".checker a.menu-active").forEach(link => {
-//   link.addEventListener("click", function() {
-//     let accordion = this.closest(".accordion");
-//     let collapsible = accordion.querySelector(".accordion__collapsible");
-
-//     // Toggle the 'collapsible--open' class to open/close the accordion
-//     if (collapsible) {
-//       collapsible.classList.toggle("collapsible--open");
-//     }
-//   });
-// });
     // Initially, close all accordion items
     $(".accordion ul.submenu").slideUp();
 
@@ -35,6 +6,7 @@
     $(".accordion > a").click(function(e) {
         e.preventDefault();
         let submenu = $(this).siblings("ul.submenu");
+        submenu.removeClass('collapse');
         if (submenu.is(":visible")) {
             submenu.slideUp();
         } else {
@@ -48,4 +20,18 @@
             $(this).closest(".accordion").addClass("active");
             $(this).closest(".submenu").slideDown();
         }
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+        const navbarCollapse = document.querySelector(".navbar-collapse");
+        const closeButton = document.getElementById("close-button");
+        const mobilemenu = document.getElementById("mobile-menu");
+        mobileMenuToggle.addEventListener("click", function () {
+            navbarCollapse.classList.toggle("d-flex");
+        });
+        closeButton.addEventListener("click", function () {
+            mobilemenu.classList.toggle("d-flex"); // Close the menu when the close button is clicked
+        });
     });
