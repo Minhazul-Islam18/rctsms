@@ -4,7 +4,7 @@
 
 <div>
     <div class="row g-2 mt-2">
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header py-3">
                     <span class="h5 m-0 text-white">{{ $fields['status'] == true ? 'Update' : 'Create' }} Class</span>
@@ -101,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -149,7 +149,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header py-3">
                     <span class="h5 m-0 text-white">{{ $fields['section_editing'] == true ? 'Update' : 'Create' }}

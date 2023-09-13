@@ -17,6 +17,13 @@
                     <a href="#"><i class="bi bi-diagram-3-fill"></i> <span>Features</span></a>
                     <ul class="submenu">
                         <li>
+                            <a class="{{ Route::currentRouteName() === 'routines' ? 'menu-active' : '' }}"
+                                href="{{ route('routines') }}">
+                                <i class="bi bi-list-columns-reverse"></i>
+                                <span class="label">Routines</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="{{ Route::currentRouteName() === 'syllabus' ? 'menu-active' : '' }}"
                                 href="{{ route('syllabus') }}">
                                 <i class="bi bi-journals"></i>

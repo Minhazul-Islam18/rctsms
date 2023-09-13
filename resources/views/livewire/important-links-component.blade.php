@@ -2,8 +2,8 @@
     @section('page-title')
         {{ 'Important Links' }}
     @endsection
-    <div class="row g-2">
-        <div class="col-6 col-md-6 col-sm-12">
+    <div class="row g-2 mt-2 flex-sm-row-reverse d-flex flex-column-reverse flex-sm-column flex-md-row">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     @foreach ($links as $link)
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header py-3 px-4">
                     <h3 class="m-0">{{ $editing == true ? 'Update' : 'Create' }} Link</h3>

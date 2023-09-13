@@ -12,55 +12,55 @@
             </div>
             <div class="card-body">
                 <div class="row g-2">
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">School Name</label>
                             <input type="text" class="form-control" name="" id=""
                                 wire:model.blur='settings.school_name' placeholder="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Established At</label>
                             <input type="text" class="form-control" name="" id=""
                                 wire:model.blur='settings.established_at' placeholder="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">EIIN no.</label>
                             <input type="text" class="form-control" name="" id=""
                                 wire:model.blur='settings.eiin' placeholder="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Domain <sub>(https://domain.com)</sub></label>
                             <input type="text" class="form-control" name="" id=""
                                 wire:model.blur='settings.domain' placeholder="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Contact Number</label>
                             <input type="text" class="form-control" name="" id=""
                                 wire:model.blur='settings.contact_number' placeholder="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="">
                             <label for="" class="form-label">Contact Mail</label>
                             <input type="text" class="form-control" name="" id=""
                                 wire:model.blur='settings.contact_mail' placeholder="">
                         </div>
                     </div>
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="" class="form-label">Address</label>
                             <textarea class="form-control" wire:model.blur='settings.address' name="" id="" rows="3"></textarea>
                         </div>
                     </div>
-                    <div class="col-6 col-md-6 col-sm-12">
+                    <div class="col-12 col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="" class="form-label">History</label>
                             <textarea class="form-control" wire:model.blur='settings.history' name="" id="" rows="3"></textarea>
@@ -73,7 +73,7 @@
         </div>
     </form>
     <div class="row g-2 mt-2">
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header py-3">
                     <span class="h5 m-0 text-white">{{ $editing == true ? 'Update' : 'Create' }} Person Data</span>

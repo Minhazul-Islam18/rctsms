@@ -1,10 +1,14 @@
         <header class="site__header">
-            <!-- Add this code inside your <header> element -->
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <div class="hamburger-icon">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
+            <div class="Header__top_image" style="background-color: var(--site-primary); color: var(--site-text)">
+                <img src="{{ asset('storage') }}/{{ get_settings('header_logo') }}" alt="">
+            </div>
+            <div class="mobile-nav">
+                <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <div class="hamburger-icon">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
                 </div>
             </div>
             <nav class="sidebar-menu">
@@ -32,10 +36,6 @@
                     @endforeach
                 </ul>
             </nav>
-
-            <div class="Header__top_image" style="background-color: var(--site-primary); color: var(--site-text)">
-                <img src="{{ asset('storage') }}/{{ get_settings('header_logo') }}" alt="">
-            </div>
             <nav class="navbar navbar-expand-lg navbar-light mb-2 mt-1 border-top border-bottom"
                 style="background-color: var(--site-primary);">
                 <div class="w-100" id="navbarNav">

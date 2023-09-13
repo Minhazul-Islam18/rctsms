@@ -27,7 +27,6 @@ class CreateRole extends Component
 
     public function createNew()
     {
-        // dd($this->rolePermission);
         $this->validate([
             'RoleName' => 'required|min:3|max:50',
             'rolePermission' => 'required'
@@ -42,13 +41,11 @@ class CreateRole extends Component
     {
         // Fetch the post for editing
         $this->WillUpdate = Role::find($id);
-        // dd($this->WillUpdate->name);
         $this->RoleName = $this->WillUpdate->name;
         $this->editing = true;
     }
     public function update()
     {
-        // dd('asfas');
         // Validation and update logic
         $this->validate([
             'RoleName' => 'required|min:3|max:50'
@@ -57,9 +54,7 @@ class CreateRole extends Component
         $role =  $this->WillUpdate->update([
             'name' => $this->RoleName
         ]);
-        // dd($this->rolePermission);
         $this->WillUpdate->syncPermissions($this->rolePermission);
-        // dd($role);
         $this->reset('RoleName');
         $this->reset('rolePermission');
         session()->flash('success', 'Role Updated Successfully');
@@ -69,7 +64,6 @@ class CreateRole extends Component
     {
         // Fetch the post for editing
         $this->WillUpdate = User::find($id);
-        // dd($this->WillUpdate->name);
         $this->RoleName = $this->WillUpdate->name;
         $this->editing = true;
     }
@@ -79,9 +73,7 @@ class CreateRole extends Component
         $this->validate([
             'giveRole' => 'required'
         ]);
-        // dd($this->giveRole);
-        $user = User::find($this->WillUpdate);
-        $user->syncRoles($this->giveRole);
+        $this->WillUpdate->syncRoles($this->giveRole);
         $this->reset('giveRole');
         session()->flash('successfully_assigned_role', 'User Updated Successfully');
     }

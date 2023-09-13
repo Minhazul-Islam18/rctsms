@@ -13139,7 +13139,7 @@ html[data-placement="horizontal"] .nav-container .logo .img,
 html[data-placement="horizontal"] .nav-container .logo img,
 html[data-placement="vertical"] .nav-container .logo .img,
 html[data-placement="vertical"] .nav-container .logo img {
-    width: 100px;
+    /* width: 100px; */
     min-height: 35px;
     object-position: left;
     object-fit: cover;
@@ -13348,6 +13348,7 @@ html[data-placement="horizontal"] .nav-container .logo {
     margin-top: 0;
     margin-bottom: 0;
     text-align: initial;
+    max-width: 210px;
 }
 html[data-placement="horizontal"] .nav-container .user-container {
     flex-direction: row;
@@ -13559,7 +13560,8 @@ html[data-placement="vertical"]
     a {
     overflow: hidden;
     display: inline-block;
-    width: 100px;
+    width: auto;
+    margin: 0 0.8rem;
 }
 html[data-placement="horizontal"]
     .nav-container.mobile-side-ready

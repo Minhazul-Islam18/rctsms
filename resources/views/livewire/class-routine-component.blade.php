@@ -1,23 +1,13 @@
 @section('page-title')
-    {{ 'Co-Curriculums' }}
+    {{ 'Class Routines' }}
 @endsection
-{{-- @section('page-scripts')
-    <script>
-        document.querySelectorAll('.btn-warning').forEach(function(button) {
-            button.addEventListener('click', function() {
-                const escapedFile = this.getAttribute('data-file');
-                @this.call('downloadFile', escapedFile);
-            });
-        });
-    </script>
-@endsection --}}
 <div>
     <div class="row g-2 mt-2">
         <div class="col-12 col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header py-3">
                     <span class="h5 m-0 text-white">{{ $fields['status'] == true ? 'Update' : 'Create' }}
-                        Co-Curriculum</span>
+                        Routines</span>
                 </div>
                 <div class="card-body">
                     <form wire:submit='{{ $fields['status'] == true ? 'UpdateClass' : 'SaveClass' }}'
@@ -36,6 +26,18 @@
                                     <textarea wire:model.defer='fields.description' class="form-control" name="" id="" rows="3"></textarea>
                                     <div class="text-danger py-1 px-2 mt-1">
                                         @error('fields.description')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Class Name</label>
+                                    <input type="text" wire:model.defer='fields.class' class="form-control"
+                                        name="" id="" rows="3"></input>
+                                    <div class="text-danger py-1 px-2 mt-1">
+                                        @error('fields.Class')
                                             {{ $message }}
                                         @enderror
                                     </div>
@@ -66,8 +68,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($coCurriculums as $item)
+                                @foreach ($routines as $item)
                                     <tr class="" wire:key='{{ $item->class }}'>
+                                        <td scope="row">
+                                            <div class="text-truncate">{{ $item->class }}</div>
+                                        </td>
                                         <td scope="row">
                                             <div class="text-truncate">
                                                 {{ Illuminate\Support\Str::limit($item->description, $limit = 35, $end = '...') }}
@@ -95,8 +100,8 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                <div class="d-flex">{{ $coCurriculums->links() }}</div>
-                                @if ($coCurriculums->count() <= 0)
+                                <div class="d-flex">{{ $routines->links() }}</div>
+                                @if ($routines->count() <= 0)
                                     <tr>
                                         <td colspan="3" class="text-center">{{ 'Nothing Found' }}</td>
                                     </tr>
@@ -104,7 +109,6 @@
                             </tbody>
                         </table>
                     </div>
-                    {{-- <livewire:class-syllabus-table> --}}
                 </div>
             </div>
         </div>

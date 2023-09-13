@@ -29,9 +29,9 @@
         const closeButton = document.getElementById("close-button");
         const mobilemenu = document.getElementById("mobile-menu");
         mobileMenuToggle.addEventListener("click", function () {
-            navbarCollapse.classList.toggle("d-flex");
+            navbarCollapse.classList.toggle("d-block");
         });
         closeButton.addEventListener("click", function () {
-            mobilemenu.classList.toggle("d-flex"); // Close the menu when the close button is clicked
+            mobilemenu.classList.toggle("d-block"); // Close the menu when the close button is clicked
         });
     });

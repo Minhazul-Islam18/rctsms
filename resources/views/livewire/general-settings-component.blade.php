@@ -39,7 +39,7 @@
                     <form class="row g-3" wire:submit='SaveGeneralSettings'>
                         <div class="col-12">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                     <span wire:target='settings.site_logo' wire:loading
                                         class="text-primary">Uploading....</span>
                                     @if (
@@ -59,7 +59,7 @@
                                             name="" id="logo{{ $iteration }}">
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                     <span wire:target='settings.favicon' wire:loading
                                         class="text-primary">Uploading....</span>
                                     @if (is_object($settings['favicon']) && method_exists($settings['favicon'], 'temporaryUrl'))
@@ -75,7 +75,7 @@
                                             id="favicon{{ $iteration }}" wire:model='settings.favicon'>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                     <span wire:target='settings.body_background_image' wire:loading
                                         class="text-primary">Uploading....</span>
                                     @if (is_object($settings['body_background_image']) && method_exists($settings['body_background_image'], 'temporaryUrl'))
@@ -140,19 +140,19 @@
                     <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                         <h5 class="m-0">Cookie Alert Settings</h5>
                         <div class="tgl-group">
-                            <input class='tgl tgl-light' wire:model='cookie.status' id='display-address'
+                            <input class='tgl tgl-light d-none' wire:model='cookie.status' id='display-address'
                                 {{ $cookie['status'] == 1 ? 'checked' : '' }} type='checkbox'>
                             <label class='tgl-btn' for='display-address'></label>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-4 col-sm-12 col-md-4">
+                            <div class="col-12 col-sm-12 col-md-4">
                                 <label for="summernote" class="h5 m-0 text-white">
                                     Cookie Banner text
                                 </label>
                             </div>
-                            <div class="col-8 col-sm-12 col-md-8">
+                            <div class="col-12 col-sm-12 col-md-8">
                                 <div class="">
                                     <label for="" class="form-label"></label>
                                     <textarea class="form-control" name="" id="summernote" wire:model.defer='cookie.text' rows="3">{!! $cookie['text'] !!}</textarea>

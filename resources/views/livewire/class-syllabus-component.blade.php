@@ -1,7 +1,7 @@
 @section('page-title')
     {{ 'Class Syllabus' }}
 @endsection
-@section('page-scripts')
+{{-- @section('page-scripts')
     <script>
         document.querySelectorAll('.btn-warning').forEach(function(button) {
             button.addEventListener('click', function() {
@@ -10,7 +10,7 @@
             });
         });
     </script>
-@endsection
+@endsection --}}
 <div>
     <div class="row g-2 mt-2">
         <div class="col-12 col-md-12 col-sm-12">
@@ -23,14 +23,14 @@
                     <form wire:submit='{{ $fields['status'] == true ? 'UpdateClass' : 'SaveClass' }}'
                         enctype="multipart/form-data">
                         <div class="row gx-2">
-                            <div class="col-6 col-md-6 col-sm-12" wire:ignore>
+                            <div class="col-12 col-md-6 col-sm-12" wire:ignore>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Files</label>
                                     <input multiple type="file" wire:model.defer='fields.files' class="form-control"
                                         name="" id="iso{{ $iteration }}">
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-sm-12">
+                            <div class="col-12 col-md-6 col-sm-12">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Description</label>
                                     <textarea wire:model.defer='fields.description' class="form-control" name="" id="" rows="3"></textarea>

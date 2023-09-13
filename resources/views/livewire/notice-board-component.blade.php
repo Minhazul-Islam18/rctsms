@@ -2,17 +2,17 @@
     @section('page-title')
         {{ 'Notices' }}
     @endsection
-    <div class="row g-2">
-        <div class="col-6 col-md-6 col-sm-12">
+    <div class="row g-2 mt-2 flex-sm-row-reverse d-flex flex-column-reverse flex-sm-column flex-md-row">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     @foreach ($notices as $notice)
-                        <div class="d-flex justify-content-between align-item-center">
+                        <div class="d-flex justify-content-between align-item-center flex-wrap">
                             <div class="d-flex flex-column">
                                 <h3>{{ $notice->title }}</h3>
                                 <p class="text-body">{{ $notice->description }}</p>
                             </div>
-                            <div class="d-flex flex-row align-items-center justify-content-end gap-2">
+                            <div class="d-flex flex-wrap flex-row align-items-center justify-content-end gap-2">
                                 <button class="btn btn-warning" wire:click="viewNotice({{ $notice->id }})">View</button>
                                 <button class="btn btn-info" wire:click="editNotice({{ $notice->id }})">Edit</button>
                                 <button class="btn btn-danger"
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-12">
+        <div class="col-12 col-md-6 col-sm-12">
             <div class="card">
                 <div class="card-header py-3 px-4">
                     <h3 class="m-0">{{ $editing == true ? 'Update' : 'Create' }} Notice</h3>

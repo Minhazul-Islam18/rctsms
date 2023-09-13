@@ -3,11 +3,11 @@
         {{ 'About School Widget' }}
     @endsection
     <div class="row g-2">
-        <div class="col-5 col-md-5 col-sm-12">
+        <div class="col-12 col-md-5 col-sm-12">
             <div class="card">
                 <div class="card-body">
                     @foreach ($widgets as $widget)
-                        <div class="d-flex justify-content-between align-item-center py-2 border-bottom">
+                        <div class="d-flex flex-wrap justify-content-between align-item-center py-2 border-bottom">
                             <div class="d-flex flex-column">
                                 <h4 class="m-0">{{ $widget->title }}</h4>
                             </div>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-7 col-md-7 col-sm-12">
+        <div class="col-12 col-md-7 col-sm-12">
             <div class="card">
                 <div class="card-header py-3 px-4">
                     <h3 class="m-0">{{ $editing == true ? 'Update' : 'Create' }} Widget</h3>

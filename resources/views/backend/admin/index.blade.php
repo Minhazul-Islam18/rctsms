@@ -39,6 +39,7 @@
     </script>
 @endsection
 <div>
+    {{-- @dd(auth()->user()->roles) --}}
     <div class="page-title-container mb-3">
         <div class="row">
             <div class="col mb-2">

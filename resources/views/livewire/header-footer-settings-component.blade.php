@@ -58,7 +58,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-4 col-md-4 col-sm-12">
+                <div class="col-12 col-md-4 col-sm-12">
                     <nav class="preview_nav">
                         <ul class="prev-menu-list">
                             @foreach ($menus as $menu)
@@ -76,8 +76,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="col-8 col-md-8 col-sm-12">
-
+                <div class="col-12 col-md-8 col-sm-12">
                     <div class="menu-creation text-white">
                         <form wire:submit.prevent="createMenu" wire:loading.attr="disabled">
                             <div class="row g-1">
@@ -115,12 +114,18 @@
 
                         <ul class="menu_with_oparations">
                             @foreach ($menus as $menu)
-                                <li wire:key="{{ $menu->id }}">
-                                    {{ $menu->name }}
-                                    <button class="btn btn-warning"
-                                        wire:click="editMenu({{ $menu->id }})">Edit</button>
-                                    <button class="btn btn-danger"
-                                        wire:click="deleteMenu({{ $menu->id }})">Delete</button>
+                                <li wire:key="{{ $menu->id }}"
+                                    class="d-flex flex-column flex-sm-column flex-md-row bg-gray-200">
+                                    <div
+                                        class="d-flex flex-wrap {{ count($menu->submenus) > 0 ? 'flex-column gap-2' : 'flex-row w-100 justify-content-between align-items-center' }}">
+                                        {{ $menu->name }}
+                                        <div class="d-flex gap-1">
+                                            <button class="btn btn-warning"
+                                                wire:click="editMenu({{ $menu->id }})">Edit</button>
+                                            <button class="btn btn-danger"
+                                                wire:click="deleteMenu({{ $menu->id }})">Delete</button>
+                                        </div>
+                                    </div>
                                     @if (count($menu->submenus) > 0)
                                         <ul>
                                             @foreach ($menu->submenus as $submenu)
@@ -200,7 +205,7 @@
                 <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                     <h5 class="m-0">Footer Widget 1</h5>
                     <div class="tgl-group">
-                        <input class='tgl tgl-light' id='widget_1' wire:model='FW1status' type='checkbox'
+                        <input class='tgl tgl-light d-none' id='widget_1' wire:model='FW1status' type='checkbox'
                             {{ $this->FW1status == 1 ? 'checked' : '' }} />
                         <label class='tgl-btn' for='widget_1'></label>
                     </div>
@@ -227,7 +232,7 @@
                 <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                     <h5 class="m-0">Footer Widget 2</h5>
                     <div class="tgl-group">
-                        <input class='tgl tgl-light' id='widget_2' wire:model='FW2status' type='checkbox'
+                        <input class='tgl tgl-light d-none' id='widget_2' wire:model='FW2status' type='checkbox'
                             {{ $this->FW2status == 1 ? 'checked' : '' }} />
                         <label class='tgl-btn' for='widget_2'></label>
                     </div>
@@ -255,7 +260,7 @@
                 <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                     <h5 class="m-0">Footer Widget 3</h5>
                     <div class="tgl-group">
-                        <input class='tgl tgl-light' id='widget_3' wire:model='FW3status' type='checkbox'
+                        <input class='tgl tgl-light d-none' id='widget_3' wire:model='FW3status' type='checkbox'
                             {{ $this->FW3status == 1 ? 'checked' : '' }} />
                         <label class='tgl-btn' for='widget_3'></label>
                     </div>

@@ -84,7 +84,7 @@ nav .accordion-content {
     border-radius: 50%;
 }
 #mobile-menu-toggle {
-    position: absolute;
+    /* position: absolute; */
     background-color: var(--site-primary);
     padding: 0.6rem 0.4rem;
     border-radius: 0.3rem;
@@ -92,12 +92,18 @@ nav .accordion-content {
     top: 60px;
     z-index: 999;
 }
+.mobile-nav {
+    display: none;
+    background-color: var(--bs-gray-200);
+    padding: 0.35rem;
+    margin-bottom: 0.2rem;
+    justify-content: end;
+}
 /* Media query for screens narrower than 724px */
 @media (max-width: 790px) {
-    /* .sidebar-menu {
-        left: 0;
-    } */
-
+    .mobile-nav {
+        display: flex;
+    }
     .mobile-menu-toggle {
         display: block; /* Display the hamburger menu */
     }
