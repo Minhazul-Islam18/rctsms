@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtisanController;
 use App\Livewire\CreateRole;
 use App\Livewire\PermissionComponent;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +57,7 @@ use App\Models\CoCurriculum;
 // Route::get('/storage-link', function () {
 //     return  Artisan::call('storage:link');
 // });
-Route::get('/storage-link', 'ArtisanController@runCommand');
+Route::get('/storage-link', [ArtisanController::class, 'runCommand']);
 
 Route::get('/', HomepageComponent::class)->name('home');
 Route::get('/routines', ClassRoutinesPageComponent::class)->name('routines-page');
