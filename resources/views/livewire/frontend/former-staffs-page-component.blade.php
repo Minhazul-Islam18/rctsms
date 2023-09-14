@@ -1,8 +1,8 @@
 @section('page-title')
-    {{ 'প্রাক্তণ স্টাফদের ও কার্যকাল' }}
+    {{ 'প্রাক্তণ স্টাফদের নাম ও কার্যকাল' }}
 @endsection
 <div>
-    <div class="h2 my-4 d-block text-center">{{ __('প্রাক্তণ স্টাফদের ও কার্যকাল') }}</div>
+    <div class="h2 my-4 d-block text-center">{{ __('প্রাক্তণ স্টাফদের নাম ও কার্যকাল') }}</div>
     <div class="table-responsive mb-4">
         <table class="table table-light border-1 border-dark">
             <thead class="border-top border-dark">

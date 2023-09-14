@@ -53,9 +53,11 @@ use App\Models\CoCurriculum;
 |
 */
 
-// Route::get('/test', function () {
+// Route::get('/storage-link', function () {
 //     return  Artisan::call('storage:link');
 // });
+Route::get('/storage-link', 'ArtisanController@runCommand');
+
 Route::get('/', HomepageComponent::class)->name('home');
 Route::get('/routines', ClassRoutinesPageComponent::class)->name('routines-page');
 Route::get('/syllabuses', SyllabusPageComponent::class)->name('syllabuses-page');
