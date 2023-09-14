@@ -69,7 +69,7 @@
                                 @endif
                             </div>
                             <div class="pb-3 {{ isset($image) ? 'col-9' : 'col-12' }}">
-                                <label for="HeaderImage{{ $iteration }}" class="form-label">Header Image</label>
+                                <label for="HeaderImage{{ $iteration }}" class="form-label">Image</label>
                                 <input wire:model='image' id="HeaderImage{{ $iteration }}"
                                     accept="image/jpeg, image/svg, image/png, image/jpg" type="file"
                                     class="form-control">
@@ -89,7 +89,7 @@
                             @enderror
                         </div>
                         {{-- @dd($rows) --}}
-                        <div x-data="{ rows: @entangle('rows') }">
+                        <div x-data="{ rows: @entangle('rows') }" wire:ignore>
                             <div x-ref="repeater" id="repeater">
                                 <template x-for="(row, index) in rows" :key="index">
                                     <div class="d-flex flex-column flex-md-row mb-2 gap-2" data-repeater-item>
@@ -101,8 +101,8 @@
                                             <label class="form-label" for="">Link Url</label>
                                             <input class="form-control" type="text" x-model="row.url" />
                                         </div>
-
-                                        <button class="btn btn-danger" @click="rows.splice(index, 1)">Delete</button>
+                                        <button class="btn btn-danger" type="button"
+                                            @click="rows.splice(index, 1)">Delete</button>
                                     </div>
                                 </template>
                                 <button class="btn btn-warning mb-md-4 mb-sm-2 mb-2" type="button"
@@ -110,8 +110,9 @@
                                     @click="rows.push({ text: '', url: '' })">Add Link</button>
                             </div>
                         </div>
-                        <button type="submit"
-                            class="btn btn-success">{{ $editing == true ? 'Update' : 'Create' }}</button>
+
+                        <button type="submit" class="btn btn-success"
+                            x-on:click="console.log({rows})">{{ $editing == true ? 'Update' : 'Create' }}</button>
                         @if ($editing)
                             <button type="button" wire:click='cancelEdit' class="btn btn-danger">Cancel</button>
                         @endif

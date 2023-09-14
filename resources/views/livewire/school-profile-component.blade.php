@@ -123,6 +123,15 @@
                     <span class="h5 m-0 text-white">{{ $editing == true ? 'Update' : 'Create' }} Person Data</span>
                 </div>
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form wire:submit='{{ $editing == true ? 'updateIndividual' : 'SavePerson' }}'>
                         @if ($person['image'])
                             <img src="/storage/{{ $person['image'] }}" class="w-25" alt="">

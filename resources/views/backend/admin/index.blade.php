@@ -42,7 +42,7 @@
     {{-- @dd(auth()->user()->roles) --}}
     <div class="page-title-container mb-3">
         <div class="row">
-            <div class="col mb-2">
+            <div class="col mb-2 text-center">
                 <h1 class="mb-2 pb-0 display-4" id="title">
                     WelCome
                     @if (auth()->user()->hasRole('Admin'))
@@ -60,21 +60,15 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12 col-lg-8 mb-5">
             <div class="card sh-45 h-lg-100 position-relative bg-theme">
                 <div class="card-body px-3 py-2">
-                    {{-- <div class="w-100 w-md-100 w-sm-100 d-flex flex-column">
-                        <span class="m-0 h4">{{ get_settings('site_title') }}</span>
-                        <span class="border-top h6 mt-3 py-2 d-inline-block">{{ get_settings('site_motto') }}</span>
-                        <img class="img-fluid" src="/storage/{{ get_settings('logo') }}" alt="">
-                    </div> --}}
                     <div class="carousel-wrap">
                         <div class="owl-carousel">
                             @foreach ($home_slider as $item)
                                 <div class="item"
                                     style="height: 300px; background-image: url('/storage/{{ $item->image }}'); background-size: cover;">
-                                    {{-- <img src="/storage/{{ $item->image }}"> --}}
                                     <h4 class="py-2 m-0 ps-sm-2 ps-md-3">{{ $item->title }}</h4>
                                 </div>
                             @endforeach
@@ -104,10 +98,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="mb-5">
-        <h2 class="small-title">School Widgets</h2>
-        <div class="row g-2 row-cols-1 row-cols-xl-2 row-cols-xxl-4">
+        <h2 class="small-title">Institute Widgets</h2>
+        <div class="row g-2 row-cols-1 row-cols-xl-3 row-cols-xxl-3">
             @foreach ($schoolWidgets as $item)
                 <div class="col" wire:key='{{ $item->index }}'>
                     <div class="image-box px-4 py-2 border-1 border-warning bg-theme rounded">

@@ -17,12 +17,13 @@ class SchoolProfileComponent extends Component
     // #[Rule('mimes:png,jpg,jpeg,webp,gif')]
     public $editing = false;
     public $editableId;
+    // #[Rule('required')]
     public $person_image;
-    // #[Rule('required|unique:important_persons, person_name|min:5')]
+    // #[Rule('required')]
     public $person_name;
-    // #[Rule('mimes:png,jpg,jpeg,webp,gif')]
+    // #[Rule('required')]
     public $person_signiture;
-    // #[Rule('required|min:5')]
+    // #[Rule('required')]
     public $person_words;
     public $PersonimageName;
     public $PersonSignitureimage;
@@ -105,7 +106,13 @@ class SchoolProfileComponent extends Component
     }
     public function SavePerson()
     {
-        // $this->validate();
+        $this->validate([
+            'person.image' => 'required',
+            'person.signiture' => 'required',
+            'person.name' => 'required',
+            'person.words' => 'required',
+            'person.post' => 'required',
+        ]);
         $imgc = $this->person['image'];
         $newImageName = time() . '_' . $imgc->getClientOriginalName();
         $this->PersonimageName = $imgc->storeAs('frontend/images/persons', $newImageName, 'public');
@@ -152,7 +159,13 @@ class SchoolProfileComponent extends Component
     }
     function updateIndividual()
     {
-        // dd($this->person);
+        $this->validate([
+            'person.image' => 'required',
+            'person.signiture' => 'required',
+            'person.name' => 'required',
+            'person.words' => 'required',
+            'person.post' => 'required',
+        ]);
         if ($this->person['image'] != null && !is_string($this->person['image'])) {
             Storage::disk('public')->delete($this->image);
             $imgc = $this->person['image'];

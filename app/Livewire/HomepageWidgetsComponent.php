@@ -4,8 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Rule;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Rule;
 use App\Models\AboutSchoolWidget;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -18,13 +18,11 @@ class HomepageWidgetsComponent extends Component
     public $updatedImg;
     public $iteration;
     public $imageName;
-    // #[Rule('mimes:jpeg,png,jpg,gif')]
     public $image;
     public $widget_link_name;
     public $widget_links = [];
-    #[Rule('sometimes|array')]
     public $rows = [];
-    #[Rule('required|min:1')]
+    #[Rule('required')]
     public $widget_name;
     public $widget_url;
     public $widgetId;
@@ -38,6 +36,12 @@ class HomepageWidgetsComponent extends Component
         $this->widget_name = $ntc->title;
         $this->imageName = $ntc->image;
         $this->rows = json_decode($ntc->links);
+        $this->rows = collect($this->rows)->map(function ($row, $index) {
+            return [
+                'text' => $row->text,
+                'url' => $row->url,
+            ];
+        })->toArray();
     }
     public function cancelEdit()
     {
@@ -55,27 +59,26 @@ class HomepageWidgetsComponent extends Component
     }
     public function createWidget()
     {
-        // dd($this->rows);
         $this->validate();
-
         $newImageName = time() . '_' . $this->image->getClientOriginalName();
-
         $this->imageName = $this->image->storeAs('frontend/images/widget', $newImageName, 'public');
         $rt = AboutSchoolWidget::create([
             'title' => $this->widget_name,
             'image' => $this->imageName,
             'links' => json_encode($this->rows)
         ]);
-        // dd($rt);
         // Reset input fields
-        $this->widget_name = '';
-        $this->image = '';
-        $this->imageName = '';
+        $this->widget_name = null;
+        $this->image = null;
+        $this->imageName = null;
         $this->rows = [];
+        $this->iteration++;
         $this->alert('success', 'widget Created Successfully!');
     }
     public function updateWidget()
     {
+
+        // dd($this->rows);
         $this->validate();
         $widget = AboutSchoolWidget::find($this->widgetId);
         if ($this->image) {
@@ -93,14 +96,15 @@ class HomepageWidgetsComponent extends Component
             ]);
         }
         // Reset input fields
-        $this->widget_name = '';
-        $this->image = '';
-        $this->updatedImg = '';
-        $this->imageName = '';
+        $this->widget_name = null;
+        $this->image = null;
+        $this->updatedImg = null;
+        $this->imageName = null;
         $this->rows = [];
+        $this->iteration++;
         $this->alert('success', 'Widget Updated Successfully!');
     }
-    public function deletewidget()
+    public function deleteWidget()
     {
         $widget = AboutSchoolWidget::find($this->willDeleteWidgetId);
         Storage::disk('public')->delete($widget->image);

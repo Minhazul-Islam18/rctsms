@@ -16,7 +16,9 @@ class FormerTeacherStaffsPageComponent extends Component
     public function render()
     {
         // $currentDate = Carbon::now()->format('Y-m-d');
-        $teachers = TeacherAndStaffs::where('active', 0)->paginate(8);
+        $teachers = TeacherAndStaffs::where('active', 0)
+            ->where('employee_type', 'teacher')
+            ->paginate(8);
         return view('livewire.frontend.former-teacher-staffs-page-component', ['teachers' => $teachers]);
     }
 }

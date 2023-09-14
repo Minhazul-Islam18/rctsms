@@ -29,6 +29,7 @@ class TeachersStaffsComponent extends Component
         'active' => null,
         'start_date' => null,
         'end_date' => null,
+        'employee_type' => null,
     ];
     public $editable_id;
     function SaveClass()
@@ -43,6 +44,7 @@ class TeachersStaffsComponent extends Component
             'fields.facebook' => 'required',
             'fields.website' => 'required',
             'fields.address' => 'required',
+            'fields.employee_type' => 'required',
         ]);
         $io = $this->fields['image'];
         $newImageName = time() . '_' . $io->getClientOriginalName();
@@ -60,6 +62,7 @@ class TeachersStaffsComponent extends Component
             'active' => $this->fields['active'],
             'start_date' => $this->fields['start_date'],
             'end_date' => $this->fields['end_date'],
+            'employee_type' => $this->fields['employee_type'],
         ]);
         $this->iteration++;
         $this->resetFields();
@@ -83,10 +86,10 @@ class TeachersStaffsComponent extends Component
         $this->fields['active'] = $ec['active'];
         $this->fields['start_date'] = $ec['start_date'];
         $this->fields['end_date'] = $ec['end_date'];
+        $this->fields['employee_type'] = $ec['employee_type'];
     }
     function UpdateClass()
     {
-        // dd($this->fields['start_date']);
         $this->validate([
             'fields.name' => 'required|min:3',
             'fields.post' => 'required',
@@ -96,6 +99,7 @@ class TeachersStaffsComponent extends Component
             'fields.facebook' => 'required',
             'fields.website' => 'required',
             'fields.address' => 'required',
+            'fields.employee_type' => 'required',
         ]);
         if ($this->fields['image']) {
             Storage::disk('public')->delete($this->fields['image_in_edit']);
@@ -119,6 +123,7 @@ class TeachersStaffsComponent extends Component
             'active' => $this->fields['active'],
             'start_date' => $this->fields['start_date'],
             'end_date' => $this->fields['end_date'],
+            'employee_type' => $this->fields['employee_type'],
         ]);
         $this->iteration++;
         $this->resetFields();
@@ -154,11 +159,13 @@ class TeachersStaffsComponent extends Component
             'active' => null,
             'start_date' => null,
             'end_date' => null,
+            'employee_type' => null,
         ];
     }
     public function render()
     {
-        $Persons = TeacherAndStaffs::paginate(8);
-        return view('livewire.teachers-staffs-component', ['Persons' => $Persons]);
+        $teachers = TeacherAndStaffs::where('employee_type', 'teacher')->paginate(8);
+        $staffs = TeacherAndStaffs::where('employee_type', 'staff')->paginate(8);
+        return view('livewire.teachers-staffs-component', ['teachers' => $teachers, 'staffs' => $staffs]);
     }
 }

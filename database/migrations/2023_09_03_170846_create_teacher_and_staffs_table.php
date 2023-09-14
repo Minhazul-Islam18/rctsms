@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('website')->nullable();
             $table->string('address')->nullable();
+            $table->string('employee_type')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->boolean('active')->nullable();

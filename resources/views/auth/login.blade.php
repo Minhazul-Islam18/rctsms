@@ -3,7 +3,7 @@
 @endsection
 <x-guest-layout>
     <div class="container min-h-screen flex justify-center items-center bg-white dark:bg-gray-800 px-6 py-4">
-        <div class="flex flex-wrap bg-gray-100 dark:bg-gray-900 px-4 py-8 border border-indigo-400 rounded">
+        <div class="w-full flex flex-wrap bg-gray-100 dark:bg-gray-900 px-4 py-8 border border-indigo-400 rounded">
             <div class="sm:w-3/5 flex justify-center items-center"
                 style="background-image: url('https://i.ibb.co/5Kqct6V/nic-rosenau-J-gal-Duu4kc-unsplash-1.jpg)');background-size: cover;background-position: top left;">
                 <div class="text-md h-full w-full bg-gray-800 bg-opacity-70 flex flex-col justify-center items-center">
