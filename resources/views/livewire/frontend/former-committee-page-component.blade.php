@@ -19,11 +19,11 @@
                     <tr>
                         <td class="border-end border-dark border-start" scope="row">{{ $iteration++ }}</td>
                         <td class="border-end border-dark">
-                            <div class="text-dark">{{ $item->person_name }}</div>
-                            <div class="text-dark">{{ $item->educational_qualification }}</div>
+                            <img src="/storage/{{ $item->person_image }}" class="mw-100" width="100px" alt="">
                         </td>
                         <td class="border-end border-dark">
-                            <img src="/storage/{{ $item->person_image }}" class="mw-100" width="100px" alt="">
+                            <div class="text-dark">{{ $item->person_name }}</div>
+                            <div class="text-dark">{{ $item->educational_qualification }}</div>
                         </td>
                         <td class="border-end border-dark">
                             <span class="text-dark">{{ $item->person_post }}</span>

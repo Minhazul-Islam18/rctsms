@@ -357,3 +357,6 @@ nav .accordion-content {
         height: 230px !important;
     }
 }
+.contact_page_map iframe {
+    width: 100% !important;
+}
