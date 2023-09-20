@@ -34,7 +34,6 @@ class InstitutionCommitteeComponent extends Component
             'fields.identity' => 'required',
             'fields.person_post' => 'required',
             'fields.person_address' => 'required',
-            'fields.expired_at' => 'required',
         ]);
         $io = $this->fields['person_image'];
         $newImageName = time() . '_' . $io->getClientOriginalName();
@@ -74,7 +73,6 @@ class InstitutionCommitteeComponent extends Component
             'fields.identity' => 'required',
             'fields.person_post' => 'required',
             'fields.person_address' => 'required',
-            'fields.expired_at' => 'required',
         ]);
         if ($this->fields['person_image']) {
             Storage::disk('public')->delete($this->fields['image_in_edit']);
