@@ -399,3 +399,6 @@ a {
     align-items: inherit;
     justify-content: start;
 }
+.w-8 {
+    width: 2rem;
+}

@@ -360,3 +360,6 @@ nav .accordion-content {
 .contact_page_map iframe {
     width: 100% !important;
 }
+.w-8 {
+    width: 2rem;
+}

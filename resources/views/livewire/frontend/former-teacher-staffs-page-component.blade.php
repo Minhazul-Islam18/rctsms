@@ -44,7 +44,7 @@
                 @endforeach
                 @if ($teachers->isEmpty())
                     <tr>
-                        <td colspan="5" class="border-start border-end border-dark">
+                        <td colspan="6" class="border-start border-end border-dark">
                             <span
                                 class="text-warning fw-bold w-100 text-center d-block">{{ __('কোনো তথ্য পাওয়া যায়নি') }}</span>
                         </td>

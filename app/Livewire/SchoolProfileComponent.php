@@ -18,11 +18,11 @@ class SchoolProfileComponent extends Component
     public $editing = false;
     public $editableId;
     // #[Rule('required')]
-    public $person_image;
+    public $edit_person_image;
     // #[Rule('required')]
     public $person_name;
     // #[Rule('required')]
-    public $person_signiture;
+    public $edit_person_signiture;
     // #[Rule('required')]
     public $person_words;
     public $PersonimageName;
@@ -151,6 +151,8 @@ class SchoolProfileComponent extends Component
     function editIndividual($id)
     {
         $pre =  ImportantIndividual::find($id);
+        $this->edit_person_image = $pre->person_image;
+        $this->edit_person_signiture = $pre->person_signiture;
         if ($pre) {
             $this->editing = true;
             $this->editableId = $id;
@@ -173,7 +175,8 @@ class SchoolProfileComponent extends Component
             'person.post' => 'required',
         ]);
         if ($this->person['image'] != null && !is_string($this->person['image'])) {
-            Storage::disk('public')->delete($this->image);
+            Storage::disk('public')->delete($this->edit_person_signiture);
+            Storage::disk('public')->delete($this->edit_person_image);
             $imgc = $this->person['image'];
             $newImageName = time() . '_' . $imgc->getClientOriginalName();
             $this->PersonimageName = $imgc->storeAs('frontend/images/persons', $newImageName, 'public');
@@ -216,6 +219,7 @@ class SchoolProfileComponent extends Component
     {
         $pre =  ImportantIndividual::find($id);
         $pre->person_image != null ? Storage::disk('public')->delete($pre->person_image) : $this->person['image'] = null;
+        $pre->person_signiture != null ? Storage::disk('public')->delete($pre->person_signiture) : $this->person['signiture'] = null;
         $pre->delete();
         $this->alert('success', 'Person Deleted Successfully!');
     }
