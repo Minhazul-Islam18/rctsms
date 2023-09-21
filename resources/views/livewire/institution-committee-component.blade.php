@@ -8,13 +8,6 @@
 @section('page-scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js">
     </script>
-    <script>
-        $('.input-group.date').each(function(index, element) {
-            $('.input-group.date').datepicker({
-                format: "dd-mm-yyyy"
-            });
-        });
-    </script>
 @endsection
 <div>
     <div class="row g-2 mt-2 flex-sm-row-reverse d-flex flex-column-reverse flex-sm-column flex-md-row">
@@ -151,9 +144,22 @@
                         </div>
                         <div class="form-group" wire:ignore>
                             <div class="mb-3" id="filterDate2">
+                                <label for="" class="form-label">Announced at</label>
+                                <div class="input-group date" data-date-format="dd.mm.yyyy">
+                                    <input type="date" wire:model='fields.announced_at' class="form-control"
+                                        placeholder="dd-mm-yyyy">
+                                    <span class="input-group-addon"><i class="bi bi-stopwatch"></i></span>
+                                </div>
+                            </div>
+                            @error('fields.announced_at')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                        <div class="form-group" wire:ignore>
+                            <div class="mb-3" id="filterDate2">
                                 <label for="" class="form-label">Expired at</label>
                                 <div class="input-group date" data-date-format="dd.mm.yyyy">
-                                    <input type="text" wire:model='fields.expired_at' class="form-control"
+                                    <input type="date" wire:model='fields.expired_at' class="form-control"
                                         placeholder="dd-mm-yyyy">
                                     <span class="input-group-addon"><i class="bi bi-stopwatch"></i></span>
                                 </div>

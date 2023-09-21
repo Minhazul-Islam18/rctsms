@@ -29,7 +29,11 @@
                             <span class="text-dark">{{ $item->person_post }}</span>
                         </td>
                         <td class="border-end border-dark">
-                            <div class="text-dark">{{ $item->expired_at }}</div>
+                            <div class="text-dark">
+                                {{ Carbon\Carbon::parse($item->announced_at)->format('d-m-Y') .
+                                    ' থেকে ' .
+                                    Carbon\Carbon::parse($item->expired_at)->format('d-m-Y') }}
+                            </div>
                         </td>
                     </tr>
                 @endforeach

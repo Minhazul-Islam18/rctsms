@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('identity')->nullable();
             $table->string('person_post')->nullable();
             $table->string('person_address')->nullable();
-            $table->string('expired_at')->nullable();
+            $table->timestamp('announced_at')->nullable();
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }

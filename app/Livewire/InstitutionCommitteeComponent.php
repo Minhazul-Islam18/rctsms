@@ -23,6 +23,7 @@ class InstitutionCommitteeComponent extends Component
         'identity' => null,
         'person_post' => null,
         'person_address' => null,
+        'announced_at' => null,
         'expired_at' => null,
     ];
     public $editable_id;
@@ -45,6 +46,7 @@ class InstitutionCommitteeComponent extends Component
             'identity' => $this->fields['identity'],
             'person_post' => $this->fields['person_post'],
             'person_address' => $this->fields['person_address'],
+            'announced_at' => $this->fields['announced_at'],
             'expired_at' => $this->fields['expired_at'],
         ]);
         $this->iteration++;
@@ -63,6 +65,7 @@ class InstitutionCommitteeComponent extends Component
         $this->fields['identity'] = $ec['identity'];
         $this->fields['person_post'] = $ec['person_post'];
         $this->fields['person_address'] = $ec['person_address'];
+        $this->fields['announced_at'] = $ec['announced_at'];
         $this->fields['expired_at'] = $ec['expired_at'];
     }
     function UpdateClass()
@@ -90,6 +93,7 @@ class InstitutionCommitteeComponent extends Component
             'identity' => $this->fields['identity'],
             'person_post' => $this->fields['person_post'],
             'person_address' => $this->fields['person_address'],
+            'announced_at' => $this->fields['announced_at'],
             'expired_at' => $this->fields['expired_at'],
         ]);
         $this->resetFields();
@@ -116,6 +120,7 @@ class InstitutionCommitteeComponent extends Component
             'identity' => null,
             'person_post' => null,
             'person_address' => null,
+            'announced_at' => null,
             'expired_at' => null,
         ];
     }

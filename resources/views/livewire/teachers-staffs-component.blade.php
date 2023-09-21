@@ -61,7 +61,7 @@
                                     <label for="" class="form-label">Employee Type</label>
                                     <select wire:model.defer.blur='fields.employee_type'
                                         class="form-select form-select-lg" name="" id="">
-                                        <option value="teacher">Teacher</option>
+                                        <option value="teacher" selected>Teacher</option>
                                         <option value="staff">Staff</option>
                                     </select>
                                     <div class="text-danger py-1 px-2 mt-1">

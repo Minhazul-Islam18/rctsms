@@ -15,9 +15,9 @@ class InstitutionalCommitteePageComponent extends Component
     #[Layout('livewire.frontend.layouts.common')]
     public function render()
     {
-        $currentDate = Carbon::now()->format('d-m-Y');;
+        $currentDate = Carbon::now();
         $committees = InstitutionCommittee::where('expired_at', '>', $currentDate)->paginate(8);
-        // dd($committees);
+        //dd($currentDate);
         return view('livewire.frontend.institutional-committee-page-component', ['committees' => $committees]);
     }
 }

@@ -15,10 +15,11 @@ class FormerCommitteePageComponent extends Component
     #[Layout('livewire.frontend.layouts.common')]
     public function render()
     {
-        $currentDate = Carbon::now()->format('d-m-Y');
-        $FormerCommittees = InstitutionCommittee::where('expired_at', '<', $currentDate)
-            ->where('person_post', '=', 'সভাপতি')
+        $currentDate = Carbon::now();
+        $FormerCommittees = InstitutionCommittee::where('person_post', '=', 'সভাপতি')
+            ->where('expired_at', '<', $currentDate)
             ->paginate(8);
+        //dd($currentDate);
         return view('livewire.frontend.former-committee-page-component', ['FormerCommittees' => $FormerCommittees]);
     }
 }
