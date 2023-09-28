@@ -1,16 +1,9 @@
 @section('page-title')
     {{ 'Class Syllabus' }}
 @endsection
-{{-- @section('page-scripts')
-    <script>
-        document.querySelectorAll('.btn-warning').forEach(function(button) {
-            button.addEventListener('click', function() {
-                const escapedFile = this.getAttribute('data-file');
-                @this.call('downloadFile', escapedFile);
-            });
-        });
-    </script>
-@endsection --}}
+@section('page-scripts')
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
+@endsection
 <div>
     <div class="row g-2 mt-2">
         <div class="col-12 col-md-12 col-sm-12">
@@ -77,9 +70,10 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
                                 @foreach ($syllabuses as $item)
-                                    <tr class="" wire:key='{{ $item->class }}'>
+                                    <tr wire:sortable.item="{{ $item->id }}" class=""
+                                        wire:key='{{ $item->class }}'>
                                         <td scope="row">
                                             <div class="text-truncate">{{ $item->class }}</div>
                                         </td>

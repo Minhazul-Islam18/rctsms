@@ -30,8 +30,9 @@ class QualityAcceptanceComponent extends Component
             'fields.files' => 'required'
         ]);
         foreach ($this->fields['files'] as $file) {
-            $newImageName = time() . '_' . $file->getClientOriginalName();
-            $filos[] = $file->storeAs('frontend/files/acceptance', $newImageName, 'public');
+            $imageName  = time() . '.' . $file->getClientOriginalName();
+            $path       = "frontend/files/acceptance";
+            $filos[] = Storage::disk('public')->put($path, $imageName);
         }
         QualificationAcceptance::create([
             'description' => $this->fields['description'],
@@ -60,8 +61,9 @@ class QualityAcceptanceComponent extends Component
                 Storage::disk('public')->delete($file);
             }
             foreach ($this->fields['files'] as $file) {
-                $newImageName = time() . '_' . $file->getClientOriginalName();
-                $filos[] = $file->storeAs('frontend/files/acceptance', $newImageName, 'public');
+                $imageName  = time() . '.' . $file->getClientOriginalName();
+                $path       = "frontend/files/acceptance";
+                $filos[] = Storage::disk('public')->put($path, $imageName);
             }
         } else {
             $filos = $this->fields['files_in_edit'];
@@ -101,28 +103,22 @@ class QualityAcceptanceComponent extends Component
     }
     public function downloadFile($filename)
     {
-        $filePath = storage_path('app/public/' . $filename);
-
-        if (file_exists($filePath)) {
-            $fileContents = Storage::disk('public')->get($filename);
-
-            return Response::stream(
-                function () use ($fileContents) {
-                    echo $fileContents;
-                },
-                200,
-                [
-                    'Content-Type' => 'application/octet-stream',
-                    'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
-                ]
-            );
-        } else {
-            abort(404);
+        if (Storage::disk('public')->exists($filename)) {
+            $thisFile = Storage::disk('public')->path($filename);
+            return response()->download($thisFile);
         }
+        return abort(404);
+    }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            QualificationAcceptance::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
     }
     public function render()
     {
-        $acceptances = QualificationAcceptance::paginate(8);
+        $acceptances = QualificationAcceptance::orderBy('position')->paginate(8);
         return view('livewire.quality-acceptance-component', ['acceptances' => $acceptances]);
     }
 }

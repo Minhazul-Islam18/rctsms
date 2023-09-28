@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('class_syllabi', function (Blueprint $table) {
             $table->id();
+            $table->integer('position')->nullable();
             $table->text('files')->nullable();
             $table->string('class')->nullable();
             $table->text('description')->nullable();

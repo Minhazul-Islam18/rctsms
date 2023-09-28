@@ -120,9 +120,16 @@ class HomepageWidgetsComponent extends Component
     {
         $this->willDeleteWidgetId = '';
     }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            AboutSchoolWidget::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $widgets = AboutSchoolWidget::paginate(8);
+        $widgets = AboutSchoolWidget::orderBy('position')->paginate(8);
         $widget = AboutSchoolWidget::find($this->widgetId);
         return view('livewire.homepage-widgets-component', [
             'widget' => $widget,

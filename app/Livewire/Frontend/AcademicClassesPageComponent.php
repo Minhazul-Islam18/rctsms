@@ -10,10 +10,11 @@ use Livewire\WithPagination;
 class AcademicClassesPageComponent extends Component
 {
     use WithPagination;
+    public $count = 1;
     #[Layout('livewire.frontend.layouts.common')]
     public function render()
     {
-        $classes = ClassList::paginate(8);
+        $classes = ClassList::orderBy('position', 'ASC')->paginate(8);
         return view('livewire.frontend.academic-classes-page-component', ['classes' => $classes]);
     }
 }

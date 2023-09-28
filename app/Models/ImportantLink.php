@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ImportantLink extends Model
 {
     use HasFactory;
-    protected $fillable =
-    [
-        'link_name', 'link_url'
-    ];
+    protected $guarded =
+    [];
 }

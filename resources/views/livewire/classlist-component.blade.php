@@ -1,7 +1,9 @@
 @section('page-title')
     {{ 'Class List' }}
 @endsection
-
+@section('page-scripts')
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
+@endsection
 <div>
     <div class="row g-2 mt-2">
         <div class="col-12 col-md-6 col-sm-12">
@@ -16,9 +18,9 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody wire:sortable="ReOrderClass" wire:sortable.options="{ animation: 100 }">
                                 @foreach ($classes as $item)
-                                    <tr class="" wire:key='{{ $item->index }}'>
+                                    <tr wire:sortable.item="{{ $item->id }}" wire:key='{{ $item->index }}'>
                                         <td scope="row">{{ $item->class_name }}</td>
                                         <td>
                                             {{ $item->boys + $item->girls }}
@@ -35,7 +37,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                {{-- <div class="d-flex">{{ $classes->links() }}</div> --}}
                                 @if ($classes->count() <= 0)
                                     <tr>
                                         <td colspan="3" class="text-center">{{ 'Nothing Found' }}</td>
@@ -114,9 +115,9 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody wire:sortable="ReOrderSection" wire:sortable.options="{ animation: 100 }">
                                 @foreach ($sections as $item)
-                                    <tr class="" wire:key='{{ $item->index }}'>
+                                    <tr wire:sortable.item="{{ $item->id }}" wire:key='{{ $item->index }}'>
                                         <td scope="row">{{ $item->classes->class_name }}</td>
                                         <td>
                                             {{ $item->section_name }}

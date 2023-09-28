@@ -87,7 +87,7 @@
                                             alt="">
                                     @endif
                                     <div class="py-3">
-                                        <label for="" class="form-label">Favicon</label>
+                                        <label for="" class="form-label">Body Background Image</label>
                                         <input type="file" class="form-control" name=""
                                             id="body_background_image{{ $iteration }}"
                                             wire:model='settings.body_background_image'>

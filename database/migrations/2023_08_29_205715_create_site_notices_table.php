@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('site_notices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('site_notice_category_id')->constrained()->cascadeOnDelete();
+            $table->integer('position')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->text('files')->nullable();

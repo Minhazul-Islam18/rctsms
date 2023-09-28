@@ -14,8 +14,15 @@ class PhotoGalleryComponent extends Component
     public $items, $title, $description, $image, $selectedItem, $modal = false, $imageName;
     public function render()
     {
-        $galleryImages = PhotoGallery::all();
+        $galleryImages = PhotoGallery::orderBy('position')->get();
         return view('livewire.photo-gallery-component', ['galleryImages' => $galleryImages]);
+    }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            PhotoGallery::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
     }
     public function openModal()
     {
@@ -32,7 +39,7 @@ class PhotoGalleryComponent extends Component
         $this->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'image', // Adjust image validation rules as needed
+            'image' => 'image',
         ]);
 
         $newImageName = time() . '_' . $this->image->getClientOriginalName();

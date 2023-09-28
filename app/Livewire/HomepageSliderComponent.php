@@ -67,7 +67,7 @@ class HomepageSliderComponent extends Component
     public function create()
     {
         $imag = $this->formData['image'];
-        // dd($imag->getClientOriginalName());
+        // dd($imag);
         $newImageName = time() . '_' . $imag->getClientOriginalName();
 
         $this->imageName = $imag->storeAs('frontend/images/slides', $newImageName, 'public');
@@ -102,9 +102,16 @@ class HomepageSliderComponent extends Component
         $slider->delete();
         $this->confirmingDelete = null;
     }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            HomepageSlider::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $slides = HomepageSlider::all();
+        $slides = HomepageSlider::orderBy('position')->get();
         return view('livewire.homepage-slider-component', ['slides' => $slides]);
     }
 }

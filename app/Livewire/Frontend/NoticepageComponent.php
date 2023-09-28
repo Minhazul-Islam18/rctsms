@@ -4,40 +4,34 @@ namespace App\Livewire\Frontend;
 
 use Livewire\Component;
 use App\Models\SiteNotice;
+use App\Models\SiteNoticeCategory;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
+use Livewire\WithPagination;
 
 class NoticepageComponent extends Component
 {
+    use WithPagination;
+    public $selectedCategory;
     #[Layout('livewire.frontend.layouts.common')]
-    public $notice;
-    function mount($title)
-    {
-        $this->notice = SiteNotice::where('title', '=', $title)->first();
-    }
+    public $count = 1;
     public function downloadFile($filename)
     {
-        $filePath = storage_path('app/public/' . $filename);
-        if (file_exists($filePath)) {
-            $fileContents = Storage::disk('public')->get($filename);
-
-            return Response::stream(
-                function () use ($fileContents) {
-                    echo $fileContents;
-                },
-                200,
-                [
-                    'Content-Type' => 'application/octet-stream',
-                    'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
-                ]
-            );
-        } else {
-            abort(404);
+        if (Storage::disk('public')->exists($filename)) {
+            $thisFile = Storage::disk('public')->path($filename);
+            return response()->download($thisFile);
         }
+        return abort(404);
     }
     public function render()
     {
-        return view('livewire.frontend.noticepage-component');
+        $this->dispatch('loading');
+        $categories = SiteNoticeCategory::orderBy('position')->get();
+        $notices = $this->selectedCategory
+            ? SiteNoticeCategory::find($this->selectedCategory)->notices
+            : SiteNotice::with('category')->orderBy('position', 'ASC')->paginate(8);
+        $this->dispatch('loaded');
+        return view('livewire.frontend.noticepage-component', ['notices' => $notices, 'categories' => $categories]);
     }
 }

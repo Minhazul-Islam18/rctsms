@@ -402,3 +402,6 @@ a {
 .w-8 {
     width: 2rem;
 }
+sub {
+	bottom: -.1em;
+}

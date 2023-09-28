@@ -9,14 +9,10 @@ class SiteMenu extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable =
-    [
-        'parent_id',
-        'name',
-        'url'
-    ];
+    protected $guarded =
+    [];
     public function submenus()
     {
-        return $this->hasMany(SiteMenu::class, 'parent_id');
+        return $this->hasMany(SiteMenu::class, 'parent_id')->orderBy('position', 'ASC');
     }
 }

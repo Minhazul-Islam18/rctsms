@@ -8,7 +8,6 @@ use App\Models\FooterWidget3;
 use Livewire\Component;
 use App\Models\SiteMenu;
 use App\Models\HeaderSetting;
-use App\Models\HomepageSlider;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -249,9 +248,16 @@ class HeaderFooterSettingsComponent extends Component
             $this->FW3smr_text = $FW3->text ?? '';
         }
     }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            SiteMenu::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $menus = SiteMenu::whereNull('parent_id')->with('submenus')->get();
+        $menus = SiteMenu::whereNull('parent_id')->with('submenus')->orderBy('position', 'ASC')->get();
         $header_image = HeaderSetting::first();
         return view('livewire.header-footer-settings-component', compact('menus', 'header_image'));
     }

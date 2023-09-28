@@ -1,23 +1,17 @@
 @section('page-title')
     {{ 'Co-Curriculums' }}
 @endsection
-{{-- @section('page-scripts')
-    <script>
-        document.querySelectorAll('.btn-warning').forEach(function(button) {
-            button.addEventListener('click', function() {
-                const escapedFile = this.getAttribute('data-file');
-                @this.call('downloadFile', escapedFile);
-            });
-        });
-    </script>
-@endsection --}}
+@section('page-scripts')
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
+@endsection
 <div>
     <div class="row g-2 mt-2">
         <div class="col-12 col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header py-3">
                     <span class="h5 m-0 text-white">{{ $fields['status'] == true ? 'Update' : 'Create' }}
-                        Co-Curriculum</span>
+                        Co-Curriculum
+                    </span>
                 </div>
                 <div class="card-body">
                     <form wire:submit='{{ $fields['status'] == true ? 'UpdateClass' : 'SaveClass' }}'
@@ -59,15 +53,15 @@
                         <table class="table table-primary">
                             <thead>
                                 <tr>
-                                    <th scope="col">Class</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Files</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
                                 @foreach ($coCurriculums as $item)
-                                    <tr class="" wire:key='{{ $item->class }}'>
+                                    <tr wire:sortable.item="{{ $item->id }}" class=""
+                                        wire:key='{{ $item->class }}'>
                                         <td scope="row">
                                             <div class="text-truncate">
                                                 {{ Illuminate\Support\Str::limit($item->description, $limit = 35, $end = '...') }}

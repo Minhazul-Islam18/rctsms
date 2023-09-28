@@ -103,27 +103,22 @@ class ClassSyllabusComponent extends Component
     }
     public function downloadFile($filename)
     {
-        $filePath = storage_path('app/public/' . $filename);
-        if (file_exists($filePath)) {
-            $fileContents = Storage::disk('public')->get($filename);
-
-            return Response::stream(
-                function () use ($fileContents) {
-                    echo $fileContents;
-                },
-                200,
-                [
-                    'Content-Type' => 'application/octet-stream',
-                    'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
-                ]
-            );
-        } else {
-            abort(404);
+        if (Storage::disk('public')->exists($filename)) {
+            $thisFile = Storage::disk('public')->path($filename);
+            return response()->download($thisFile);
         }
+        return abort(404);
+    }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            ClassSyllabus::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
     }
     public function render()
     {
-        $syllabuses = ClassSyllabus::paginate(8);
+        $syllabuses = ClassSyllabus::orderBy('position')->paginate(8);
         return view('livewire.class-syllabus-component', ['syllabuses' => $syllabuses]);
     }
 }

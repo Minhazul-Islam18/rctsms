@@ -1,13 +1,8 @@
 @section('page-title')
     {{ 'Instutional Committee' }}
 @endsection
-@section('page-styles')
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" />
-@endsection
 @section('page-scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js">
-    </script>
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
 @endsection
 <div>
     <div class="row g-2 mt-2 flex-sm-row-reverse d-flex flex-column-reverse flex-sm-column flex-md-row">
@@ -23,9 +18,9 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
                                 @foreach ($CommitteePersons as $item)
-                                    <tr class="" wire:key='{{ $item->index }}'>
+                                    <tr wire:sortable.item="{{ $item->id }}" wire:key='{{ $item->index }}'>
                                         <td scope="row">
                                             <img class="w-25" src="/storage/{{ $item->person_image }}" alt="">
                                             <span

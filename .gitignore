@@ -1,12 +1,17 @@
 /.phpunit.cache
 /node_modules
+# Ignore compiled application assets
+/public/css
+/public/js
+/public/mix-manifest.json
+/public/hot
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /vendor
 .env
-.env.backup
+.env.*
 .env.production
 .phpunit.result.cache
 Homestead.json
@@ -17,3 +22,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+# Ignore Laravel logs and cached files
+/storage/logs
+/bootstrap/cache

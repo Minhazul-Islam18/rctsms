@@ -128,9 +128,16 @@ class InstitutionCommitteeComponent extends Component
     {
         $this->resetFields();
     }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            InstitutionCommittee::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $CommitteePersons = InstitutionCommittee::paginate(8);
+        $CommitteePersons = InstitutionCommittee::orderBy('position')->paginate(8);
         return view('livewire.institution-committee-component', ['CommitteePersons' => $CommitteePersons]);
     }
 }

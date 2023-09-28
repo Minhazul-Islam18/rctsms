@@ -17,5 +17,5 @@
             src: url({{ asset('fonts/laravolt.woff') }});
         }
     </style>
-    @livewireStyles
+    {{-- @livewireStyles --}}
     @yield('page-styles')

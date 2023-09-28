@@ -8,9 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class AboutSchoolWidget extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'title',
-        'image',
-        'links',
-    ];
+    protected $guarded = [];
 }

@@ -162,10 +162,17 @@ class TeachersStaffsComponent extends Component
             'employee_type' => null,
         ];
     }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            TeacherAndStaffs::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $teachers = TeacherAndStaffs::where('employee_type', 'teacher')->paginate(8);
-        $staffs = TeacherAndStaffs::where('employee_type', 'staff')->paginate(8);
+        $teachers = TeacherAndStaffs::orderBy('position')->where('employee_type', 'teacher')->paginate(8);
+        $staffs = TeacherAndStaffs::orderBy('position')->where('employee_type', 'staff')->paginate(8);
         return view('livewire.teachers-staffs-component', ['teachers' => $teachers, 'staffs' => $staffs]);
     }
 }

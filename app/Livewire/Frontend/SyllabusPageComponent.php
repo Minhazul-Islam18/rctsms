@@ -16,23 +16,11 @@ class SyllabusPageComponent extends Component
     #[Layout('livewire.frontend.layouts.common')]
     public function downloadFile($filename)
     {
-        $filePath = storage_path('app/public/' . $filename);
-        if (file_exists($filePath)) {
-            $fileContents = Storage::disk('public')->get($filename);
-
-            return Response::stream(
-                function () use ($fileContents) {
-                    echo $fileContents;
-                },
-                200,
-                [
-                    'Content-Type' => 'application/octet-stream',
-                    'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
-                ]
-            );
-        } else {
-            abort(404);
+        if (Storage::disk('public')->exists($filename)) {
+            $thisFile = Storage::disk('public')->path($filename);
+            return response()->download($thisFile);
         }
+        return abort(404);
     }
     public function render()
     {

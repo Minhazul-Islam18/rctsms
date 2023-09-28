@@ -1,6 +1,9 @@
 @section('page-title')
     {{ 'Class Routines' }}
 @endsection
+@section('page-scripts')
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
+@endsection
 <div>
     <div class="row g-2 mt-2">
         <div class="col-12 col-md-12 col-sm-12">
@@ -67,9 +70,11 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody data-sortable="row" wire:sortable="ReOrder"
+                                wire:sortable.options="{ animation: 100 }">
                                 @foreach ($routines as $item)
-                                    <tr class="" wire:key='{{ $item->class }}'>
+                                    <tr wire:sortable.item="{{ $item->id }}" class=""
+                                        wire:key='{{ $item->class }}'>
                                         <td scope="row">
                                             <div class="text-truncate">{{ $item->class }}</div>
                                         </td>

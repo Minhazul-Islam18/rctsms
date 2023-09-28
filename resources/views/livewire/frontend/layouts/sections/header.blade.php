@@ -3,6 +3,9 @@
                 <img src="{{ asset('storage') }}/{{ get_settings('header_logo') }}" alt="">
             </div>
             <div class="mobile-nav">
+                <span class="d-inline-block me-2 my-auto">
+                    {{ __('মেনু নিবার্চন করুন') }}
+                </span>
                 <div class="mobile-menu-toggle" id="mobile-menu-toggle">
                     <div class="hamburger-icon">
                         <div class="bar"></div>

@@ -19,7 +19,6 @@ nav .accordion-content {
     justify-content: space-between;
     align-items: center;
 }
-/* Add this CSS to your existing stylesheet */
 .mobile-menu-toggle {
     display: none; /* Hide the hamburger menu initially */
     cursor: pointer;
@@ -170,12 +169,17 @@ nav .accordion-content {
     opacity: 1;
 }
 /* fix blank or flashing items on carousel */
-.owl-carousel .item {
+#top_header .item {
     position: relative;
     z-index: 100;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    max-height: 750px !important;
+    min-height: 540px;
 }
-
+#top_header {
+    overflow: hidden;
+}
 /* end fix */
 .owl-nav > div {
     margin-top: -26px;
@@ -185,8 +189,11 @@ nav .accordion-content {
 }
 .owl-nav {
     position: absolute;
-    top: 50%;
+    top: 0;
     width: 100%;
+    height: 100%;
+    bottom: 0;
+    transform: translateY(50%);
 }
 .owl-nav i {
     font-size: 40px;
@@ -354,7 +361,7 @@ nav .accordion-content {
         align-items: center;
     }
     .owl-carousel .item {
-        height: 230px !important;
+        /* height: 230px !important; */
     }
 }
 .contact_page_map iframe {
@@ -362,4 +369,36 @@ nav .accordion-content {
 }
 .w-8 {
     width: 2rem;
+}
+.admission__notices {
+    background-color: var(--site-primary);
+    padding: 0.4rem 0.7rem;
+}
+.notice-nav {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 0.8rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.notice-nav li {
+    background-color: var(--site-primary);
+    color: var(--site-text);
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+#youtube-carousel .item-video {
+    height: 300px;
+    min-height: 300px;
+}
+#youtube-carousel .owl-nav button {
+    background-color: #000 !important;
+    opacity: 1;
+    color: #fff;
+}
+#youtube-carousel .item > * {
+    max-width: 100%;
 }

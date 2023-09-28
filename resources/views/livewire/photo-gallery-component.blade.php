@@ -1,17 +1,21 @@
 @section('page-title')
     {{ 'Photo Gallery' }}
 @endsection
+@section('page-scripts')
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
+@endsection
 <div>
     <!-- Create Button -->
     <button wire:click="openModal" class="btn btn-lg btn-primary">Add New Item</button>
 
     <!-- Gallery -->
-    <div class="gallery row g-0 mt-4">
+    <div class="gallery row g-0 mt-4" wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
         @foreach ($galleryImages as $item)
-            <div class="mx-2 my-2 col-12 col-md-3 col-sm-6 col-lg-3 rounded-1 bg-dark px-1 py-2 border-1">
+            <div wire:sortable.item="{{ $item->id }}"
+                class="mx-2 my-2 col-12 col-md-3 col-sm-6 col-lg-3 rounded-1 bg-dark px-1 py-2 border-1">
                 <div class="gallery-item">
-                    <img class="w-100 img-rounded " style="max-height: 230px;" src="{{ asset('storage/' . $item->image) }}"
-                        alt="{{ $item->title }}">
+                    <img class="w-100 img-rounded " style="max-height: 200px;"
+                        src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}">
                     <h3>{{ $item->title }}</h3>
                     <p>{{ $item->description }}</p>
                     <button class="btn btn-info me-2" wire:click="edit({{ $item->id }})">Edit</button>

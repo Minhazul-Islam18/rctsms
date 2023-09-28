@@ -13,4 +13,8 @@ class ClassList extends Model
     {
         return $this->hasMany(ClassSection::class);
     }
+    public function results()
+    {
+        return $this->hasMany(AcademicResult::class);
+    }
 }

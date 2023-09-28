@@ -50,7 +50,7 @@ if (!function_exists('sitemenu')) {
      */
     function sitemenu($key = null, $default = null)
     {
-        $sitemenus = SiteMenu::whereNull('parent_id')->with('submenus')->get();
+        $sitemenus = SiteMenu::whereNull('parent_id')->with('submenus')->orderBy('position')->get();
 
         if ($key === null) {
             return $sitemenus;

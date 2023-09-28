@@ -87,10 +87,16 @@ class ImportantLinksComponent extends Component
     {
         $this->willDeleteLinkId = '';
     }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            ImportantLink::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $links = ImportantLink::all();
-        // $link = ImportantLink::find($this->linkId);
+        $links = ImportantLink::orderBy('position')->get();
         return view('livewire.important-links-component', [
             'links' => $links
         ]);

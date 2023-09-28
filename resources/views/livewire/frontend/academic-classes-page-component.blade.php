@@ -15,7 +15,7 @@
             <tbody>
                 @foreach ($classes as $item)
                     <tr>
-                        <td class="border-end border-dark border-start" scope="row">{{ $item->count() }}</td>
+                        <td class="border-end border-dark border-start" scope="row">{{ $count++ }}</td>
                         <td class="border-end border-dark">
                             <div class="text-dark">{{ $item->class_name }}</div>
                         </td>

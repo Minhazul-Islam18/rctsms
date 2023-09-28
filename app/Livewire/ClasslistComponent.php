@@ -148,11 +148,24 @@ class ClasslistComponent extends Component
         $this->resetAll();
         $this->alert('success', 'ক্লাস সফলভাবে আপডেট করা হয়েছে!');
     }
+    public function ReOrderClass($list)
+    {
+        foreach ($list as $data) {
+            ClassList::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
+    public function ReOrderSection($list)
+    {
+        foreach ($list as $data) {
+            ClassSection::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $classes = ClassList::with('sections')->get();
-        $sections = ClassSection::with('classes')->get();
-        // dd($classes);
+        $classes = ClassList::with('sections')->orderBy('position')->get();
+        $sections = ClassSection::with('classes')->orderBy('position')->get();
         return view('livewire.classlist-component', ['classes' => $classes, 'sections' => $sections]);
     }
 }

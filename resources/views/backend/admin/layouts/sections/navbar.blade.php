@@ -2,7 +2,7 @@
           <div class="nav-content d-flex">
               <div class="logo position-relative">
                   <a href="{{ route('dashboard') }}">
-                      <img src="/storage/{{ get_settings('logo') }}" class="mw-100 w-md-100" alt="Logo">
+                      <img src="/storage/{{ get_settings('logo') }}" class="" style="max-width: 3rem;" alt="Logo">
                       {{-- <div class="img"></div> --}}
                   </a>
               </div>

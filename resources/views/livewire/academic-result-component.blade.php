@@ -1,0 +1,125 @@
+@section('page-title')
+    {{ 'Class results' }}
+@endsection
+@section('page-scripts')
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
+@endsection
+<div>
+    <div class="row g-2 mt-2">
+        <div class="col-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header py-3">
+                    <span class="h5 m-0 text-white">{{ $actions['edit'] == true ? 'Update' : 'Create' }}
+                        Results</span>
+                </div>
+                <div class="card-body">
+                    <form wire:submit='{{ $actions['edit'] == true ? 'update' : 'store' }}' enctype="multipart/form-data">
+                        <div class="row gx-2">
+                            <div class="col-12 col-md-6 col-sm-12" wire:ignore>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Files</label>
+                                    <input multiple type="file" wire:model.defer='files' class="form-control"
+                                        name="" id="iso">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-sm-12">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Description</label>
+                                    <textarea wire:model.defer='content' class="form-control" name="" id="" rows="3"></textarea>
+                                    <div class="text-danger py-1 px-2 mt-1">
+                                        @error('content')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Class</label>
+                                    <select class="form-select form-select-lg" wire:model.defer='class_id'
+                                        name="" id="">
+                                        <option selected>Select</option>
+                                        @foreach ($classes as $item)
+                                            <option value="{{ $item->id }}">{{ $item->class_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="text-danger py-1 px-2 mt-1">
+                                        @error('class_id')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="btn btn-primary me-2">{{ $actions['edit'] == true ? 'Update' : 'Create' }}</button>
+                        @if ($actions['edit'] == true)
+                            <button type="button" wire:click='resetAction'
+                                class="btn btn-danger">{{ 'Cancel' }}</button>
+                        @endif
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-primary">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Class</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Files</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody data-sortable="row" wire:sortable="ReOrder"
+                                wire:sortable.options="{ animation: 100 }">
+                                @foreach ($results as $item)
+                                    <tr wire:sortable.item="{{ $item->id }}" class=""
+                                        wire:key='{{ $item->class }}'>
+                                        <td scope="row">
+                                            <div class="text-truncate">{{ $item->class->class_name }}</div>
+                                        </td>
+                                        <td scope="row">
+                                            <div class="text-truncate">
+                                                {{ Illuminate\Support\Str::limit($item->content, $limit = 35, $end = '...') }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @foreach (json_decode($item->files) as $itm)
+                                                <button class="btn btn-warning btn-sm"
+                                                    wire:click="downloadFile('{{ $itm }}')"
+                                                    type="button">Download</button>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <div class="d-flex gap-3">
+                                                <button class="btn btn-sm btn-info" type="button"
+                                                    wire:click='edit({{ $item->id }})'>
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" type="button"
+                                                    wire:click='destroy({{ $item->id }})'>
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <div class="d-flex">{{ $results->links() }}</div>
+                                @if ($results->count() <= 0)
+                                    <tr>
+                                        <td colspan="3" class="text-center">{{ 'Nothing Found' }}</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

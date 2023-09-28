@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use App\Models\TeachingPermission;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -104,12 +105,11 @@ class TeachingPermissionComponent extends Component
     public function downloadFile($filename)
     {
         $filePath = storage_path('app/public/' . $filename);
-        // dd($filePath);
 
-        if (file_exists($filePath)) {
-            $fileContents = Storage::disk('public')->get($filename);
+        if (File::exists($filePath)) {
+            $fileContents = File::get($filePath);
 
-            return Response::stream(
+            $response = Response::stream(
                 function () use ($fileContents) {
                     echo $fileContents;
                 },
@@ -119,13 +119,22 @@ class TeachingPermissionComponent extends Component
                     'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
                 ]
             );
+
+            return $response;
         } else {
             abort(404);
         }
     }
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            TeachingPermission::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
+    }
     public function render()
     {
-        $permissions = TeachingPermission::paginate(8);
+        $permissions = TeachingPermission::orderBy('position')->paginate(8);
         return view('livewire.teaching-permission-component', ['permissions' => $permissions]);
     }
 }

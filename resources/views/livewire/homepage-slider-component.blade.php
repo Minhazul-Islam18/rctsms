@@ -37,6 +37,7 @@
             });
         });
     </script>
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
 @endsection
 <div x-data="{ is_editing: false }">
     <div class="accordion btn btn-warning">
@@ -77,11 +78,12 @@
         </form>
     </div>
 
-    <div class="row g-2 mt-3">
+    <div class="row g-2 mt-3" wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
         @foreach ($slides as $slide)
-            <div class="col-12 col-sm-6 com-xs-6 col-md-3">
+            <div wire:sortable.item="{{ $slide->id }}" class="col-12 col-sm-6 com-xs-6 col-md-3">
                 <div class="img-lightbox" wire:target=' wire:key="{{ $slide->index }}"'>
-                    <img src="/storage/{{ $slide->image }}" alt="{{ $slide->title }}" class="img-fluid img-rounded">
+                    <img lazy src="/storage/{{ $slide->image }}" alt="{{ $slide->title }}"
+                        class="img-fluid img-rounded">
                     <p>{{ $slide->title }}</p>
                     <button class="btn btn-info" type="button"
                         @click.away="document.body.classList.remove('noscroll'); "

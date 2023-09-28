@@ -15,6 +15,7 @@ class ClassRoutineComponent extends Component
     use LivewireAlert, WithPagination, WithFileUploads;
     public $iteration;
     public $fields = [
+        'order' => [],
         'status' => false,
         'files_in_edit' => null,
         'editable_id' => null,
@@ -93,6 +94,7 @@ class ClassRoutineComponent extends Component
     public function resetFields()
     {
         $this->fields = [
+            'order' => [],
             'status' => false,
             'image_in_edit' => null,
             'editable_id' => null,
@@ -103,27 +105,23 @@ class ClassRoutineComponent extends Component
     }
     public function downloadFile($filename)
     {
-        $filePath = storage_path('app/public/' . $filename);
-        if (file_exists($filePath)) {
-            $fileContents = Storage::disk('public')->get($filename);
-
-            return Response::stream(
-                function () use ($fileContents) {
-                    echo $fileContents;
-                },
-                200,
-                [
-                    'Content-Type' => 'application/octet-stream',
-                    'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
-                ]
-            );
-        } else {
-            abort(404);
+        if (Storage::disk('public')->exists($filename)) {
+            $thisFile = Storage::disk('public')->path($filename);
+            return response()->download($thisFile);
         }
+        return abort(404);
+    }
+
+    public function ReOrder($list)
+    {
+        foreach ($list as $data) {
+            ClassRoutine::findOrFail($data['value'])->update(['position' => $data['order']]);
+        }
+        $this->alert('success', 'Re-Ordered');
     }
     public function render()
     {
-        $routines = ClassRoutine::paginate(8);
+        $routines = ClassRoutine::orderBy('position')->paginate(8);
         return view('livewire.class-routine-component', ['routines' => $routines]);
     }
 }

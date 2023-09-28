@@ -4,10 +4,11 @@
        $FooterWidget3 = DB::table('footer_widget3s')->first();
    @endphp
    <footer class="site__footer">
-       <div class="row px-2 py-3">
+       <div class="row px-2 py-3 flex-column-reverse flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
            {{-- @if ($FooterWidget1->status) --}}
            <div class="col-md-4 col-sm-12 col-12">
-               <div class="d-flex flex-column align-sm-center align-md-start">
+               <div
+                   class="d-flex flex-column align-items-center align-items-md-start align-items-lg-start align-items-xl-start">
                    <span class="fw-bold">{{ __('কারিগরী সহায়তায়') }}</span>
                    <span class="text-start">
                        <a href="http://www.rctseba.com">{{ __('আরসিটি সেবা') }}</a> {{ __(', ভোলা') }}
@@ -17,7 +18,7 @@
            {{-- @endif --}}
            @if ($FooterWidget2->status)
                <div class="col-md-4 col-sm-12 col-12">
-                   <div class="d-flex flex-column  align-sm-center align-md-center">
+                   <div class="d-flex flex-column  align-items-center align-md-center">
                        <span class="fw-bold d-block text-center">{{ $FooterWidget2->title }}</span>
 
                        <div class="">
@@ -28,7 +29,8 @@
            @endif
            @if ($FooterWidget3->status)
                <div class="col-md-4 col-sm-12 col-12">
-                   <div class="d-flex flex-column  align-sm-center align-md-end">
+                   <div
+                       class="d-flex flex-column align-items-center align-items-md-end align-items-lg-end align-items-xl-end">
                        <span class="fw-bold">{{ $FooterWidget3->title }}</span>
 
                        <div class="text-end">
