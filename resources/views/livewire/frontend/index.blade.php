@@ -5,6 +5,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .masonry {
+            margin: 1.5em auto;
+            max-width: auto;
+            column-gap: 1.5em;
+        }
+
+        /* The Masonry Brick */
+        .item {
+            background: #fff;
+            margin: 0 0 1.5em;
+        }
+
+        /* Masonry on large screens */
+        @media only screen and (min-width: 1024px) {
+            .masonry {
+                column-count: 5;
+            }
+        }
+
+        /* Masonry on medium-sized screens */
+        @media only screen and (max-width: 1023px) and (min-width: 768px) {
+            .masonry {
+                column-count: 4;
+            }
+        }
+
+        /* Masonry on small screens */
+        @media only screen and (max-width: 767px) and (min-width: 540px) {
+            .masonry {
+                column-count: 3;
+            }
+        }
+    </style>
 @endsection
 @section('page-script')
     <!-- Add fancyBox -->
@@ -268,7 +302,17 @@
                         <a href="/photo-gallery" class="text-dark">সকল পোস্ট</a>
                     </div>
                 </div>
-                <div class="gallery row gy-sm-2">
+                <div class="gallery masonry">
+                    @foreach ($galleryImages as $item)
+                        <div class="item">
+                            <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
+                                <img lazy class="mw-100" src="/storage/{{ $item->image }}"
+                                    alt="{{ $item->title }}">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                {{-- <div class="gallery row gy-sm-2">
                     @foreach ($galleryImages as $item)
                         <div class="col-12 col-sm-12 col-md-3 my-2">
                             <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
@@ -277,7 +321,7 @@
                         </div>
                     @endforeach
 
-                </div>
+                </div> --}}
             </div>
             <div class="col-12 mt-3 mt-sm-2">
                 <div class="row g-0">
