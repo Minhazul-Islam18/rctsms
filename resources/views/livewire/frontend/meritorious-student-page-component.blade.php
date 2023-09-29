@@ -3,38 +3,37 @@
 @endsection
 <div>
     <div class="row my-4">
-        <div class="col-1"></div>
-        <div class="col-10">
+        <div class="col-12">
             <div class="">
                 <h5 class="mb-2 d-flex justify-content-center py-2 w-100">কৃতি শিক্ষার্থী</h5>
                 <div class="table-responsive">
-                    <table class="table table-primary">
+                    <table class="table border">
                         <thead>
                             <tr>
-                                <th scope="col">ক্রমিক নাম্বার</th>
-                                <th scope="col">ছবি</th>
-                                <th scope="col">নাম</th>
-                                <th scope="col">অধ্যয়নের সময়কাল </th>
-                                <th scope="col">কৃতিত্ব</th>
+                                <th class="text-center border-end" scope="col">ক্রমিক নাম্বার</th>
+                                <th class="text-center border-end" scope="col">ছবি</th>
+                                <th class="text-center border-end" scope="col">নাম</th>
+                                <th class="text-center border-end" scope="col">অধ্যয়নের সময়কাল </th>
+                                <th class="text-center border-end" scope="col">কৃতিত্ব</th>
                             </tr>
                         </thead>
                         <tbody wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
                             @foreach ($mStudents as $item)
                                 <tr wire:sortable.item="{{ $item->id }}" wire:key='{{ $item->index }}'>
-                                    <td>
+                                    <td class="border-end" scope="row">
                                         {{ $count++ }}
                                     </td>
-                                    <td scope="row">
+                                    <td class="border-end">
                                         <img style="min-width: 80px; max-width: 100px"
                                             src="/storage/{{ $item->image }}" alt="">
                                     </td>
-                                    <td>
+                                    <td class="border-end">
                                         {{ $item->study_period }}
                                     </td>
-                                    <td>
+                                    <td class="border-end">
                                         {{ $item->name }}
                                     </td>
-                                    <td>
+                                    <td class="border-end">
                                         {{ $item->merits }}
                                     </td>
                                 </tr>
@@ -50,6 +49,5 @@
                 </div>
             </div>
         </div>
-        <div class="col-2"></div>
     </div>
 </div>

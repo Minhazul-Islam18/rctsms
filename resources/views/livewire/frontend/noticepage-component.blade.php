@@ -3,12 +3,11 @@
 @endsection
 <div>
     <div class="row my-4">
-        <div class="col-1"></div>
-        <div class="col-10">
+        <div class="col-12">
             <div class="notice">
                 <h5 class="mb-2 d-flex justify-content-center py-2 w-100 rounded-1"
                     style="background-color: var(--site-primary); color: var(--site-text)">নোটিশ বোর্ড</h5>
-                <ul class="notice-nav">
+                <ul class="notice-nav gap-2">
                     <li wire:click="$set('selectedCategory', null)" class="{{ !$selectedCategory ? 'active' : '' }}">
                         {{ __('সকল') }}
                     </li>
@@ -68,6 +67,5 @@
                 {{-- </ul> --}}
             </div>
         </div>
-        <div class="col-2"></div>
     </div>
 </div>
