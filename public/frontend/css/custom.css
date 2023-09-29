@@ -390,6 +390,9 @@ nav .accordion-content {
     border-radius: 0.2rem;
     cursor: pointer;
 }
+#youtube-carousel {
+    overflow: hidden;
+}
 #youtube-carousel .item-video {
     height: 300px;
     min-height: 300px;

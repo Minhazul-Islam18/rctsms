@@ -224,7 +224,7 @@
                     <div class="card mb-md-3 mb-sm-2 mb-2" wire:key='{{ $item->index }}'>
                         <div class="card-header" style="background-color: var(--site-primary); color: var(--site-text)">
                             <span
-                                class="fw-bold h5 m-0 py-2 w-100 d-block text-center">{{ __($item->person_post) }}</span>
+                                class="fw-bold h5 m-0 py-0 w-100 d-block text-center">{{ __($item->person_post) }}</span>
                         </div>
                         <div class="card-body">
                             <div class="d-block text-center my-2">
