@@ -21,7 +21,7 @@
         /* Masonry on large screens */
         @media only screen and (min-width: 1024px) {
             .masonry {
-                column-count: 5;
+                column-count: 4;
             }
         }
 
@@ -99,7 +99,7 @@
         // });
         // Initialize Owl Carousel
         $("#youtube-carousel").owlCarousel({
-            items: 5,
+            items: 3,
             autoplayHoverPause: true,
             loop: true,
             nav: true,
@@ -117,7 +117,7 @@
                     items: 2,
                 },
                 600: {
-                    items: 4,
+                    items: 3,
                 },
             },
         });
@@ -174,7 +174,7 @@
                     </div>
                 </div>
 
-                <div class="mt-3 notice">
+                <div class="notice">
                     <h5 class="mb-2 d-flex justify-content-center py-2 w-100 rounded-1"
                         style="background-color: var(--site-primary); color: var(--site-text)">নোটিশ বোর্ড</h5>
                     <ul class="list-group notice-list rounded-0">
@@ -209,7 +209,7 @@
                                     <a
                                         href="{{ route('single-blog-page', ['title' => $item->title]) }}">{{ $item->title }}</a>
                                     </br>
-                                    <i class="fa fa-clock" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-calendar-day me-2 text-success"></i>
                                     {{ 'প্রকাশের তারিখ: ' . Carbon\Carbon::parse($item->created_at)->format('h:i A, Y-m-d') }}
                                 </div>
                             </div>
@@ -252,6 +252,27 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="col-12 my-3">
+                    <div class="row g-0">
+                        <div class="col-6">
+                            <h5>ফটো গ্যালারি</h5>
+
+                        </div>
+                        <div class="col-6 text-end">
+                            <a href="/photo-gallery" class="text-dark">সকল পোস্ট</a>
+                        </div>
+                    </div>
+                    <div class="gallery masonry">
+                        @foreach ($galleryImages as $item)
+                            <div class="item">
+                                <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
+                                    <img lazy class="mw-100" src="/storage/{{ $item->image }}"
+                                        alt="{{ $item->title }}">
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
             <div class="col-md-4 col-sm-12 col-12">
                 @foreach ($individual as $item)
@@ -292,37 +313,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 my-3">
-                <div class="row g-0">
-                    <div class="col-6">
-                        <h5>ফটো গ্যালারি</h5>
 
-                    </div>
-                    <div class="col-6 text-end">
-                        <a href="/photo-gallery" class="text-dark">সকল পোস্ট</a>
-                    </div>
-                </div>
-                <div class="gallery masonry">
-                    @foreach ($galleryImages as $item)
-                        <div class="item">
-                            <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
-                                <img lazy class="mw-100" src="/storage/{{ $item->image }}"
-                                    alt="{{ $item->title }}">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-                {{-- <div class="gallery row gy-sm-2">
-                    @foreach ($galleryImages as $item)
-                        <div class="col-12 col-sm-12 col-md-3 my-2">
-                            <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
-                                <img lazy class="mw-100" src="/storage/{{ $item->image }}"
-                                    alt="{{ $item->title }}"></a>
-                        </div>
-                    @endforeach
-
-                </div> --}}
-            </div>
             <div class="col-12 mt-3 mt-sm-2">
                 <div class="row g-0">
                     <div class="col-6">

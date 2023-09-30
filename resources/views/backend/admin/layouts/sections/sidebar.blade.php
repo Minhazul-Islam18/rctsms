@@ -31,6 +31,13 @@
                     <a href="#"><i class="bi bi-buildings-fill me-2"></i> <span>Institute Information</span></a>
                     <ul class="submenu">
                         <li>
+                            <a class="{{ Route::currentRouteName() === 'co-curriculum' ? 'menu-active' : '' }}"
+                                href="{{ route('co-curriculum') }}">
+                                <i class="bi bi-flag"></i>
+                                <span class="label">Co Curriculums</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="{{ Route::currentRouteName() === 'teaching-permission' ? 'menu-active' : '' }}"
                                 href="{{ route('teaching-permission') }}">
                                 <i class="bi bi-journal-check"></i>
@@ -134,14 +141,6 @@
                     </a>
                 </li>
                 <li>
-                    <a class="{{ Route::currentRouteName() === 'co-curriculum' ? 'menu-active' : '' }}"
-                        href="{{ route('co-curriculum') }}">
-                        <i class="bi bi-flag"></i>
-                        <span class="label">Co Curriculums</span>
-                    </a>
-                </li>
-
-                <li>
                     <a class="{{ Route::currentRouteName() === 'teachers-staffs' ? 'menu-active' : '' }}"
                         href="{{ route('teachers-staffs') }}">
                         <i class="bi bi-person-vcard-fill"></i>
@@ -178,6 +177,9 @@
                         <li class="checker"><a
                                 class=" {{ Route::currentRouteName() === 'school-settings' ? 'menu-active' : '' }}"
                                 href="{{ route('school-settings') }}">Institute Profile</a></li>
+                        <li class="checker"><a
+                                class=" {{ Route::currentRouteName() === 'header-menu-settings' ? 'menu-active' : '' }}"
+                                href="{{ route('header-menu-settings') }}">Header Menu</a></li>
                         <li class="checker"><a
                                 class=" {{ Route::currentRouteName() === 'header-footer-settings' ? 'menu-active' : '' }}"
                                 href="{{ route('header-footer-settings') }}">Header & Footer</a></li>

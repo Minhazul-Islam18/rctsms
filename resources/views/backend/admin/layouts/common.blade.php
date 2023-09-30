@@ -121,6 +121,13 @@
                                 <a href="#"><i class="bi bi-people me-2"></i><span>Student Management</span></a>
                                 <ul class="submenu">
                                     <li>
+                                        <a class="{{ Route::currentRouteName() === 'co-curriculum' ? 'menu-active' : '' }}"
+                                            href="{{ route('co-curriculum') }}">
+                                            <i class="bi bi-flag"></i>
+                                            <span class="label">Co Curriculums</span>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="{{ Route::currentRouteName() === 'academic-result' ? 'menu-active' : '' }}"
                                             href="{{ route('academic-result') }}">
                                             <i class="bi bi-list-stars"></i>
@@ -235,6 +242,9 @@
                                     <li class="checker"><a
                                             class=" {{ Route::currentRouteName() === 'school-settings' ? 'menu-active' : '' }}"
                                             href="{{ route('school-settings') }}">Institute Profile</a></li>
+                                    <li class="checker"><a
+                                            class=" {{ Route::currentRouteName() === 'header-menu-settings' ? 'menu-active' : '' }}"
+                                            href="{{ route('header-menu-settings') }}">Header Menu</a></li>
                                     <li class="checker"><a
                                             class=" {{ Route::currentRouteName() === 'header-footer-settings' ? 'menu-active' : '' }}"
                                             href="{{ route('header-footer-settings') }}">Header & Footer</a></li>

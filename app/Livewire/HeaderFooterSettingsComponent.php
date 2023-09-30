@@ -21,10 +21,10 @@ class HeaderFooterSettingsComponent extends Component
     public $imageName;
     public $image;
     public $iteration;
-    public $menuId;
-    public $name;
-    public $url;
-    public $parentId;
+    // public $menuId;
+    // public $name;
+    // public $url;
+    // public $parentId;
     #[Rule('required')]
     public $FW1status;
     #[Rule('required|min:3', onUpdate: false)]
@@ -44,85 +44,85 @@ class HeaderFooterSettingsComponent extends Component
     #[Rule('required|min:3', onUpdate: false)]
     public $FW3smr_text;
 
-    public function createMenu()
-    {
-        if ($this->parentId) {
-            $parent = SiteMenu::findOrFail($this->parentId);
-            $submenu = $parent->submenus()->create([
-                'name' => $this->name,
-                'url' => $this->url,
-            ]);
-        } else {
-            SiteMenu::create([
-                'name' => $this->name,
-                'url' => $this->url,
-            ]);
-        }
+    // public function createMenu()
+    // {
+    //     if ($this->parentId) {
+    //         $parent = SiteMenu::findOrFail($this->parentId);
+    //         $submenu = $parent->submenus()->create([
+    //             'name' => $this->name,
+    //             'url' => $this->url,
+    //         ]);
+    //     } else {
+    //         SiteMenu::create([
+    //             'name' => $this->name,
+    //             'url' => $this->url,
+    //         ]);
+    //     }
 
-        $this->resetFields();
-    }
+    //     $this->resetFields();
+    // }
 
-    public function editMenu($id)
-    {
-        $menu = SiteMenu::findOrFail($id);
-        $this->menuId = $menu->id;
-        $this->name = $menu->name;
-        $this->url = $menu->url;
-    }
+    // public function editMenu($id)
+    // {
+    //     $menu = SiteMenu::findOrFail($id);
+    //     $this->menuId = $menu->id;
+    //     $this->name = $menu->name;
+    //     $this->url = $menu->url;
+    // }
 
-    public function updateMenu()
-    {
-        $menu = SiteMenu::findOrFail($this->menuId);
-        $menu->update([
-            'name' => $this->name,
-            'url' => $this->url,
-        ]);
+    // public function updateMenu()
+    // {
+    //     $menu = SiteMenu::findOrFail($this->menuId);
+    //     $menu->update([
+    //         'name' => $this->name,
+    //         'url' => $this->url,
+    //     ]);
 
-        $this->resetFields();
-    }
+    //     $this->resetFields();
+    // }
 
-    public function deleteMenu($id)
-    {
-        $menu = SiteMenu::findOrFail($id);
-        $menu->delete();
-    }
-    public function editSubmenu($id)
-    {
-        $submenu = SiteMenu::findOrFail($id);
-        $this->menuId = $submenu->id;
-        $this->parentId = $submenu->parent_id;
-        $this->name = $submenu->name;
-        $this->url = $submenu->url;
-    }
+    // public function deleteMenu($id)
+    // {
+    //     $menu = SiteMenu::findOrFail($id);
+    //     $menu->delete();
+    // }
+    // public function editSubmenu($id)
+    // {
+    //     $submenu = SiteMenu::findOrFail($id);
+    //     $this->menuId = $submenu->id;
+    //     $this->parentId = $submenu->parent_id;
+    //     $this->name = $submenu->name;
+    //     $this->url = $submenu->url;
+    // }
 
-    public function updateSubmenu()
-    {
-        $submenu = SiteMenu::findOrFail($this->menuId);
-        $submenu->update([
-            'name' => $this->name,
-            'url' => $this->url,
-        ]);
+    // public function updateSubmenu()
+    // {
+    //     $submenu = SiteMenu::findOrFail($this->menuId);
+    //     $submenu->update([
+    //         'name' => $this->name,
+    //         'url' => $this->url,
+    //     ]);
 
-        $this->resetFields();
-    }
+    //     $this->resetFields();
+    // }
 
-    public function deleteSubmenu($id)
-    {
-        $submenu = SiteMenu::findOrFail($id);
-        $submenu->delete();
-    }
-    public function cancel()
-    {
-        return $this->menuId; //annonymously works after added this line!
-        $this->resetFields();
-    }
-    public function resetFields()
-    {
-        $this->menuId = null;
-        $this->name = '';
-        $this->url = '';
-        $this->parentId = null;
-    }
+    // public function deleteSubmenu($id)
+    // {
+    //     $submenu = SiteMenu::findOrFail($id);
+    //     $submenu->delete();
+    // }
+    // public function cancel()
+    // {
+    //     return $this->menuId; //annonymously works after added this line!
+    //     $this->resetFields();
+    // }
+    // public function resetFields()
+    // {
+    //     $this->menuId = null;
+    //     $this->name = '';
+    //     $this->url = '';
+    //     $this->parentId = null;
+    // }
 
     //delete header image
     public function deleteImage($imageId)
@@ -248,17 +248,10 @@ class HeaderFooterSettingsComponent extends Component
             $this->FW3smr_text = $FW3->text ?? '';
         }
     }
-    public function ReOrder($list)
-    {
-        foreach ($list as $data) {
-            SiteMenu::findOrFail($data['value'])->update(['position' => $data['order']]);
-        }
-        $this->alert('success', 'Re-Ordered');
-    }
+
     public function render()
     {
-        $menus = SiteMenu::whereNull('parent_id')->with('submenus')->orderBy('position', 'ASC')->get();
         $header_image = HeaderSetting::first();
-        return view('livewire.header-footer-settings-component', compact('menus', 'header_image'));
+        return view('livewire.header-footer-settings-component', compact('header_image'));
     }
 }

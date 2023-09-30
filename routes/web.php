@@ -36,6 +36,7 @@ use App\Livewire\Frontend\MeritoriousStudentPageComponent;
 use App\Livewire\Frontend\NoticepageComponent;
 use App\Livewire\Frontend\PersonpageComponent;
 use App\Livewire\Frontend\PhotoGalleryPageComponent;
+use App\Livewire\Frontend\PostByCategoryPageComponent;
 use App\Livewire\Frontend\QualityAcceptancePageComponent;
 use App\Livewire\Frontend\SingleBlogPageComponent;
 use App\Livewire\Frontend\SingleNoticePageComponent;
@@ -46,6 +47,7 @@ use App\Livewire\Frontend\TeachersPageComponent;
 use App\Livewire\Frontend\TeachingPermissionPageComponent;
 use App\Livewire\Frontend\VideoGalleryPageComponent;
 use App\Livewire\HeaderFooterSettingsComponent;
+use App\Livewire\HeaderMenuComponent;
 use App\Livewire\InstitutionCommitteeComponent;
 use App\Livewire\MeritoriousStudentComponent;
 use App\Livewire\QualityAcceptanceComponent;
@@ -96,6 +98,7 @@ Route::get('/notices', NoticepageComponent::class)->name('notice-page');
 Route::get('/notice/{title}', SingleNoticePageComponent::class)->name('single-notice-page');
 Route::get('/blogs', BlogPostPageComponent::class)->name('blogs-page');
 Route::get('/blogs/{title}', SingleBlogPageComponent::class)->name('single-blog-page');
+Route::get('/blogs/category/{id}', PostByCategoryPageComponent::class)->name('post-by-category-page');
 Route::get('/person/{id}', PersonpageComponent::class)->name('person-page');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'admin']], function () {
@@ -125,4 +128,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'admin']], f
     Route::get('/settings/roles', CreateRole::class)->name('role-settings');
     Route::get('/settings/permissions', PermissionComponent::class)->name('permission-settings');
     Route::get('/settings/header-footer', HeaderFooterSettingsComponent::class)->name('header-footer-settings');
+    Route::get('/settings/header-menu', HeaderMenuComponent::class)->name('header-menu-settings');
 });

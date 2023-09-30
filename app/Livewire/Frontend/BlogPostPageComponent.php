@@ -13,13 +13,13 @@ class BlogPostPageComponent extends Component
     use WithPagination;
     public $selectedCategory;
     public $count = 1;
-    #[Layout('livewire.frontend.layouts.common')]
+    #[Layout('livewire.frontend.layouts.with_sidebar')]
     public function render()
     {
         $categories = BlogPostCategory::orderBy('position')->get();
         $posts = $this->selectedCategory
             ? BlogPostCategory::find($this->selectedCategory)->blog_posts
-            : BlogPost::with('category')->orderBy('position', 'ASC')->paginate(8);
+            : BlogPost::with('category')->orderBy('created_at', 'DESC')->paginate(8);
         // $posts = BlogPost::with('category')->orderBy('position', 'ASC')->get();
 
         // dd($posts);

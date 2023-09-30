@@ -50,7 +50,6 @@
                 }
             });
         </script>
-        <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
     @endsection
     <div>
 
@@ -59,7 +58,7 @@
                 <h5 class="m-0">Header Settings</h5>
             </div>
             <div class="card-body">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12 col-md-4 col-sm-12">
                         <nav class="preview_nav">
                             <ul class="prev-menu-list" wire:sortable="ReOrder"
@@ -167,12 +166,11 @@
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
                 @if ($header_image)
                     <div class="my-3 d-flex flex-column gap-2 align-items-start">
                         <div>
-                            <img src="/storage/{{ $header_image->header_image }}" class="max-w-100 w-50"
-                                alt="">
+                            <img src="/storage/{{ $header_image->header_image }}" class="max-w-100 w-50" alt="">
                         </div>
                         <button wire:click="deleteImage({{ $header_image->id }})" class="btn btn-danger"
                             onclick="return confirm('Are you sure you want to delete this image?')">Delete</button>
@@ -212,8 +210,8 @@
                     <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                         <h5 class="m-0">Footer Widget 1</h5>
                         <div class="tgl-group">
-                            <input class='tgl tgl-light d-none' id='widget_1' wire:model='FW1status'
-                                type='checkbox' {{ $this->FW1status == 1 ? 'checked' : '' }} />
+                            <input class='tgl tgl-light d-none' id='widget_1' wire:model='FW1status' type='checkbox'
+                                {{ $this->FW1status == 1 ? 'checked' : '' }} />
                             <label class='tgl-btn' for='widget_1'></label>
                         </div>
                     </div>
@@ -226,8 +224,7 @@
                             </div>
                             <div class="mb-3" wire:ignore>
                                 <label for="" class="form-label">Text</label>
-                                <textarea class="form-control summernote" name="" id="smr1" wire:model.defer='FW1smr_text'
-                                    rows="3">{!! $FW1smr_text !!}</textarea>
+                                <textarea class="form-control summernote" name="" id="smr1" wire:model.defer='FW1smr_text' rows="3">{!! $FW1smr_text !!}</textarea>
                             </div>
                             <button type="submit" class="btn btn-success">Save</button>
                         </form>
@@ -239,8 +236,8 @@
                     <div class="card-header pb-2 pt-3 d-flex align-items-center justify-content-between">
                         <h5 class="m-0">Footer Widget 2</h5>
                         <div class="tgl-group">
-                            <input class='tgl tgl-light d-none' id='widget_2' wire:model='FW2status'
-                                type='checkbox' {{ $this->FW2status == 1 ? 'checked' : '' }} />
+                            <input class='tgl tgl-light d-none' id='widget_2' wire:model='FW2status' type='checkbox'
+                                {{ $this->FW2status == 1 ? 'checked' : '' }} />
                             <label class='tgl-btn' for='widget_2'></label>
                         </div>
                     </div>
@@ -253,8 +250,7 @@
                             </div>
                             <div class="mb-3" wire:ignore>
                                 <label for="" class="form-label">Text</label>
-                                <textarea class="form-control summernote" name="" id="smr2" wire:model.defer='FW2smr_text'
-                                    rows="3">{!! $FW2smr_text !!}</textarea>
+                                <textarea class="form-control summernote" name="" id="smr2" wire:model.defer='FW2smr_text' rows="3">{!! $FW2smr_text !!}</textarea>
                             </div>
                             <button type="submit" wire:click='footerWidget({{ $widget = 2 }})'
                                 class="btn btn-success">Save</button>

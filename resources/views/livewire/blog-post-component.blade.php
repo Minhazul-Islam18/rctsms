@@ -82,7 +82,8 @@
                                         <option value="{{ $item->id }}"
                                             {{ $item->id == $post['id'] ? 'selected' : null }}
                                             wire:key='{{ $item->id }}'>
-                                            {{ $item->category_name }}</option>
+                                            {{ $item->category_name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('post.category_id')
@@ -104,6 +105,15 @@
                                     <span class="error text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <span wire:target='post.featured_image' wire:loading
+                                class="text-primary mb-2">Uploading....</span>
+                            @if (
+                                $post['featured_image'] &&
+                                    is_object($post['featured_image']) &&
+                                    method_exists($post['featured_image'], 'temporaryUrl'))
+                                <img src="{{ $post['featured_image']->temporaryUrl() }}" class="w-25 mb-2"
+                                    alt="">
+                            @endif
                             <div class="mb-3">
                                 <label for="" class="form-label">Featured Image</label>
                                 <input type="file" class="form-control" name=""
@@ -115,6 +125,13 @@
                                     <div class="text-danger d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <span wire:target='post.post_images' wire:loading
+                                class="text-primary mb-2">Uploading....</span>
+                            @if ($post['post_images'] && is_object($post['post_images']) && method_exists($post['post_images'], 'temporaryUrl'))
+                                @foreach ($post['post_images'] as $item)
+                                    <img src="{{ $item->temporaryUrl() }}" class="w-25 mb-2" alt="">
+                                @endforeach
+                            @endif
                             <div class="mb-3">
                                 <label for="" class="form-label">Post Image <sub>(s)</sub></label>
                                 <input type="file" class="form-control" name=""
@@ -128,7 +145,7 @@
                             <button type="submit"
                                 class="btn btn-success">{{ $this->post['editing'] == true ? 'Update' : 'Create' }}</button>
                             @if ($this->post['editing'])
-                                <button type="button" class="btn btn-danger"
+                                <button wire:loading.blur type="button" class="btn btn-danger"
                                     wire:click='cancelPostAction'>{{ 'Cancel' }}</button>
                             @endif
                         </form>

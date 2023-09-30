@@ -393,6 +393,7 @@ nav .accordion-content {
 #youtube-carousel {
     overflow: hidden;
 }
+
 #youtube-carousel .item-video {
     height: 300px;
     min-height: 300px;
@@ -402,6 +403,10 @@ nav .accordion-content {
     opacity: 1;
     color: #fff;
 }
-#youtube-carousel .item > * {
-    max-width: 100%;
+#youtube-carousel.owl-carousel .item > * {
+    max-width: 100% !important;
+}
+
+.blog-item {
+    text-decoration: none;
 }

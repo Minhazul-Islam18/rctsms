@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 
 class SingleBlogPageComponent extends Component
 {
-    #[Layout('livewire.frontend.layouts.common')]
+    #[Layout('livewire.frontend.layouts.with_sidebar')]
     public $blog;
     function mount($title)
     {
