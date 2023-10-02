@@ -19,6 +19,7 @@ class SchoolProfileComponent extends Component
     public $settings =
     [
         'location' => null,
+        'history_image' => null,
         'history' => null,
         'school_name' => null,
         'established_at' => null,
@@ -34,6 +35,7 @@ class SchoolProfileComponent extends Component
         $if_present = SchoolProfile::first();
         $this->settings = [
             'location' => $if_present->location,
+            'history_image' => $if_present->history_image,
             'history' => $if_present->history,
             'school_name' => $if_present->school_name,
             'established_at' => $if_present->established_at,
@@ -46,10 +48,15 @@ class SchoolProfileComponent extends Component
     }
     function SaveGeneralSettings()
     {
+        // dd($this->settings['history_image']);
+        $newImageName = time() . '_' . $this->settings['history_image']->getClientOriginalName();
+
+        $this->settings['history_image'] = $this->settings['history_image']->storeAs('frontend/images', $newImageName, 'public');
         $if_present = SchoolProfile::first();
         if ($if_present) {
             $if_present->update([
                 'location' => $this->settings['location'],
+                'history_image' => $this->settings['history_image'],
                 'history' => $this->settings['history'],
                 'school_name' => $this->settings['school_name'],
                 'established_at' => $this->settings['established_at'],
@@ -62,6 +69,7 @@ class SchoolProfileComponent extends Component
         } else {
             $rt = SchoolProfile::create([
                 'location' => $this->settings['location'],
+                'history_image' => $this->settings['history_image'],
                 'history' => $this->settings['history'],
                 'school_name' => $this->settings['school_name'],
                 'established_at' => $this->settings['established_at'],
@@ -81,6 +89,7 @@ class SchoolProfileComponent extends Component
     {
         $this->settings = [
             'location' => null,
+            'history_image' => null,
             'history' => null,
             'school_name' => null,
             'established_at' => null,

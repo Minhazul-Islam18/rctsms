@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -65,8 +66,8 @@ class InstitutionCommitteeComponent extends Component
         $this->fields['identity'] = $ec['identity'];
         $this->fields['person_post'] = $ec['person_post'];
         $this->fields['person_address'] = $ec['person_address'];
-        $this->fields['announced_at'] = $ec['announced_at'];
-        $this->fields['expired_at'] = $ec['expired_at'];
+        $this->fields['announced_at'] = Carbon::parse($ec['announced_at'])->format('Y-m-d');
+        $this->fields['expired_at'] = Carbon::parse($ec['expired_at'])->format('Y-m-d');
     }
     function UpdateClass()
     {

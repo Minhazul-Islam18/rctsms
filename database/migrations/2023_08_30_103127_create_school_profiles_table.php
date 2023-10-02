@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('school_name')->nullable();
             $table->text('location')->nullable();
+            $table->text('history_image')->nullable();
             $table->text('history')->nullable();
             $table->string('established_at')->nullable();
             $table->string('eiin')->nullable();

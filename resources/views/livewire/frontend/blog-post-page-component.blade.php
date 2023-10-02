@@ -1,11 +1,11 @@
 @section('page-title')
-    {{ 'খবর' }}
+    {{ 'ব্লগ ও সংবাদ' }}
 @endsection
 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
     <div>
         <div class="blogs">
-            <h5 class="mb-2 d-flex justify-content-center py-2 w-100 rounded-1">খবর</h5>
-            <ul class="notice-nav justify-content-center gap-2">
+            <h5 class="mb-2 d-flex justify-content-center py-2 w-100 rounded-1">ব্লগ ও সংবাদ</h5>
+            {{-- <ul class="notice-nav justify-content-center gap-2">
                 <li wire:click="$set('selectedCategory', null)" class="{{ !$selectedCategory ? 'active' : '' }}">
                     {{ __('সকল') }}
                 </li>
@@ -14,25 +14,25 @@
                         class="{{ $selectedCategory == $category->id ? 'active' : '' }}">
                         {{ $category->category_name }}</li>
                 @endforeach
-            </ul>
+            </ul> --}}
             <ul class="row blog-list rounded-0 p-0 gx-0 gap-3 row-wrap">
-                <div class="col-12 loading-spinner" wire:loading>{{ __('লোড হচ্ছে...') }}</div>
+                {{-- <div class="col-12 loading-spinner" wire:loading>{{ __('লোড হচ্ছে...') }}</div> --}}
                 @foreach ($posts as $item)
                     <a href="{{ route('single-blog-page', ['title' => $item->title]) }}"
-                        class="blog-item col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 rounded shadow-sm">
+                        class="blog-item col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded shadow-sm">
                         <li wire:key='{{ $item->index }}' class="list-unstyled ">
                             <div class="d-flex flex-column gap-1">
                                 <img style="width: 100%; height: auto" class="mx-auto rounded"
                                     src="/storage/{{ $item->featured_image }}" />
                                 <div class="content py-2 px-2">
                                     <h4 class="m-0 text-dark d-block">{{ $item->title }}</h4>
-                                    <span class="text-dark text-sm">
+                                    <small class="text-dark text-sm">
                                         <i class="fa-solid fa-calendar-day me-2 text-success"></i>
                                         {{ Carbon\Carbon::parse($item->created_at)->format('h:i A, Y-m-d') }}
-                                    </span>
+                                    </small>
 
-                                    <span
-                                        class="text-secondary d-inline-block">{{ mb_strimwidth($item->description, 0, 100, '....') }}</span>
+                                    <small
+                                        class="text-secondary d-inline-block">{{ mb_strimwidth($item->description, 0, 100, '....') }}</small>
                                 </div>
                             </div>
                         </li>

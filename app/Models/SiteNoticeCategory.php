@@ -11,6 +11,6 @@ class SiteNoticeCategory extends Model
     protected $guarded = [];
     public function notices()
     {
-        return $this->hasMany(SiteNotice::class, 'id')->orderBy('position', 'ASC');
+        return $this->hasMany(SiteNotice::class)->orderBy('position', 'ASC');
     }
 }

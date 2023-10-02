@@ -24,16 +24,15 @@ class HomepageComponent extends Component
 
     public function mount()
     {
-        // Fetch video links from your database and set them to $videoLinks
-        $this->videoLinks = VideoGallery::pluck('link')->toArray();
+        $this->videoLinks = VideoGallery::pluck('link')->sortBy(['created_at', 'DESC'])->toArray();
     }
     public function render()
     {
-        $home_slider = HomepageSlider::orderBy('position')->get();
+        $home_slider = HomepageSlider::orderBy('created_at', 'DESC')->get();
         $individual = ImportantIndividual::orderBy('position')->get();
         $additionalLinks = ImportantLink::orderBy('position')->get();
-        $notices = SiteNotice::orderBy('position')->limit(5)->get();
-        $news = BlogPost::orderBy('position')->limit(1)->get();
+        $notices = SiteNotice::orderBy('created_at', 'DESC')->limit(5)->get();
+        $news = BlogPost::orderBy('created_at', 'DESC')->limit(3)->get();
         $schoolWidgets = AboutSchoolWidget::orderBy('position')->get();
         $galleryImages = PhotoGallery::orderBy('position')->limit(5)->get();
         return view('livewire.frontend.index', [

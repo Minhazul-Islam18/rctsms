@@ -74,6 +74,13 @@
                                 <textarea class="form-control" wire:model.delay.blur='settings.history' name="" id="" rows="3"></textarea>
                             </div>
                         </div>
+                        <div class="col-12 col-md-6 col-sm-12">
+                            <div class="mb-3">
+                                <label for="" class="form-label">History image</label>
+                                <input type="file" class="form-control"
+                                    wire:model.defer.blur="settings.history_image" id="">
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
 

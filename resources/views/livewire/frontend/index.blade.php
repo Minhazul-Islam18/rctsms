@@ -23,6 +23,15 @@
             .masonry {
                 column-count: 4;
             }
+
+            #top_header .item {
+                max-height: 612px !important;
+                min-height: 430px;
+            }
+
+            #top_header .item img {
+                min-height: 430px !important;
+            }
         }
 
         /* Masonry on medium-sized screens */
@@ -30,12 +39,44 @@
             .masonry {
                 column-count: 4;
             }
+
+            #top_header .item {
+                max-height: 300px !important;
+                min-height: 245px;
+                height: 100% !important;
+            }
+
+            #top_header .item img {
+                height: 245px !important;
+            }
         }
 
         /* Masonry on small screens */
         @media only screen and (max-width: 767px) and (min-width: 540px) {
             .masonry {
                 column-count: 3;
+            }
+
+            #top_header .item {
+                max-height: 300px !important;
+                min-height: 278px;
+                height: 100% !important;
+            }
+
+            #top_header .item img {
+                height: 278px !important;
+            }
+        }
+
+        @media only screen and (max-width: 527px) and (min-width: 340px) {
+            #top_header .item {
+                max-height: 205px !important;
+                min-height: 192px;
+                height: 100% !important;
+            }
+
+            #top_header .item img {
+                height: 192px !important;
             }
         }
     </style>
@@ -54,6 +95,7 @@
             loop: true,
             margin: 10,
             nav: true,
+            dots: false,
             autoplay: true,
             navText: [
                 "<i class='fa-solid fa-caret-left'></i>",
@@ -209,8 +251,10 @@
                                     <a
                                         href="{{ route('single-blog-page', ['title' => $item->title]) }}">{{ $item->title }}</a>
                                     </br>
-                                    <i class="fa-solid fa-calendar-day me-2 text-success"></i>
-                                    {{ 'প্রকাশের তারিখ: ' . Carbon\Carbon::parse($item->created_at)->format('h:i A, Y-m-d') }}
+                                    <small>
+                                        <i class="fa-solid fa-calendar-day text-success"></i>
+                                        {{ 'প্রকাশের তারিখ: ' . Carbon\Carbon::parse($item->created_at)->format('h:i A, Y-m-d') }}
+                                    </small>
                                 </div>
                             </div>
                         @empty

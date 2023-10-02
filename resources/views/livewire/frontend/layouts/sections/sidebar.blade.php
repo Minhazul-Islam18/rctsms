@@ -4,12 +4,12 @@
             @php
                 $latestPosts = DB::table('blog_posts')
                     ->orderBy('created_at', 'DESC')
-                    ->take(5)
+                    ->take(10)
                     ->get();
                 $categories = DB::table('blog_post_categories')->get();
             @endphp
-            <h3 class="mb-2 border-bottom py-2 px-2"
-                style="background-color: var(--site-primary);color: var(--site-text);">{{ 'আরও সংবাদ' }}</h3>
+            <h4 class="mb-2 border-bottom py-2 px-2"
+                style="background-color: var(--site-primary);color: var(--site-text);">{{ 'আরও সংবাদ' }}</h4>
             <div class="d-flex flex-column gap-2 mt-2">
                 @foreach ($latestPosts as $item)
                     <a href="{{ route('single-blog-page', ['title' => $item->title]) }}"
@@ -27,17 +27,19 @@
             </div>
         </div>
         <div class="d-flex flex-wrap flex-column my-2">
-            <h3 class="mb-2 border-bottom py-2 px-2"
-                style="background-color: var(--site-primary);color: var(--site-text);">{{ 'ক্যাটাগরি সমূহ' }}</h3>
-            <div class="d-flex flex-row gap-2 mt-2">
-                @foreach ($categories as $item)
-                    <a href="{{ route('post-by-category-page', ['id' => $item->id]) }}"
-                        class="d-inline-block bg-secondary bg-opacity-10 p-2 shadow-sm rounded text-decoration-none">
-                        <div class="d-block">
-                            <small class="text-dark m-0">{{ $item->category_name }}</small>
-                        </div>
-                    </a>
-                @endforeach
+            <h4 class="mb-2 border-bottom py-2 px-2"
+                style="background-color: var(--site-primary);color: var(--site-text);">{{ 'ক্যাটাগরি সমূহ' }}</h4>
+            <div class="mt-2">
+                <ul class="list-group">
+                    @foreach ($categories as $item)
+                        <a href="{{ route('post-by-category-page', ['id' => $item->id]) }}"
+                            class="text-decoration-none">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <small class="text-dark m-0">{{ $item->category_name }}</small>
+                            </li>
+                        </a>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </section>

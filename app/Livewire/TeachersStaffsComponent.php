@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\TeacherAndStaffs;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -84,9 +85,12 @@ class TeachersStaffsComponent extends Component
         $this->fields['website'] = $ec['website'];
         $this->fields['address'] = $ec['address'];
         $this->fields['active'] = $ec['active'];
-        $this->fields['start_date'] = $ec['start_date'];
-        $this->fields['end_date'] = $ec['end_date'];
+        $this->fields['start_date'] = Carbon::parse($ec['start_date'])->format('Y-m-d');
+        $this->fields['end_date'] = Carbon::parse($ec['end_date'])->format('Y-m-d');
         $this->fields['employee_type'] = $ec['employee_type'];
+
+        // dd($this->fields);
+        $this->dispatch('show-dates');
     }
     function UpdateClass()
     {

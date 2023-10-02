@@ -6,20 +6,20 @@
         <div class="col-12 loading-spinner" wire:loading>{{ __('লোড হচ্ছে...') }}</div>
         @forelse ($posts as $item)
             <a href="{{ route('single-blog-page', ['title' => $item->title]) }}"
-                class="blog-item col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 rounded shadow-sm">
+                class="blog-item col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded shadow-sm">
                 <li wire:key='{{ $item->index }}' class="list-unstyled ">
                     <div class="d-flex flex-column gap-1">
                         <img style="width: 100%; height: auto" class="mx-auto rounded"
                             src="/storage/{{ $item->featured_image }}" />
                         <div class="content py-2 px-2">
                             <h4 class="m-0 text-dark d-block">{{ $item->title }}</h4>
-                            <span class="text-dark text-sm">
+                            <small class="text-dark text-sm">
                                 <i class="fa-solid fa-calendar-day me-2 text-success"></i>
                                 {{ Carbon\Carbon::parse($item->created_at)->format('h:i A, Y-m-d') }}
-                            </span>
+                            </small>
 
-                            <span
-                                class="text-secondary d-inline-block">{{ mb_strimwidth($item->description, 0, 100, '....') }}</span>
+                            <small
+                                class="text-secondary d-inline-block">{{ mb_strimwidth($item->description, 0, 100, '....') }}</small>
                         </div>
                     </div>
                 </li>

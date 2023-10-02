@@ -22,6 +22,7 @@ if (!function_exists('get_settings')) {
         $school = [
             'school_name' => $gs->school_name,
             'location' => $gs->location,
+            'history_image' => $gs->history_image,
             'history' => $gs->history,
             'established_at' => $gs->established_at,
             'eiin' => $gs->eiin,
