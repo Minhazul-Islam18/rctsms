@@ -78,6 +78,10 @@
             #top_header .item img {
                 height: 192px !important;
             }
+
+            .masonry {
+                column-count: 2;
+            }
         }
     </style>
 @endsection

@@ -35,6 +35,12 @@
                 column-count: 3;
             }
         }
+
+        @media only screen and (max-width: 527px) and (min-width: 340px) {
+            .masonry {
+                column-count: 2;
+            }
+        }
     </style>
 @endsection
 @section('page-script')
@@ -43,8 +49,8 @@
         media="screen" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js">
     </script>
-<script>
-                // add all to same gallery
+    <script>
+        // add all to same gallery
         $(".gallery a").attr("data-fancybox", "mygallery");
         // assign captions and title from alt-attributes of images:
         $(".gallery a").each(function() {
@@ -52,21 +58,20 @@
             $(this).attr("title", $(this).find("img").attr("alt"));
         });
         $(".gallery a").fancybox();
-     $(".gallery a").fancybox();
-</script>
-    @endsection
+        $(".gallery a").fancybox();
+    </script>
+@endsection
 <div>
     <div class="h2 my-4 d-block text-center">
         {{ __('ফটো গ্যালারি') }}
     </div>
-<div class="gallery masonry">
-                    @foreach ($gallery as $item)
-                        <div class="item">
-                            <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
-                                <img lazy class="mw-100" src="/storage/{{ $item->image }}"
-                                    alt="{{ $item->title }}">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
+    <div class="gallery masonry">
+        @foreach ($gallery as $item)
+            <div class="item">
+                <a href="/storage/{{ $item->image }}" wire:key='{{ $item->index }}'>
+                    <img lazy class="mw-100" src="/storage/{{ $item->image }}" alt="{{ $item->title }}">
+                </a>
+            </div>
+        @endforeach
+    </div>
 </div>

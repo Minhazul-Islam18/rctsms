@@ -6,7 +6,7 @@
     @endsection
     <div>
         <div class="row g-2 mt-2">
-            <div class="col-12 col-md-6 col-sm-12">
+            <div class="col-12 col-md-6 col-sm-12 order-2 order-md-1">
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-12">
+            <div class="col-12 col-md-6 col-sm-12 order-1 order-md-2">
                 <div class="card">
                     <div class="card-header py-3">
                         <span class="h5 m-0 text-white">{{ $editing == true ? 'Update' : 'Create' }} Person Data</span>

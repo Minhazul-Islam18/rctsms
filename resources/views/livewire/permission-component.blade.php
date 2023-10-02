@@ -1,3 +1,6 @@
+@section('page-title')
+    {{ 'Settings - Permission settings' }}
+@endsection
 <div>
     <div class="card">
         <div class="card-header">
@@ -5,7 +8,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-7">
+                <div class="col-12 col-md-7 col-sm-12 col-lg-7 order-2 order-md-1">
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -47,7 +50,7 @@
                         {{ $permissions->links() }}
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-12 col-md-5 col-sm-12 col-lg-5 order-1 order-md-2">
                     <form wire:submit.prevent="{{ $editing ? 'update' : 'createNew' }}">
                         <label for="RoleName" class="form-label">Permission</label>
                         <input type="text" class="form-control" wire:model="Permission" placeholder="">

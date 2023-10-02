@@ -7,7 +7,7 @@
     <div>
 
         <div class="row g-2">
-            <div class="col-12 col-md-5 col-sm-12">
+            <div class="col-12 col-md-5 col-sm-12 order-2 order-md-1">
                 <div class="card">
                     <div class="card-body" wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
                         @foreach ($widgets as $widget)
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-7 col-sm-12">
+            <div class="col-12 col-md-7 col-sm-12 order-1 order-md-2">
                 <div class="card">
                     <div class="card-header py-3 px-4">
                         <h3 class="m-0">{{ $editing == true ? 'Update' : 'Create' }} Widget</h3>

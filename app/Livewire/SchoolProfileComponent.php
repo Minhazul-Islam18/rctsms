@@ -19,6 +19,7 @@ class SchoolProfileComponent extends Component
     public $settings =
     [
         'location' => null,
+        'history_image_preview' => null,
         'history_image' => null,
         'history' => null,
         'school_name' => null,
@@ -35,7 +36,7 @@ class SchoolProfileComponent extends Component
         $if_present = SchoolProfile::first();
         $this->settings = [
             'location' => $if_present->location,
-            'history_image' => $if_present->history_image,
+            'history_image_preview' => $if_present->history_image,
             'history' => $if_present->history,
             'school_name' => $if_present->school_name,
             'established_at' => $if_present->established_at,
@@ -48,10 +49,11 @@ class SchoolProfileComponent extends Component
     }
     function SaveGeneralSettings()
     {
-        // dd($this->settings['history_image']);
-        $newImageName = time() . '_' . $this->settings['history_image']->getClientOriginalName();
+        if ($this->settings['history_image']) {
+            $newImageName = time() . '_' . $this->settings['history_image']->getClientOriginalName();
+            $this->settings['history_image'] = $this->settings['history_image']->storeAs('frontend/images', $newImageName, 'public');
+        }
 
-        $this->settings['history_image'] = $this->settings['history_image']->storeAs('frontend/images', $newImageName, 'public');
         $if_present = SchoolProfile::first();
         if ($if_present) {
             $if_present->update([

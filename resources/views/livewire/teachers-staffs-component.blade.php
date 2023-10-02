@@ -38,7 +38,7 @@
     <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
 @endsection
 <div>
-    <div class="row g-2 mt-2 flex-sm-row-reverse d-flex flex-column-reverse flex-sm-column flex-md-row">
+    <div class="row g-2 mt-2 flex-sm-row-reverse d-flex flex-sm-column flex-md-row">
         <div class="col-12 col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header py-3">

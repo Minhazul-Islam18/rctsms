@@ -15,23 +15,88 @@
                     <div class="card-body">
                         <ul class="list-group bg-transparent">
                             <li class="list-group-item bg-transparent border-0">
-                                প্রতিষ্ঠানের নাম:{{ get_settings('school_name') }}
+                                <div class="row gx-1 gy-0">
+                                    <div class="col-3 d-flex justify-content-between">
+                                        <span>প্রতিষ্ঠানের নাম</span>
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col-9">
+                                        {{ get_settings('school_name') }}
+                                    </div>
+                                </div>
                             </li>
                             <li class="list-group-item bg-transparent border-0">
-                                প্রতিষ্ঠার সন:{{ get_settings('established_at') }}
+                                <div class="row gx-1 gy-0">
+                                    <div class="col-3 d-flex justify-content-between">
+                                        <span>প্রতিষ্ঠার সন</span>
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col-9">
+                                        {{ get_settings('established_at') }}
+                                    </div>
+                                </div>
                             </li>
                             <li class="list-group-item bg-transparent border-0">
-                                ঠিকানা:{{ get_settings('address') }}
+                                <div class="row gx-1 gy-0">
+                                    <div class="col-3 d-flex justify-content-between">
+                                        <span>EIIN নং</span>
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col-9">
+                                        {{ get_settings('eiin') }}
+                                    </div>
+                                </div>
                             </li>
                             <li class="list-group-item bg-transparent border-0">
-                                EIIN নং: {{ get_settings('eiin_no') }}
+                                <div class="row gx-1 gy-0">
+                                    <div class="col-3 d-flex justify-content-between">
+                                        <span>মোবাইল নম্বর</span>
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col-9">
+                                        {{ get_settings('contact_number') }}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item bg-transparent border-0">
+                                <div class="row gx-1 gy-0">
+                                    <div class="col-3 d-flex justify-content-between">
+                                        <span>ইমেইল</span>
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col-9">
+                                        {{ get_settings('contact_mail') }}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item bg-transparent border-0">
+                                <div class="row gx-1 gy-0">
+                                    <div class="col-3 d-flex justify-content-between">
+                                        <span>ওয়েবসাইট</span>
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col-9">
+                                        {{ get_settings('domain') }}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item bg-transparent border-0">
+                                <div class="row gx-1 gy-0">
+                                    <div class="col-3 d-flex justify-content-between">
+                                        <span>ঠিকানা</span>
+                                        <span>:</span>
+                                    </div>
+                                    <div class="col-9">
+                                        {{ get_settings('address') }}
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                <p class="mt-3" style="text-align: justify;font-weight: 500;">{{ get_settings('history') }}</p>
+                <p class="mt-3" style="text-align: justify;font-weight: 500;">{!! get_settings('history') !!}</p>
             </div>
         </div>
     </div>

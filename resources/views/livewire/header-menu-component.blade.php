@@ -6,7 +6,7 @@
 @endsection
 <div>
     <div class="row">
-        <div class="col-12 col-md-4 col-sm-12">
+        <div class="col-12 col-md-4 col-sm-12 order-2 order-md-1">
             <nav class="preview_nav">
                 <ul class="prev-menu-list" wire:sortable="ReOrder" wire:sortable.options="{ animation: 100 }">
                     @foreach ($menus as $menu)
@@ -26,7 +26,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-12 col-md-8 col-sm-12">
+        <div class="col-12 col-md-8 col-sm-12 order-1 order-md-2">
             <div class="menu-creation text-white">
                 <form wire:submit.prevent="createMenu" wire:loading.attr="disabled">
                     <div class="row g-1">

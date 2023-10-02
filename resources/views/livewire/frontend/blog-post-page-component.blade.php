@@ -5,29 +5,18 @@
     <div>
         <div class="blogs">
             <h5 class="mb-2 d-flex justify-content-center py-2 w-100 rounded-1">ব্লগ ও সংবাদ</h5>
-            {{-- <ul class="notice-nav justify-content-center gap-2">
-                <li wire:click="$set('selectedCategory', null)" class="{{ !$selectedCategory ? 'active' : '' }}">
-                    {{ __('সকল') }}
-                </li>
-                @foreach ($categories as $category)
-                    <li wire:click="$set('selectedCategory', {{ $category->id }})"
-                        class="{{ $selectedCategory == $category->id ? 'active' : '' }}">
-                        {{ $category->category_name }}</li>
-                @endforeach
-            </ul> --}}
-            <ul class="row blog-list rounded-0 p-0 gx-0 gap-3 row-wrap">
-                {{-- <div class="col-12 loading-spinner" wire:loading>{{ __('লোড হচ্ছে...') }}</div> --}}
+            <ul class="row blog-list rounded-0 p-0 gx-0 row-wrap">
                 @foreach ($posts as $item)
                     <a href="{{ route('single-blog-page', ['title' => $item->title]) }}"
-                        class="blog-item col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 rounded shadow-sm">
-                        <li wire:key='{{ $item->index }}' class="list-unstyled ">
+                        class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-decoration-none">
+                        <li wire:key='{{ $item->index }}' class="blog-item list-unstyled me-2 rounded shadow-sm">
                             <div class="d-flex flex-column gap-1">
                                 <img style="width: 100%; height: auto" class="mx-auto rounded"
                                     src="/storage/{{ $item->featured_image }}" />
                                 <div class="content py-2 px-2">
                                     <h4 class="m-0 text-dark d-block">{{ $item->title }}</h4>
                                     <small class="text-dark text-sm">
-                                        <i class="fa-solid fa-calendar-day me-2 text-success"></i>
+                                        <i class="fa-solid fa-calendar-day text-success"></i>
                                         {{ Carbon\Carbon::parse($item->created_at)->format('h:i A, Y-m-d') }}
                                     </small>
 

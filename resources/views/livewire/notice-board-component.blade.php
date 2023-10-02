@@ -5,8 +5,8 @@
         <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
     @endsection
     <div>
-        <div class="row g-2 mt-2 flex-sm-row-reverse d-flex flex-column-reverse flex-sm-column flex-md-row">
-            <div class="col-12 col-md-6 col-sm-12">
+        <div class="row g-2 mt-2 d-flex flex-column-reverse flex-sm-column flex-md-row">
+            <div class="col-12 col-md-6 col-sm-12 order-2 order-md-1">
                 <div class="card">
                     <div class="card-header py-3 border-bottom">
                         <div class="h5 m-0 fw-bold d-flex justify-content-center">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-12">
+            <div class="col-12 col-md-6 col-sm-12 order-1 order-md-2">
                 <div class="card">
                     <div class="card-header py-3 px-4">
                         <h3 class="m-0">{{ $editing == true ? 'Update' : 'Create' }} Notice</h3>
@@ -140,11 +140,11 @@
 
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-12">
+            <div class="col-12 col-md-6 col-sm-12 order-4 order-md-3">
                 <div class="card">
                     <div class="card-header py-3 border-bottom">
                         <div class="h5 m-0 fw-bold d-flex justify-content-center">
-                            Notices
+                            Categories
                         </div>
                     </div>
                     <div class="card-body py-2 px-2" wire:sortable="ReOrderCategory"
@@ -172,7 +172,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-12">
+            <div class="col-12 col-md-6 col-sm-12 order-3 order-md-4">
                 <div class="card">
                     <div class="card-header py-3 px-4">
                         <h3 class="m-0">{{ $editing == true ? 'Update' : 'Create' }} Notice Category</h3>
