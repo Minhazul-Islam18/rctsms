@@ -99,11 +99,11 @@
                             <div class="col-3">
                                 <span class="text-info" wire:loading
                                     wire:target='settings.history_image'>Uploading....</span>
-                                @if (isset($this->settings['history_image']) &&
-                                        is_object($this->settings['history_image']) &&
-                                        method_exists($this->settings['history_image'], 'temporaryUrl'))
+                                @if (isset($this->history_image) &&
+                                        is_object($this->history_image) &&
+                                        method_exists($this->history_image, 'temporaryUrl'))
                                     <img class="rounded border border-3" style="max-width: 100%"
-                                        src="{{ $this->settings['history_image']->temporaryUrl() }}" alt="">
+                                        src="{{ $this->history_image->temporaryUrl() }}" alt="">
                                 @else
                                     <img class="rounded border border-3" style="max-width: 100%"
                                         src="/storage/{{ $this->settings['history_image_preview'] }}" alt="">
@@ -112,8 +112,8 @@
                             <div class="col-9">
                                 <div class="mb-3">
                                     <label for="" class="form-label">History image</label>
-                                    <input type="file" class="form-control"
-                                        wire:model.defer.blur="settings.history_image" id="">
+                                    <input type="file" class="form-control" wire:model.defer.blur="history_image"
+                                        id="">
                                 </div>
                             </div>
                         </div>

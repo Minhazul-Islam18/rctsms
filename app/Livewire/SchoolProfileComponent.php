@@ -16,6 +16,7 @@ class SchoolProfileComponent extends Component
     use WithFileUploads;
     public $editing = false;
     public $editableId;
+    public $history_image = null;
     public $settings =
     [
         'location' => null,
@@ -49,16 +50,18 @@ class SchoolProfileComponent extends Component
     }
     function SaveGeneralSettings()
     {
-        if ($this->settings['history_image']) {
-            $newImageName = time() . '_' . $this->settings['history_image']->getClientOriginalName();
-            $this->settings['history_image'] = $this->settings['history_image']->storeAs('frontend/images', $newImageName, 'public');
+        if ($this->history_image) {
+            $newImageName = time() . '_' . $this->history_image->getClientOriginalName();
+            $this->history_image = $this->history_image->storeAs('frontend/images', $newImageName, 'public');
+        } else {
+            $this->history_image = $this->settings['history_image_preview'];
         }
 
         $if_present = SchoolProfile::first();
         if ($if_present) {
             $if_present->update([
                 'location' => $this->settings['location'],
-                'history_image' => $this->settings['history_image'],
+                'history_image' => $this->history_image,
                 'history' => $this->settings['history'],
                 'school_name' => $this->settings['school_name'],
                 'established_at' => $this->settings['established_at'],
