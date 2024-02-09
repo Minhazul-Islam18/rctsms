@@ -21,6 +21,7 @@ class SpeechesComponent extends Component
     public $person_name;
     // #[Rule('required')]
     public $edit_person_signiture;
+    public $words = null;
     // #[Rule('required')]
     public $person_words;
     public $PersonimageName;
@@ -56,7 +57,7 @@ class SpeechesComponent extends Component
                 'person_name' => $this->person['name'],
                 'person_post' => $this->person['post'],
                 'person_image' => $this->PersonimageName,
-                'person_words' => $this->person['words'],
+                'person_words' => $this->words,
                 'person_signiture' => $this->PersonSignitureimage,
             ]
         );
@@ -81,11 +82,12 @@ class SpeechesComponent extends Component
             $this->editing = true;
             $this->editableId = $id;
         }
+        $this->words = $pre->person_words;
         $this->person = [
             'name' => $pre->person_name,
             'image' => $pre->person_image,
             'post' => $pre->person_post,
-            'words' => $pre->person_words,
+            // 'words' => $pre->person_words,
             'signiture' => $pre->person_signiture
         ];
     }
@@ -121,11 +123,12 @@ class SpeechesComponent extends Component
                 'person_name' => $this->person['name'],
                 'person_post' => $this->person['post'],
                 'person_image' => $this->PersonimageName ?? $this->person['image'],
-                'person_words' => $this->person['words'],
+                'person_words' => $this->words,
                 'person_signiture' => $this->PersonSignitureimage ?? $this->person['signiture'],
             ]
         );
         if ($inserted) {
+            $this->words = null;
             $this->person = [
                 'name' => null,
                 'image' => null,

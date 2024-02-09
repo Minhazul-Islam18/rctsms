@@ -1,7 +1,28 @@
     @section('page-title')
         {{ 'Blog Posts' }}
     @endsection
+    @section('page-styles')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" />
+    @endsection
     @section('page-scripts')
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+        <script>
+            $('#content').summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['misc', ['undo', 'redo']],
+                    ['insert', ['link']],
+                    ['para', ['ul']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('settings.history', contents);
+                        // console.log(contents);
+                    }
+                }
+            });
+        </script>
+
         <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
     @endsection
     <div>
@@ -100,18 +121,19 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Content:</label>
-                                <textarea class="form-control" name="" id="" rows="3" wire:model="post.description"></textarea>
+                                <textarea class="form-control" name="" id="content" rows="3" wire:model="post.description">{!! $this->post['description'] !!}</textarea>
                                 @error('post.description')
                                     <span class="error text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <span wire:target='post.featured_image' wire:loading
                                 class="text-primary mb-2">Uploading....</span>
-                            @if (
-                                $post['featured_image'] &&
-                                    is_object($post['featured_image']) &&
-                                    method_exists($post['featured_image'], 'temporaryUrl'))
-                                <img src="{{ $post['featured_image']->temporaryUrl() }}" class="w-25 mb-2"
+
+                            @if (isset($this->post['featured_image']) &&
+                                    is_object($this->post['featured_image']) &&
+                                    method_exists($this->post['featured_image'], 'temporaryUrl'))
+                                <img style="max-width: 120px;"
+                                    src="{{ $this->post['featured_image']->temporaryUrl() }}" class="mb-2"
                                     alt="">
                             @endif
                             <div class="mb-3">
@@ -125,13 +147,15 @@
                                     <div class="text-danger d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <span wire:target='post.post_images' wire:loading
-                                class="text-primary mb-2">Uploading....</span>
-                            @if ($post['post_images'] && is_object($post['post_images']) && method_exists($post['post_images'], 'temporaryUrl'))
-                                @foreach ($post['post_images'] as $item)
-                                    <img src="{{ $item->temporaryUrl() }}" class="w-25 mb-2" alt="">
-                                @endforeach
-                            @endif
+                            <div class="d-flex gap-2 justify-content-start align-items-start">
+                                <span wire:target='post.post_images' wire:loading
+                                    class="text-primary mb-2">Uploading....</span>
+                                @if (isset($this->post['post_images']))
+                                    @foreach ($this->post['post_images'] as $item)
+                                        <img src="{{ $item->temporaryUrl() }}" class="w-25 mb-2" alt="">
+                                    @endforeach
+                                @endif
+                            </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Post Image <sub>(s)</sub></label>
                                 <input type="file" class="form-control" name=""

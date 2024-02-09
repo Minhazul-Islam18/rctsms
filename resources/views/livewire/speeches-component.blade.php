@@ -1,7 +1,29 @@
     @section('page-title')
         {{ 'Speeches-Persons' }}
     @endsection
+    @section('page-styles')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" />
+    @endsection
     @section('page-scripts')
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+        <script>
+            $('#words').summernote({
+                height: 300,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['misc', ['undo', 'redo']],
+                    ['insert', ['link']],
+                    ['para', ['ul']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('words', contents);
+                        // console.log(contents);
+                    }
+                }
+            });
+        </script>
+
         <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.3.0/dist/livewire-sortable.js"></script>
     @endsection
     <div>
@@ -74,18 +96,18 @@
                             @endif
                             <div class="mb-3">
                                 <label for="" class="form-label">Image</label>
-                                <input type="file" wire:model.delay.blur='person.image' class="form-control"
+                                <input type="file" wire:model.defer.blur='person.image' class="form-control"
                                     name="" id="yu{{ $iteration }}">
                             </div>
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Name</label>
-                                <input type="text" wire:model.delay.blur='person.name' class="form-control"
+                                <input type="text" wire:model.defer.blur='person.name' class="form-control"
                                     name="" id="">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Post</label>
-                                <input type="text" wire:model.delay.blur='person.post' class="form-control"
+                                <input type="text" wire:model.defer.blur='person.post' class="form-control"
                                     name="" id="">
                             </div>
                             @if ($person['signiture'])
@@ -97,13 +119,13 @@
                                     <img class="w-10" src="{{ $person['signiture']->temporaryUrl() }}"
                                         alt="">
                                 @endif
-                                <input type="file" wire:model.delay.blur='person.signiture' class="form-control"
+                                <input type="file" wire:model.defer.blur='person.signiture' class="form-control"
                                     name="" id="syu{{ $iteration }}">
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3" wire:ignore>
                                 <label for="" class="form-label">Words</label>
-                                <textarea class="form-control" wire:model.delay.blur='person.words' name="" id="" rows="3"></textarea>
+                                <textarea class="form-control" wire:model.defer='words' name="" id="words" rows="3">{!! $this->words !!}</textarea>
                             </div>
                             <button type="submit"
                                 class="btn btn-primary">{{ $editing == true ? 'Update' : 'Create' }}</button>
