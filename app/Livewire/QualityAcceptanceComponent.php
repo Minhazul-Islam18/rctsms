@@ -30,9 +30,13 @@ class QualityAcceptanceComponent extends Component
             'fields.files' => 'required'
         ]);
         foreach ($this->fields['files'] as $file) {
-            $imageName  = time() . '.' . $file->getClientOriginalName();
-            $path       = "frontend/files/acceptance";
-            $filos[] = Storage::disk('public')->put($path, $imageName);
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $path = "frontend/files/acceptance";
+            // Create the directory if it doesn't exist
+            if (!Storage::disk('public')->exists($path)) {
+                Storage::disk('public')->makeDirectory($path);
+            }
+            $filos[] = $file->storeAs($path, $imageName, 'public');
         }
         QualificationAcceptance::create([
             'description' => $this->fields['description'],
@@ -61,9 +65,13 @@ class QualityAcceptanceComponent extends Component
                 Storage::disk('public')->delete($file);
             }
             foreach ($this->fields['files'] as $file) {
-                $imageName  = time() . '.' . $file->getClientOriginalName();
-                $path       = "frontend/files/acceptance";
-                $filos[] = Storage::disk('public')->put($path, $imageName);
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $path = "frontend/files/acceptance";
+                // Create the directory if it doesn't exist
+                if (!Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->makeDirectory($path);
+                }
+                $filos[] = $file->storeAs($path, $imageName, 'public');
             }
         } else {
             $filos = $this->fields['files_in_edit'];
