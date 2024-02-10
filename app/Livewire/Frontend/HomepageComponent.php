@@ -31,7 +31,7 @@ class HomepageComponent extends Component
         $home_slider = HomepageSlider::orderBy('created_at', 'DESC')->get();
         $individual = ImportantIndividual::orderBy('position')->get();
         $additionalLinks = ImportantLink::orderBy('position')->get();
-        $notices = SiteNotice::orderBy('created_at', 'DESC')->limit(5)->get();
+        $notices = SiteNotice::orderBy('created_at', 'ASC')->limit(5)->get();
         $news = BlogPost::orderBy('created_at', 'DESC')->limit(3)->get();
         $schoolWidgets = AboutSchoolWidget::orderBy('position')->get();
         $galleryImages = PhotoGallery::orderBy('position')->limit(5)->get();
