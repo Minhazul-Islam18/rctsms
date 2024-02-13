@@ -27,6 +27,7 @@ class NoticeBoardComponent extends Component
     public $notice;
     public $Vnotice;
     public $title;
+    public $publish_date;
     public $description;
     public $notice_category_id;
     public $noticeId;
@@ -38,7 +39,7 @@ class NoticeBoardComponent extends Component
     public $category_name = null;
     protected $rules = [
         'title' => 'required',
-        'files' => 'required',
+        'files' => 'required|mimes:pdf',
     ];
     public function viewNotice($noticeId)
     {
@@ -58,6 +59,7 @@ class NoticeBoardComponent extends Component
         $this->title = $ntc->title;
         $this->description = $ntc->description;
         $this->notice_category_id = $ntc->site_notice_category_id;
+        $this->publish_date = $ntc->publish_date;
         $this->files_in_edit = json_decode($ntc['files']);
     }
     public function cancelEdit()
@@ -67,6 +69,7 @@ class NoticeBoardComponent extends Component
         $this->willDeletenoticeId = '';
         $this->editing = false;
         $this->noticeId = '';
+        $this->publish_date = '';
 
         $this->files_in_edit = '';
     }
@@ -88,12 +91,14 @@ class NoticeBoardComponent extends Component
             'title' => $this->title,
             'description' => $this->description,
             'files' => json_encode($filos),
+            'publish_date' => $this->publish_date,
         ]);
 
         // Reset input fields
         $this->title = '';
         $this->description = '';
         $this->files = '';
+        $this->publish_date = '';
         $this->iteration++;
         $this->alert('success', 'Notice Created Successfully!');
     }
@@ -117,6 +122,7 @@ class NoticeBoardComponent extends Component
                 'title' => $this->title,
                 'description' => $this->description,
                 'files' => json_encode($filos),
+                'publish_date' => $this->publish_date,
             ]);
         }
 
@@ -125,6 +131,7 @@ class NoticeBoardComponent extends Component
         $this->notice_category_id = '';
         $this->description = '';
         $this->files = '';
+        $this->publish_date = '';
         $this->iteration++;
         $this->alert('success', 'Notice Updated Successfully!');
     }

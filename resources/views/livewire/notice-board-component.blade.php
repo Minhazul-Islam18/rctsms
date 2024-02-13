@@ -129,6 +129,10 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="mb-2">
+                                <label for="" class="form-label">{{ __('Publish date') }}</label>
+                                <input type="date" wire:model.blur="publish_date" class="form-control">
+                            </div>
                             <button type="submit"
                                 class="btn btn-success">{{ $editing == true ? 'Update' : 'Create' }}</button>
                             @if ($editing)
