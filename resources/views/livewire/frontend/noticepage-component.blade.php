@@ -39,7 +39,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{ Carbon\Carbon::parse($item->created_at)->format('m/d/Y') }}
+                                        {{ Carbon\Carbon::parse($item->publish_date)->format('m/d/Y') }}
                                     </td>
                                     <td>
                                         @foreach (json_decode($item->files) as $itm)
