@@ -14,6 +14,11 @@
 
             <div class="d-block text-center mt-3">
                 @foreach (json_decode($notice->files) as $itm)
+                    <object data="{{ asset('storage/' . $itm) }}" type="application/pdf" width="100%" height="600px">
+                        <p>PDF cannot be displayed.</p>
+                    </object>
+
+
                     <button class="btn btn-warning btn-sm me-2" wire:click="downloadFile('{{ $itm }}')"
                         type="button">
                         <i class="fa fa-download" aria-hidden="true"></i>
