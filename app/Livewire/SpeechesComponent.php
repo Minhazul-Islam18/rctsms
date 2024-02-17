@@ -39,19 +39,21 @@ class SpeechesComponent extends Component
     {
         $this->validate([
             'person.image' => 'required',
-            'person.signiture' => 'required',
+            // 'person.signiture' => 'required',
             'person.name' => 'required',
-            'person.words' => 'required',
+            // 'person.words' => 'required',
             'person.post' => 'required',
         ]);
         $imgc = $this->person['image'];
         $newImageName = time() . '_' . $imgc->getClientOriginalName();
         $this->PersonimageName = $imgc->storeAs('frontend/images/persons', $newImageName, 'public');
 
-        $imgs = $this->person['signiture'];
-        $signitureImageName = time() . '_' . $imgs->getClientOriginalName();
-        $this->PersonSignitureimage = $imgs->storeAs('frontend/images/persons', $signitureImageName, 'public');
-        // dd($this->PersonimageName);
+        if (isset($this->person['signiture'])) {
+            $imgs = $this->person['signiture'];
+            $signitureImageName = time() . '_' . $imgs->getClientOriginalName();
+            $this->PersonSignitureimage = $imgs->storeAs('frontend/images/persons', $signitureImageName, 'public');
+        }
+
         $inserted =  ImportantIndividual::create(
             [
                 'person_name' => $this->person['name'],
@@ -116,7 +118,6 @@ class SpeechesComponent extends Component
         }
 
 
-        // dd($this->PersonimageName);
         $found =  ImportantIndividual::find($this->editableId);
         $inserted = $found->update(
             [

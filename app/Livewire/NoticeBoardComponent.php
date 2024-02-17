@@ -36,10 +36,11 @@ class NoticeBoardComponent extends Component
     public $editing = false;
     public $editingCategory = false;
     public $isOpen = false;
+    public $passed = false;
     public $category_name = null;
     protected $rules = [
         'title' => 'required',
-        'files' => 'required|mimes:pdf',
+        'files' => 'required',
     ];
     public function viewNotice($noticeId)
     {

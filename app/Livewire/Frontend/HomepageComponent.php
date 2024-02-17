@@ -34,7 +34,7 @@ class HomepageComponent extends Component
         $notices = SiteNotice::orderBy('publish_date', 'DESC')->limit(5)->get();
         $news = BlogPost::orderBy('created_at', 'DESC')->limit(3)->get();
         $schoolWidgets = AboutSchoolWidget::orderBy('position')->get();
-        $galleryImages = PhotoGallery::orderBy('position')->limit(5)->get();
+        $galleryImages = PhotoGallery::orderBy('position')->limit(4)->get();
         return view('livewire.frontend.index', [
             'news' => $news,
             'home_slider' => $home_slider,
